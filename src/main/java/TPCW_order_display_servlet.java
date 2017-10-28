@@ -88,7 +88,7 @@ public class TPCW_order_display_servlet extends HttpServlet {
 	 }
 	 else {
 	     Vector lines = new Vector();
-	     Order order = TPCW_Database.GetMostRecentOrder(uname, lines);
+	     Order order = TPCW_Database.GetMostRecentOrder(uname, lines); //TODO: Add-Cache-Candidate
 	     if(order!=null)
 		 printOrder(order, lines,out);
 	     else out.print("User has no order!\n");
