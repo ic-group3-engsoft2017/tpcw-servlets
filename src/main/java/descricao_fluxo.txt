@@ -1,0 +1,6 @@
+TPCW_admin_request_servlet
+
+retorna uma instância do objeto BOOK cada vez que é requisitado.
+
+
+
