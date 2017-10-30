@@ -65,28 +65,28 @@ public class TPCW_home_interaction extends HttpServlet {
       Vector column1 = new Vector();
       Vector column2 = new Vector();
 
-      column1.addElement(new String("ARTS"));//1
-      column2.addElement(new String("NON-FICTION"));
-      column1.addElement(new String("BIOGRAPHIES"));//2
-      column2.addElement(new String("PARENTING"));
-      column1.addElement(new String("BUSINESS"));//3
-      column2.addElement(new String("POLITICS"));
-      column1.addElement(new String("CHILDREN"));//4
-      column2.addElement(new String("REFERENCE"));
-      column1.addElement(new String("COMPUTERS"));//5
-      column2.addElement(new String("RELIGION"));
-      column1.addElement(new String("COOKING"));//6
-      column2.addElement(new String("ROMANCE"));
-      column1.addElement(new String("HEALTH"));//7
-      column2.addElement(new String("SELF-HELP"));
-      column1.addElement(new String("HISTORY"));//8
-      column2.addElement(new String("SCIENCE-NATURE"));
-      column1.addElement(new String("HOME"));//9
-      column2.addElement(new String("SCIENCE-FICTION"));
-      column1.addElement(new String("HUMOR"));//10
-      column2.addElement(new String("SPORTS"));
-      column1.addElement(new String("LITERATURE"));//11
-      column2.addElement(new String("MYSTERY"));
+      column1.addElement("ARTS");//1
+      column2.addElement("NON-FICTION");
+      column1.addElement("BIOGRAPHIES");//2
+      column2.addElement("PARENTING");
+      column1.addElement("BUSINESS");//3
+      column2.addElement("POLITICS");
+      column1.addElement("CHILDREN");//4
+      column2.addElement("REFERENCE");
+      column1.addElement("COMPUTERS");//5
+      column2.addElement("RELIGION");
+      column1.addElement("COOKING");//6
+      column2.addElement("ROMANCE");
+      column1.addElement("HEALTH");//7
+      column2.addElement("SELF-HELP");
+      column1.addElement("HISTORY");//8
+      column2.addElement("SCIENCE-NATURE");
+      column1.addElement("HOME");//9
+      column2.addElement("SCIENCE-FICTION");
+      column1.addElement("HUMOR");//10
+      column2.addElement("SPORTS");
+      column1.addElement("LITERATURE");//11
+      column2.addElement("MYSTERY");
 
       /*SERVLET SETUP*/
       HttpSession session = req.getSession(false);
