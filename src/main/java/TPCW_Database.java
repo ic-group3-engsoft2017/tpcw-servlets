@@ -88,40 +88,42 @@ public class TPCW_Database {
     	con.close();
     }
 
-    public static String[] getName(int c_id) {
-	String name[] = new String[2];
-	try {
-	    // Prepare SQL
-	    //	    out.println("About to call getConnection!");
-	    //            out.flush();
-	    Connection con = getConnection();
-	    //	    out.println("About to preparestatement!");
-	    //            out.flush();
-	    PreparedStatement get_name = con.prepareStatement
-		("SELECT c_fname,c_lname FROM CUSTOMER WHERE c_id = ?");
-	    
-	    // Set parameter
-	    get_name.setInt(1, c_id);
-	    // 	    out.println("About to execute query!");
-	    //            out.flush();
+	public static String[] getName(int c_id) {
+		String name[] = new String[2];
+		try {
+			// Prepare SQL
+			//	    out.println("About to call getConnection!");
+			//            out.flush();
+			Connection con = getConnection();
+			//	    out.println("About to preparestatement!");
+			//            out.flush();
 
-	    ResultSet rs = get_name.executeQuery();
-	    
-	    // Results
-	    rs.next();
-	    name[0] = rs.getString("c_fname");
-	    name[1] = rs.getString("c_lname");
-	    rs.close();
-	    get_name.close();
-	    con.commit();
-	    returnConnection(con);
-	} catch (java.lang.Exception ex) {
-	    ex.printStackTrace();
-	}
-	return name;
+			//TODO : Cache is not entirely required due the select is simple, and fast id query based
+			PreparedStatement get_name = con.prepareStatement
+			("SELECT c_fname,c_lname FROM CUSTOMER WHERE c_id = ?");
+
+			// Set parameter
+			get_name.setInt(1, c_id);
+			// 	    out.println("About to execute query!");
+			//            out.flush();
+
+			ResultSet rs = get_name.executeQuery();
+
+			// Results
+			rs.next();
+			name[0] = rs.getString("c_fname");
+			name[1] = rs.getString("c_lname");
+			rs.close();
+			get_name.close();
+			con.commit();
+			returnConnection(con);
+		} catch (java.lang.Exception ex) {
+			ex.printStackTrace();
+		}
+		return name;
     }
 
-    public static Book getBook(int i_id) {
+public static Book getBook(int i_id) {
 	Book book = null;
 	try {
 	    // Prepare SQL
@@ -333,8 +335,12 @@ public class TPCW_Database {
 	try {
 	    // Prepare SQL
 	    Connection con = getConnection();
+	    // TODO: Caching is helpful, the ammount of Or statements could end with a worst scenario
+		// of 5 hits per registry, cache would help.
 	    PreparedStatement statement = con.prepareStatement
-		("SELECT J.i_id,J.i_thumbnail from ITEM I, ITEM J where (I.i_related1 = J.i_id or I.i_related2 = J.i_id or I.i_related3 = J.i_id or I.i_related4 = J.i_id or I.i_related5 = J.i_id) and I.i_id = ?");
+		("SELECT J.i_id,J.i_thumbnail from ITEM I, ITEM J " +
+				"where (I.i_related1 = J.i_id or I.i_related2 = J.i_id or I.i_related3 = J.i_id " +
+				"or I.i_related4 = J.i_id or I.i_related5 = J.i_id) and I.i_id = ?");
 
 	    // Set parameter
 	    statement.setInt(1, i_id);

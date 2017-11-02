@@ -113,6 +113,7 @@ public class TPCW_home_interaction extends HttpServlet {
       
 
       //Say Hello!
+      // Does not need caching due to session caching the attributes
       TPCW_say_hello.print_hello(session, req, out);
 
       //Insert the promotional processing
