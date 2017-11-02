@@ -58,7 +58,7 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 
 public class TPCW_best_sellers_servlet extends HttpServlet {
-    
+	//TODO com certeza poderia ter um cache desse resultado, os últimos mais comprados    
   public void doGet(HttpServletRequest req, HttpServletResponse res)
       throws IOException, ServletException {
       String url;

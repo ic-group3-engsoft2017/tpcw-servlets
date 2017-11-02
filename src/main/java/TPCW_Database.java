@@ -317,7 +317,7 @@ public class TPCW_Database {
 
 	    // Results
 	    while(rs.next()) {
-		vec.addElement(new ShortBook(rs));
+	    	vec.addElement(new ShortBook(rs));
 	    }
 	    rs.close();
 	    statement.close();

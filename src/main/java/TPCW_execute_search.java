@@ -58,7 +58,7 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 
 public class TPCW_execute_search extends HttpServlet {
-    
+	// TODO talvez colocar um cache com as ultimas bucas realizadas.... mas é discutivel.
   public void doGet(HttpServletRequest req, HttpServletResponse res)
       throws IOException, ServletException {
       

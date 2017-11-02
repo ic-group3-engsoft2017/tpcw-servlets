@@ -1,6 +1,46 @@
 TPCW_admin_request_servlet
+	// TODO acho que não um cache específicio para ele, mas com itens (decidir quais ficar no cache)
+	retorna uma instância do objeto BOOK cada vez que é requisitado.
 
-retorna uma instância do objeto BOOK cada vez que é requisitado.
+
+TPCW_admin_response_servlet
+	// TODO acho que não um cache específicio para ele, mas com itens (decidir quais ficar no cache)
+	atualização de um livro e as últimas compras daquele livro
+		seleciona um item
+		instancia um novo objeto Book
+		busca pelas ultimas X ordens
+		update nos itens
 
 
+TPCW_best_sellers_servlet.java
+	
+	//TODO com certeza poderia ter um cache desse resultado, os últimos mais comprados
+	seleciona os itens que tem mais que um numero X de ordens
+	e o título é igual ao pesquisado, limite de 50
+	instância objetos ShortBook
 
+
+TPCW_buy_confirm_servlet.java
+
+	// TODO não seria de inicio um canditado para cache, 
+	// TODO busca informações do carrinho do cliente logado e busca informações 
+	// TODO para confirmar a compra
+	instancia um objeto BuyConfirmResult e objetos CartLine(dependendo da quantidade que tem no carrinho)
+	
+	
+TPCW_buy_request_servlet.java
+
+	//TODO não canditado a cache, criar customer novo
+	instancia objeto customer e cria um novo customer
+
+TPCW_customer_registration_servlet.java
+
+	//TODO não canditado a cache, criar customer novo
+	cria um novo customer
+	
+TPCW_execute_search.java
+	// TODO talvez colocar um cache com as ultimas bucas realizadas.... mas é discutivel.
+	buscando as pesquisas.
+	tipo: autor, título, assunto
+	string de pesquisa
+	limite de 50
