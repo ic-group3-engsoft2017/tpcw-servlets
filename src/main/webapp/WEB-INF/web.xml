@@ -151,7 +151,7 @@
     
     <filter>
   		<filter-name>Medidor</filter-name>
- 		 <filter-class>src.main.java.Medidor</filter-class>
+ 		 <filter-class>tpcw.Medidor</filter-class>
 	</filter>
   
 	<filter-mapping>
