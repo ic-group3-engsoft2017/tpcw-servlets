@@ -1,7 +1,7 @@
-/* 
- * TPCW_Database.java - Contains all of the code involved with database
+package tpcw.repository;/*
+ * tpcw.repository.TPCW_Database.java - Contains all of the code involved with database
  *                      accesses, including all of the JDBC calls. These
- *                      functions are called by many of the servlets.
+ *                      functions are called by many of the tpcw.servlets.
  *
  ************************************************************************
  *
@@ -52,6 +52,9 @@
  * you give them.
  *
  ************************************************************************/
+
+import tpcw.TPCW_Util;
+import tpcw.model.*;
 
 import java.sql.*;
 import java.util.*;
@@ -123,11 +126,12 @@ public class TPCW_Database {
 		return name;
     }
 
-public static Book getBook(int i_id) {
+	public static Book getBook(int i_id) {
 	Book book = null;
 	try {
 	    // Prepare SQL
 	    Connection con = getConnection();
+	    //TODO : Cache would help due the serialization of the ResultSet
 	    PreparedStatement statement = con.prepareStatement
 		("SELECT * FROM ITEM,AUTHOR WHERE ITEM.i_a_id = AUTHOR.a_id AND i_id = ?");
 	    
@@ -624,9 +628,9 @@ public static Book getBook(int i_id) {
 	return null;
     }
 
-    // ********************** Shopping Cart code below ************************* 
+    // ********************** Shopping tpcw.model.Cart code below *************************
 
-    // Called from: TPCW_shopping_cart_interaction 
+    // Called from: tpcw.servlets.TPCW_shopping_cart_interaction
     public static int createEmptyCart(){
 	int SHOPPING_ID = 0;
 	//	boolean success = false;
@@ -776,7 +780,7 @@ public static Book getBook(int i_id) {
 	    ResultSet rs = get_cart.executeQuery();
 	    rs.next();
 	    if (rs.getInt(1) == 0) {
-		// Cart is empty
+		// tpcw.model.Cart is empty
 		int rand_id = TPCW_Util.getRandomI_ID();
 		related_item = getRelated1(rand_id,con);
 		addItem(con, SHOPPING_ID, related_item);
@@ -838,7 +842,7 @@ public static Book getBook(int i_id) {
 	return mycart;
     }
 
-    // ************** Customer / Order code below ************************* 
+    // ************** tpcw.model.Customer / tpcw.model.Order code below *************************
 
     //This should probably return an error code if the customer
     //doesn't exist, but ...
@@ -1057,7 +1061,7 @@ public static Book getBook(int i_id) {
     }
 
     public static void enterCCXact(Connection con,
-				   int o_id,        // Order id
+				   int o_id,        // tpcw.model.Order id
 				   String cc_type,
 				   long cc_number,
 				   String cc_name,

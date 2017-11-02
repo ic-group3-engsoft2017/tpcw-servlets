@@ -1,7 +1,7 @@
-/* 
- * TPCW_say_hello.java - Utility function used by home interaction, 
- *                       creates a new session id for new users.
- * 
+package tpcw.model;/*
+ * tpcw.model.ShortBook.java - Class stores a subset of the information related to a
+ *                  a single ITEM in the DB.
+ *
  ************************************************************************
  *
  * This is part of the the Java TPC-W distribution,
@@ -52,53 +52,34 @@
  *
  ************************************************************************/
 
-import java.io.*;
-import javax.servlet.*;
-import javax.servlet.http.*;
+import java.sql.*;
 
-public class TPCW_say_hello {
-    
-    public static void print_hello(HttpSession session, HttpServletRequest req,
-				   PrintWriter out){
-
-        //If we have seen this session id before
-        if (!session.isNew()) {
-            int C_ID[] = (int [])session.getValue("C_ID");
-            //check and see if we have a customer name yet
-            if (C_ID != null) // Say hello.
-            out.println("Hello " + (String)session.getValue("C_FNAME") +
-                    " " + (String)session.getValue("C_LNAME"));
-            else out.println("Hello unknown user");
-        }
-        else {//This is a brand new session
-
-            out.println("This is a brand new session!");
-            // Check to see if a C_ID was given.  If so, get the customer name
-            // from the database and say hello.
-            String C_IDstr = req.getParameter("C_ID");
-            if (C_IDstr != null) {
-                String name[];
-                int C_ID[] = new int[1];
-                C_ID[0] = Integer.parseInt(C_IDstr, 10);
-                out.flush();
-                // Use C_ID to get the user name from the database.
-                // Set parameter
-                //TODO : Cache is not entirely required due the select is simple, and fast id query based
-                name = TPCW_Database.getName(C_ID[0]);
-                // Set the values for this session.
-                if(name==null){
-                   out.println("Hello unknown user!");
-                   return;
-                }
-                session.putValue("C_ID", C_ID);
-                session.putValue("C_FNAME", name[0]);
-                session.putValue("C_LNAME", name[1]);
-                out.println("Hello " + name[0] + " " + name[1] +".");
-            } else {
-                out.println("Hello unknown user!");
-            }
-        }
+public class ShortBook {
+    // Construct a book from a ResultSet
+    public ShortBook(ResultSet rs) {
+	// The result set should have all of the fields we expect.
+	// This relies on using field name access.  It might be a bad
+	// way to break this up since it does not allow us to use the
+	// more efficient select by index access method.  This also
+	// might be a problem since there is no type checking on the
+	// result set to make sure it is even a reasonble result set
+	// to give to this function.
+       
+	try {
+	    i_id = rs.getInt("i_id");
+	    i_title = rs.getString("i_title");
+	    a_fname = rs.getString("a_fname");
+	    a_lname = rs.getString("a_lname");		
+	} catch (java.lang.Exception ex) {
+	    ex.printStackTrace();
+	}
     }
+    // From Item
+    public int i_id;
+    public String i_title;
+    public String a_fname;
+    public String a_lname;
 }
+
 
 

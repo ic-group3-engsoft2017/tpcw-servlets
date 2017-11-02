@@ -1,5 +1,5 @@
-/* 
- * BuyConfirmResult.java - Class used to store the results of the buy 
+package tpcw.model;/*
+ * tpcw.model.BuyConfirmResult.java - Class used to store the results of the buy
  *                         confirm web interaction
  *
  ************************************************************************

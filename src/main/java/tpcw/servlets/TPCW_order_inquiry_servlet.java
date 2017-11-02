@@ -1,5 +1,5 @@
-/* 
- * TPCW_order_inquiry_servlet.java - Servlet Class implements order 
+package tpcw.servlets;/*
+ * tpcw.servlets.TPCW_order_inquiry_servlet.java - Servlet Class implements order
  *                                   inquiry web interaction.
  *
  ************************************************************************
@@ -72,12 +72,12 @@ public class TPCW_order_inquiry_servlet extends HttpServlet {
 
       
       out.print("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD W3 HTML//EN\">\n");
-      out.print("<HTML><HEAD><TITLE>TPC-W Order Inquiry Page</TITLE>\n");
+      out.print("<HTML><HEAD><TITLE>TPC-W tpcw.model.Order Inquiry Page</TITLE>\n");
       out.print("</HEAD><BODY BGCOLOR=\"#ffffff\">\n"); 
       out.print("<H1 ALIGN=\"center\">TPC Web Commerce Benchmark (TPC-W)</H1>\n"); 
-      out.print("<H2 ALIGN=\"center\">Order Inquiry Page</H2>\n"); 
+      out.print("<H2 ALIGN=\"center\">tpcw.model.Order Inquiry Page</H2>\n");
 
-      out.print("<FORM ACTION=\"TPCW_order_display_servlet;jsessionid="+
+      out.print("<FORM ACTION=\"tpcw.servlets.TPCW_order_display_servlet;jsessionid="+
 		req.getRequestedSessionId()+"\" METHOD=\"get\">\n");
       out.print("<TABLE ALIGN=\"CENTER\">\n"); 
       out.print("<TR> <TD> <H4>Username:</H4></TD>\n"); 
@@ -88,9 +88,9 @@ public class TPCW_order_inquiry_servlet extends HttpServlet {
 		"TYPE=\"password\"></TD>\n");
       out.print("</TR></TABLE> <P ALIGN=\"CENTER\"><CENTER>\n");
 
-      out.print("<INPUT TYPE=\"IMAGE\" NAME=\"Display Last Order\" "
+      out.print("<INPUT TYPE=\"IMAGE\" NAME=\"Display Last tpcw.model.Order\" "
 		+ "SRC=\"../tpcw/Images/display_last_order_B.gif\">\n");
-      //      out.print("<INPUT TYPE=HIDDEN NAME=\"" + TPCW_Util.SESSION_ID + 
+      //      out.print("<INPUT TYPE=HIDDEN NAME=\"" + tpcw.TPCW_Util.SESSION_ID +
       //	"\" value = \"" +
       //	req.getRequestedSessionId() + "\">\n");
       if(SHOPPING_ID != null)
@@ -99,7 +99,7 @@ public class TPCW_order_inquiry_servlet extends HttpServlet {
       if(C_ID!=null)
 	  out.print("<INPUT TYPE=HIDDEN NAME=\"C_ID\" value = \"" + 
 		    C_ID + "\">\n");
-      url = "TPCW_search_request_servlet";
+      url = "tpcw.servlets.TPCW_search_request_servlet";
       if(SHOPPING_ID != null){
 	  url = url+"?SHOPPING_ID="+SHOPPING_ID;
 	  if(C_ID!=null)
@@ -112,7 +112,7 @@ public class TPCW_order_inquiry_servlet extends HttpServlet {
       out.print("\"><IMG SRC=\"../tpcw/Images/search_B.gif\" "
 		+ "ALT=\"Search\"></A>\n");
 
-      url = "TPCW_home_interaction";
+      url = "tpcw.servlets.TPCW_home_interaction";
       if(SHOPPING_ID != null){
 	  url = url+"?SHOPPING_ID="+SHOPPING_ID;
 	  if(C_ID!=null)

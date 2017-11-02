@@ -1,5 +1,5 @@
-/* 
- * TPCW_shopping_cart_interaction.java - Servlet class implements the 
+package tpcw.servlets;/*
+ * tpcw.servlets.TPCW_shopping_cart_interaction.java - Servlet class implements the
  *                                       shopping cart web interaction.
  *
  ************************************************************************
@@ -51,6 +51,10 @@
  * you give them.
  *
  ************************************************************************/
+
+import tpcw.model.Cart;
+import tpcw.model.CartLine;
+import tpcw.repository.TPCW_Database;
 
 import java.io.*;
 import javax.servlet.*;
@@ -118,14 +122,14 @@ public class TPCW_shopping_cart_interaction extends HttpServlet {
 	//Add the top part of the HTML
 	
 	out.print("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD W3 HTML//EN\">\n");
-	out.print("<HTML><!--Shopping Cart--> <HEAD><TITLE>TPC W Shopping Cart</TITLE></HEAD> \n");
+	out.print("<HTML><!--Shopping tpcw.model.Cart--> <HEAD><TITLE>TPC W Shopping tpcw.model.Cart</TITLE></HEAD> \n");
 	out.print("<BODY BGCOLOR=\"#ffffff\">\n");
 	out.print("<H1 ALIGN=\"center\">TPC Web Commerce Benchmark " +
 		  "(TPC-W)</H1>\n");
 	out.print("<CENTER><IMG SRC=\"../tpcw/Images/tpclogo.gif\" " +
 		  "ALIGN=\"BOTTOM\" BORDER=\"0\" WIDTH=\"288\" " + 
 		  "HEIGHT=\"67\"></CENTER>\n");
-	out.print("<H2 ALIGN=\"center\">Shopping Cart Page</H2>\n");
+	out.print("<H2 ALIGN=\"center\">Shopping tpcw.model.Cart Page</H2>\n");
 
 
 	//Print out the promotional processing stuff
@@ -133,7 +137,7 @@ public class TPCW_shopping_cart_interaction extends HttpServlet {
 						      SHOPPING_ID);
 
 	//Display the shopping cart contents
-	out.print("<FORM ACTION=\"TPCW_shopping_cart_interaction;jsessionid="+
+	out.print("<FORM ACTION=\"tpcw.servlets.TPCW_shopping_cart_interaction;jsessionid="+
 		  req.getRequestedSessionId()+"\" METHOD=\"get\">\n");
 	out.print("<CENTER><P></P><TABLE BORDER=\"0\">\n");
 	out.print("<TR><TD><B>Qty</B></TD><TD><B>Product</B></TD></TR>\n"); 
@@ -155,13 +159,13 @@ public class TPCW_shopping_cart_interaction extends HttpServlet {
 
 	out.print("</TABLE><B><I>Subtotal price: "  + cart.SC_SUB_TOTAL + 
 		  "</I></B>\n");
-	url = "TPCW_customer_registration_servlet?SHOPPING_ID=" + SHOPPING_ID;
+	url = "tpcw.servlets.TPCW_customer_registration_servlet?SHOPPING_ID=" + SHOPPING_ID;
 	if(C_IDstr != null)
 	    url = url + "&C_ID=" + C_IDstr;
 	out.print("<P><BR><A HREF=\"" + res.encodeUrl(url)); 
 	out.print("\"><IMG SRC=\"../tpcw/Images/checkout_B.gif\"></A>\n");
 
-	url = "TPCW_home_interaction?SHOPPING_ID=" + SHOPPING_ID; 
+	url = "tpcw.servlets.TPCW_home_interaction?SHOPPING_ID=" + SHOPPING_ID;
 	if(C_IDstr != null)
 	    url = url + "&C_ID=" + C_IDstr;
 	out.print("<A HREF=\"" + res.encodeUrl(url)); 
@@ -170,7 +174,7 @@ public class TPCW_shopping_cart_interaction extends HttpServlet {
 	out.print("<P>If you have changed the quantities and/or taken " + 
 		  "anything out<BR> of your shopping cart, click here to " + 
 		  "refresh your shopping cart:</P> ");
-	//out.print("<INPUT TYPE=HIDDEN NAME=\"" + TPCW_Util.SESSION_ID + 
+	//out.print("<INPUT TYPE=HIDDEN NAME=\"" + tpcw.TPCW_Util.SESSION_ID +
 	//	   "\" value = \"" + req.getRequestedSessionId() + "\">\n");
 	out.print("<INPUT TYPE=HIDDEN NAME=\"ADD_FLAG\" value = \"N\">\n");
 	out.print("<INPUT TYPE=HIDDEN NAME=\"SHOPPING_ID\" value = \"" + 
@@ -179,7 +183,7 @@ public class TPCW_shopping_cart_interaction extends HttpServlet {
 	    out.print("<INPUT TYPE=HIDDEN NAME=\"C_ID\" value = \"" + 
 		      C_IDstr + "\">\n");
 	
-	out.print("<P><INPUT TYPE=\"IMAGE\" NAME=\"Refresh Shopping Cart\"" + 
+	out.print("<P><INPUT TYPE=\"IMAGE\" NAME=\"Refresh Shopping tpcw.model.Cart\"" +
 		  "SRC=\"../tpcw/Images/refresh_B.gif\"></P>\n");
 	out.print("</CENTER></FORM></BODY></HTML>");
 	out.close();

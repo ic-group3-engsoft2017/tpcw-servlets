@@ -1,5 +1,5 @@
-/* 
- * TPCW_order_display_servlet.java - Servlet Class implements order
+package tpcw.servlets;/*
+ * tpcw.servlets.TPCW_order_display_servlet.java - Servlet Class implements order
  *                                   display servlet.
  *
  ************************************************************************
@@ -52,6 +52,10 @@
  *
  ************************************************************************/
 
+import tpcw.model.Order;
+import tpcw.model.OrderLine;
+import tpcw.repository.TPCW_Database;
+
 import java.io.*;
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -72,10 +76,10 @@ public class TPCW_order_display_servlet extends HttpServlet {
       res.setContentType("text/html");
 
      out.print("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD W3 HTML//EN\">\n"); 
-     out.print("<HTML><HEAD><TITLE>TPC-W Order Display Page</TITLE></HEAD>\n");
+     out.print("<HTML><HEAD><TITLE>TPC-W tpcw.model.Order Display Page</TITLE></HEAD>\n");
      out.print("<BODY BGCOLOR=\"#FFFFFF\"><H1 ALIGN=\"CENTER\">" + 
 	       "TPC Web Commerce Benchmark (TPC-W)</H1>\n"); 
-     out.print("<H2 ALIGN=\"CENTER\">Order Display Page</H2>\n");
+     out.print("<H2 ALIGN=\"CENTER\">tpcw.model.Order Display Page</H2>\n");
      out.print("<BLOCKQUOTE> <BLOCKQUOTE> <BLOCKQUOTE> <BLOCKQUOTE> <HR>\n"); 
 
      String uname = req.getParameter("UNAME");
@@ -95,12 +99,12 @@ public class TPCW_order_display_servlet extends HttpServlet {
 	 }	 
 	 
      }
-     else out.print("Error:TPCW_order_display_servlet, "
+     else out.print("Error:tpcw.servlets.TPCW_order_display_servlet, "
 		    + "uname and passwd not set!.\n");
      
      //Print out the buttons that are on the bottom of the page
     out.print("<CENTER>\n");
-    url = "TPCW_search_request_servlet";
+    url = "tpcw.servlets.TPCW_search_request_servlet";
     if(SHOPPING_ID != null){
 	url = url+"?SHOPPING_ID="+SHOPPING_ID;
 	if(C_ID!=null)
@@ -113,7 +117,7 @@ public class TPCW_order_display_servlet extends HttpServlet {
     out.print("\"><IMG SRC=\"../tpcw/Images/search_B.gif\" "
 	      + "ALT=\"Search\"></A>\n");
 
-    url = "TPCW_home_interaction";
+    url = "tpcw.servlets.TPCW_home_interaction";
         if(SHOPPING_ID != null){
 	url = url+"?SHOPPING_ID="+SHOPPING_ID;
 	if(C_ID!=null)
@@ -130,13 +134,13 @@ public class TPCW_order_display_servlet extends HttpServlet {
 
   private void printOrder(Order order, Vector lines, PrintWriter out){
       int i;
-      out.print("<P>Order ID:" + order.o_id +"<BR>\n");
-      out.print("Order Placed on " + order.o_date +"<BR>\n");
+      out.print("<P>tpcw.model.Order ID:" + order.o_id +"<BR>\n");
+      out.print("tpcw.model.Order Placed on " + order.o_date +"<BR>\n");
       out.print("Shipping Type:"+ order.o_ship_type + "<BR>\n");
       out.print("Ship Date: "+ order.o_ship_date + "<BR>\n");
-      out.print("Order Subtotal: "+ order.o_subtotal +"<BR>\n");
-      out.print("Order Tax: "+ order.o_tax +"<BR>\n");
-      out.print("Order Total:"+ order.o_total +"<BR></P>\n");
+      out.print("tpcw.model.Order Subtotal: "+ order.o_subtotal +"<BR>\n");
+      out.print("tpcw.model.Order Tax: "+ order.o_tax +"<BR>\n");
+      out.print("tpcw.model.Order Total:"+ order.o_total +"<BR></P>\n");
       
       out.print("<TABLE BORDER=\"0\" WIDTH=\"80%\">\n");
       out.print("<TR><TD><B>Bill To:</B></TD><TD><B>Ship To:</B></TD></TR>");
@@ -150,7 +154,7 @@ public class TPCW_order_display_servlet extends HttpServlet {
       out.print("Email: " + order.c_email + "<BR>\n");
       out.print("Phone: " + order.c_phone +"</ADDRESS><BR><P>\n");
       out.print("Credit Card Type: " + order.cx_type + "<BR>\n");
-      out.print("Order Status: " + order.o_status +"</P></TD>\n");
+      out.print("tpcw.model.Order Status: " + order.o_status +"</P></TD>\n");
       out.print("<TD VALIGN=\"TOP\" WIDTH=\"50%\"><ADDRESS>" 
 		+ order.bill_addr_street1 + 
 		"<BR>\n");

@@ -1,6 +1,6 @@
-/* 
- * TPCW_Util.java - Some random utility functions needed by the servlets.
- *
+package tpcw.model;/*
+ * tpcw.model.Cart.java - Class stores the necessary components of a shopping cart
+ * 
  ************************************************************************
  *
  * This is part of the the Java TPC-W distribution,
@@ -52,79 +52,43 @@
  ************************************************************************/
 
 import java.util.*;
+import java.sql.*;
 
-public class TPCW_Util {
+public class Cart {
     
-    //public final String SESSION_ID="JIGSAW_SESSION_ID";
-    //public static final String SESSION_ID="JServSessionIdroot";
-    public static final String SESSION_ID="jsessionid=";
+    public double SC_SUB_TOTAL;
+    public double SC_TAX;
+    public double SC_SHIP_COST;
+    public double SC_TOTAL;
 
-    //This must be equal to the number of items in the ITEM table
-    public static final int NUM_ITEMS = 10000;
-
-    public static int getRandomI_ID(){
-	Random rand = new Random();
-	Double temp = new Double(Math.floor(rand.nextFloat() * NUM_ITEMS));
-	return temp.intValue() + 1;
-    }
-
-    public static int getRandom(int i) {  // Returns integer 1, 2, 3 ... i
-	return ((int) (java.lang.Math.random() * i)+1);
-    }
-
-    //Not very random function. If called in swift sucession, it will
-    //return the same string because the system time used to seed the
-    //random number generator won't change. 
-    public static String getRandomString(int min, int max){
-	String newstring = new String();
-	Random rand = new Random();
+    public Vector lines;
+    
+    public Cart (ResultSet rs, double C_DISCOUNT) throws java.sql.SQLException{
 	int i;
-	final char[] chars = {'a','b','c','d','e','f','g','h','i','j','k',
-			      'l','m','n','o','p','q','r','s','t','u','v',
-			      'w','x','y','z','A','B','C','D','E','F','G',
-			      'H','I','J','K','L','M','N','O','P','Q','R',
-			      'S','T','U','V','W','X','Y','Z','!','@','#',
-			      '$','%','^','&','*','(',')','_','-','=','+',
-			      '{','}','[',']','|',':',';',',','.','?','/',
-			      '~',' '}; //79 characters
-	int strlen = (int) Math.floor(rand.nextDouble()*(max-min+1));
-	strlen += min;
-	for(i = 0; i < strlen; i++){
-	    char c = chars[(int) Math.floor(rand.nextDouble()*79)];
-	    newstring = newstring.concat(String.valueOf(c));
+	int total_items;
+	lines = new Vector();
+	while(rs.next()){//While there are lines remaining
+	    CartLine line = new CartLine(rs.getString("i_title"),
+					 rs.getDouble("i_cost"),
+					 rs.getDouble("i_srp"),
+					 rs.getString("i_backing"),
+					 rs.getInt("scl_qty"),
+					 rs.getInt("scl_i_id"));
+	    lines.addElement(line);
 	}
-	return newstring;
-    }
-    
-    // Defined in TPC-W Spec Clause 4.6.2.8
-    private static final String [] digS = {
-	"BA","OG","AL","RI","RE","SE","AT","UL","IN","NG"
-    };
-  
 
-    public static String DigSyl(int d, int n)
-    {
-	String s = "";
-	
-	if (n==0) return(DigSyl(d));	
-	for (;n>0;n--) {
-	    int c = d % 10;
-	    s = digS[c]+s;
-	    d = d /10;
+	SC_SUB_TOTAL = 0;
+	total_items = 0;
+	for(i = 0; i < lines.size(); i++){
+	    CartLine thisline = (CartLine) lines.elementAt(i);
+	    SC_SUB_TOTAL += thisline.scl_cost * thisline.scl_qty;
+	    total_items += thisline.scl_qty;
 	}
 	
-	return(s);
-    }
-    
-    public static String DigSyl(int d)
-    {
-	String s = "";
-	
-	for (;d!=0;d=d/10) {
-	    int c = d % 10;
-	    s = digS[c]+s;      
-	}
-	
-	return(s);
+	//Need to multiply the sub_total by the discount.
+	SC_SUB_TOTAL = SC_SUB_TOTAL * ((100 - C_DISCOUNT)*.01);
+	SC_TAX = SC_SUB_TOTAL * .0825;
+	SC_SHIP_COST = 3.00 + (1.00 * total_items);
+	SC_TOTAL = SC_SUB_TOTAL + SC_SHIP_COST + SC_TAX;
     }
 }

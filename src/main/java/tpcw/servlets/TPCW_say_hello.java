@@ -1,5 +1,6 @@
-/*
- * Cart.java - Class stores the necessary components of a shopping cart
+package tpcw.servlets;/*
+ * tpcw.servlets.TPCW_say_hello.java - Utility function used by home interaction,
+ *                       creates a new session id for new users.
  * 
  ************************************************************************
  *
@@ -51,45 +52,54 @@
  *
  ************************************************************************/
 
+import tpcw.repository.TPCW_Database;
+
 import java.io.*;
-import java.util.*;
-import java.sql.*;
+import javax.servlet.http.*;
 
-public class Cart {
+public class TPCW_say_hello {
     
-    public double SC_SUB_TOTAL;
-    public double SC_TAX;
-    public double SC_SHIP_COST;
-    public double SC_TOTAL;
+    public static void print_hello(HttpSession session, HttpServletRequest req,
+				   PrintWriter out){
 
-    public Vector lines;
-    
-    public Cart (ResultSet rs, double C_DISCOUNT) throws java.sql.SQLException{
-	int i;
-	int total_items;
-	lines = new Vector();
-	while(rs.next()){//While there are lines remaining
-	    CartLine line = new CartLine(rs.getString("i_title"),
-					 rs.getDouble("i_cost"),
-					 rs.getDouble("i_srp"),
-					 rs.getString("i_backing"),
-					 rs.getInt("scl_qty"),
-					 rs.getInt("scl_i_id"));
-	    lines.addElement(line);
-	}
+        //If we have seen this session id before
+        if (!session.isNew()) {
+            int C_ID[] = (int [])session.getValue("C_ID");
+            //check and see if we have a customer name yet
+            if (C_ID != null) // Say hello.
+            out.println("Hello " + (String)session.getValue("C_FNAME") +
+                    " " + (String)session.getValue("C_LNAME"));
+            else out.println("Hello unknown user");
+        }
+        else {//This is a brand new session
 
-	SC_SUB_TOTAL = 0;
-	total_items = 0;
-	for(i = 0; i < lines.size(); i++){
-	    CartLine thisline = (CartLine) lines.elementAt(i);
-	    SC_SUB_TOTAL += thisline.scl_cost * thisline.scl_qty;
-	    total_items += thisline.scl_qty;
-	}
-	
-	//Need to multiply the sub_total by the discount.
-	SC_SUB_TOTAL = SC_SUB_TOTAL * ((100 - C_DISCOUNT)*.01);
-	SC_TAX = SC_SUB_TOTAL * .0825;
-	SC_SHIP_COST = 3.00 + (1.00 * total_items);
-	SC_TOTAL = SC_SUB_TOTAL + SC_SHIP_COST + SC_TAX;
+            out.println("This is a brand new session!");
+            // Check to see if a C_ID was given.  If so, get the customer name
+            // from the database and say hello.
+            String C_IDstr = req.getParameter("C_ID");
+            if (C_IDstr != null) {
+                String name[];
+                int C_ID[] = new int[1];
+                C_ID[0] = Integer.parseInt(C_IDstr, 10);
+                out.flush();
+                // Use C_ID to get the user name from the database.
+                // Set parameter
+                //TODO : Cache is not entirely required due the select is simple, and fast id query based
+                name = TPCW_Database.getName(C_ID[0]);
+                // Set the values for this session.
+                if(name==null){
+                   out.println("Hello unknown user!");
+                   return;
+                }
+                session.putValue("C_ID", C_ID);
+                session.putValue("C_FNAME", name[0]);
+                session.putValue("C_LNAME", name[1]);
+                out.println("Hello " + name[0] + " " + name[1] +".");
+            } else {
+                out.println("Hello unknown user!");
+            }
+        }
     }
 }
+
+

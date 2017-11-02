@@ -1,5 +1,5 @@
-/* 
- * TPCW_buy_request_servlet.java - Servlet Class implements the buy request
+package tpcw.servlets;/*
+ * tpcw.servlets.TPCW_buy_request_servlet.java - Servlet Class implements the buy request
  *                                 web interaction.
  *
  ************************************************************************
@@ -51,6 +51,10 @@
  * you give them.
  *
  ************************************************************************/
+
+import tpcw.model.Cart;
+import tpcw.model.CartLine;
+import tpcw.model.Customer;
 
 import java.io.*;
 import javax.servlet.*;
@@ -120,14 +124,14 @@ public class TPCW_buy_request_servlet extends HttpServlet {
       else out.print("ERROR: RETURNING_FLAG not set to Y or N!\n");
       
       if(SHOPPING_ID == null){
-	  out.print("ERROR: Shopping Cart ID not set!</BODY></HTML>");
+	  out.print("ERROR: Shopping tpcw.model.Cart ID not set!</BODY></HTML>");
 	  return;
       }
       //Update the shopping cart cost and get the current contents
       Cart mycart = TPCW_Database.getCart(Integer.parseInt(SHOPPING_ID), cust.c_discount);
       
       //Print out the web page
-      out.print("<HR><FORM ACTION=\"TPCW_buy_confirm_servlet;jsessionid="+
+      out.print("<HR><FORM ACTION=\"tpcw.servlets.TPCW_buy_confirm_servlet;jsessionid="+
 		req.getRequestedSessionId()+"\" METHOD=\"GET\">\n");
       out.print("<TABLE BORDER=\"0\" WIDTH=\"90%\">\n");
       out.print("<TR ALIGN=\"LEFT\" VALIGN=\"TOP\">\n");
@@ -171,15 +175,15 @@ public class TPCW_buy_request_servlet extends HttpServlet {
       out.print("<TR><TD>Country:</TD><TD><INPUT NAME=\"COUNTRY\" VALUE=\"\" SIZE=\"40\"></TD></TR>\n");
       
       //
-      //Order Information Section
+      //tpcw.model.Order Information Section
       //
 
       out.print("</TABLE></TD></TR></TABLE>\n");
-      out.print("<HR><H2>Order Information:</H2>\n");
+      out.print("<HR><H2>tpcw.model.Order Information:</H2>\n");
       out.print("<TABLE BORDER=\"1\" CELLSPACING=\"0\" CELLPADDING=\"0\">\n");
       out.print("<TR><TD><B>Qty</B></TD><TD><B>Product</B></TD></TR>\n");
 
-      //Insert Shopping Cart Contents Here!
+      //Insert Shopping tpcw.model.Cart Contents Here!
       //
       int i;
       for(i = 0; i < mycart.lines.size(); i++){
@@ -236,7 +240,7 @@ public class TPCW_buy_request_servlet extends HttpServlet {
       out.print("<INPUT TYPE=\"RADIO\" NAME=\"SHIPPING\" VALUE=\"COURIER\">COURIER\n");
       out.print("<INPUT TYPE=\"RADIO\" NAME=\"SHIPPING\" VALUE=\"MAIL\">MAIL\n");
       out.print("</TD></TR></TABLE><P><CENTER>\n");
-    //      out.print("<INPUT TYPE=HIDDEN NAME=\"" + TPCW_Util.SESSION_ID + 
+    //      out.print("<INPUT TYPE=HIDDEN NAME=\"" + tpcw.TPCW_Util.SESSION_ID +
     //		"\" value = \"" + req.getRequestedSessionId() + "\">\n");
       if(SHOPPING_ID != null)
 	  out.print("<INPUT TYPE=HIDDEN NAME=\"SHOPPING_ID\" value = \"" + 
@@ -244,20 +248,20 @@ public class TPCW_buy_request_servlet extends HttpServlet {
       out.print("<INPUT TYPE=HIDDEN NAME=\"C_ID\" value = \"" + 
 		cust.c_id + "\">\n");
       out.print("<INPUT TYPE=\"IMAGE\" NAME=\"Confirm Buy\" SRC=\"../tpcw/Images/submit_B.gif\">\n");
-      url = "TPCW_shopping_cart_interaction?ADD_FLAG=N&C_ID=" + cust.c_id;
+      url = "tpcw.servlets.TPCW_shopping_cart_interaction?ADD_FLAG=N&C_ID=" + cust.c_id;
       if(SHOPPING_ID != null)
 	  url = url + "&SHOPPING_ID=" + SHOPPING_ID;
       out.print("<A HREF=\"" +res.encodeUrl(url));
       out.print("\"><IMG SRC=\"../tpcw/Images/shopping_cart_B.gif\" " +
-		"ALT=\"Shopping Cart\"></A>\n");
+		"ALT=\"Shopping tpcw.model.Cart\"></A>\n");
       
-      url = "TPCW_order_inquiry_servlet?C_ID=" + cust.c_id;
+      url = "tpcw.servlets.TPCW_order_inquiry_servlet?C_ID=" + cust.c_id;
       if(SHOPPING_ID != null)
 	  url = url + "&SHOPPING_ID=" + SHOPPING_ID;
       
       out.print("<A HREF=\"" + res.encodeUrl(url));
       out.print("\"><IMG SRC=\"../tpcw/Images/order_status_B.gif\" " +
-		"ALT=\"Order Status\"></A>\n");
+		"ALT=\"tpcw.model.Order Status\"></A>\n");
       out.print("</P></CENTER></BODY></HTML>");
       out.close();
       return;

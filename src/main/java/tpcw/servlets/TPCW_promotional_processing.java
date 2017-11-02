@@ -1,8 +1,9 @@
-/*
- * OrderLine.java - Class contains the perninent information for a single
- *                  item in a single order. Corresponds to a row from the
- *                  ORDER_LINE DB table.
- * 
+package tpcw.servlets;/*
+ * tpcw.servlets.TPCW_promotional_processing.java - This class is basically just a
+ *                                    utility function used to spit
+ *                                    out the promotional processing
+ *                                    at the top of many web pages.
+ *
  ************************************************************************
  *
  * This is part of the the Java TPC-W distribution,
@@ -53,28 +54,56 @@
  *
  ************************************************************************/
 
-import java.sql.*;
+import tpcw.repository.TPCW_Database;
 
-public class OrderLine {
-    public OrderLine(ResultSet rs) {
-	try {
-	    ol_i_id = rs.getInt("ol_i_id");
-	    i_title = rs.getString("i_title");
-	    i_publisher = rs.getString("i_publisher");
-	    i_cost = rs.getDouble("i_cost");
-	    ol_qty = rs.getInt("ol_qty");
-	    ol_discount = rs.getDouble("ol_discount");
-	    ol_comments = rs.getString("ol_comments");
-	} catch (java.lang.Exception ex) {
-	    ex.printStackTrace();
+import java.io.*;
+import java.util.*;
+import javax.servlet.http.*;
+
+public class TPCW_promotional_processing {
+
+    public static void DisplayPromotions(PrintWriter out, 
+					 HttpServletRequest req,
+					 HttpServletResponse res,
+					 int new_sid){
+	int I_ID = TPCW_Util.getRandomI_ID();
+	Vector related_item_ids = new Vector();
+	Vector thumbnails = new Vector();
+	int i;
+	String url;
+
+	//TODO: Add-Cache-Candidate due to OR Statements
+	TPCW_Database.getRelated(I_ID, related_item_ids, thumbnails);
+
+	String C_ID = req.getParameter("C_ID");
+	String SHOPPING_ID = req.getParameter("SHOPPING_ID");
+
+	//Create table and "Click on our latest books..." row
+	out.print("<TABLE ALIGN=CENTER BORDER=0 WIDTH=660>\n");
+	out.print("<TR ALIGN=CENTER VALIGN=top>\n");
+	out.print("<TD COLSPAN=5><B><FONT COLOR=#ff0000 SIZE=+1>"+
+		  "Click on one of our latest books to find out more!" +
+		  "</FONT></B></TD></TR>\n");
+	out.print("<TR ALIGN=CENTER VALIGN=top>\n");
+	
+	//Create links and references to book images
+	for(i = 0; i < related_item_ids.size(); i++){
+	    url = "./tpcw.servlets.TPCW_product_detail_servlet";
+	    url = url + "?I_ID=" + 
+		String.valueOf(related_item_ids.elementAt(i));
+	    if(SHOPPING_ID != null)
+		url = url + "&SHOPPING_ID=" + SHOPPING_ID;
+	    else if(new_sid != -1)
+		url = url + "&SHOPPING_ID=" + new_sid;
+	    if(C_ID != null)
+		url = url + "&C_ID=" + C_ID;
+	    out.print("<TD><A HREF=\""+ res.encodeUrl(url));
+	    out.print("\"><IMG SRC=\"../tpcw/Images/" +thumbnails.elementAt(i)
+		      + "\" ALT=\"tpcw.model.Book " + String.valueOf(i+1)
+		      + "\" WIDTH=\"100\" HEIGHT=\"150\"></A>\n");
+	    out.print("</TD>");
 	}
+	out.print("</TR></TABLE>\n");
     }
 
-    public int ol_i_id;
-    public String i_title;
-    public String i_publisher;
-    public double i_cost;
-    public int ol_qty;
-    public double ol_discount;
-    public String ol_comments;
 }
