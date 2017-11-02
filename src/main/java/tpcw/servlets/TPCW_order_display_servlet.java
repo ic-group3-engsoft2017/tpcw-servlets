@@ -85,14 +85,16 @@ public class TPCW_order_display_servlet extends HttpServlet {
      String uname = req.getParameter("UNAME");
      String passwd = req.getParameter("PASSWD");
      if(uname!= null && passwd!=null){
-	 
+
+     // TODO: should not cache sensible information
 	 String storedpasswd = TPCW_Database.GetPassword(uname);
 	 if(!storedpasswd.equals(passwd)){
 	     out.print("Error: Incorrect password.\n");
 	 }
 	 else {
 	     Vector lines = new Vector();
-	     Order order = TPCW_Database.GetMostRecentOrder(uname, lines); //TODO: Add-Cache-Candidate
+         //TODO: Cache would be helpful due to serialization of object but the most recent part is questionable
+	     Order order = TPCW_Database.GetMostRecentOrder(uname, lines);
 	     if(order!=null)
 		 printOrder(order, lines,out);
 	     else out.print("User has no order!\n");
