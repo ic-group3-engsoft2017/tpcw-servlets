@@ -11,4 +11,5 @@ public abstract class Entity {
 
     public abstract int hashCode(Entity e);
     public abstract boolean equals(Entity e);
+
 }
