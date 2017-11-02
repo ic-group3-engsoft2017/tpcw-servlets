@@ -1,5 +1,5 @@
 import java.io.IOException;
-import java.util.logging.Logger;
+//import java.util.logging.Logger;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -20,7 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 
 @WebFilter("/*")
 public class Medidor implements Filter {
-	private final static Logger LOGGER = Logger.getLogger(Medidor.class.getName());
+	//private final static Logger LOGGER = Logger.getLogger(Medidor.class.getName());
 
 	public void destroy() { // TODO Auto-generated method stub
 
@@ -29,15 +29,14 @@ public class Medidor implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
 
-		Long tempoInicial = System.currentTimeMillis();
+		Long tempoInicial = System.nanoTime();
 
 		chain.doFilter(request, response);
 
 		long tempoFinal = System.currentTimeMillis();
 		String uri = ((HttpServletRequest) request).getRequestURI();
-		String parametros = ((HttpServletRequest) request).getParameter("logica");
 
-		System.out.println("Tempo da requisicao de " + uri + "?logica=" + parametros + " demorou (ms): "
+		System.out.println("Tempo da requisicao de " + uri + " demorou (ms): "
 				+ (tempoFinal - tempoInicial));
 	}
 
