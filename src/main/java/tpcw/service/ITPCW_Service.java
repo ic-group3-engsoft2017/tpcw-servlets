@@ -1,6 +1,5 @@
 package tpcw.service;
 
-import java.awt.print.Book;
 import java.sql.Connection;
 import java.util.Vector;
 
@@ -11,7 +10,7 @@ public interface ITPCW_Service {
 
 	public String[] getName(int c_id);
 	
-	public Book getBook(int i_id);
+	public tpcw.model.Book getBook(int i_id);
 	
 	public Customer getCustomer(String UNAME);
 	
