@@ -84,7 +84,7 @@ public class TPCW_new_products_servlet extends HttpServlet {
 		subject + "</H2>\n"); 
 	  
       //Display promotions
-      TPCW_promotional_processing.DisplayPromotions(out, req, res,-1);
+      TPCW_promotional_processing.DisplayPromotions(out, req, res,-1); //TODO: Add-Cache-Candidate
 
       //Display new products
       
@@ -96,7 +96,7 @@ public class TPCW_new_products_servlet extends HttpServlet {
       //Need to insert code here to get new products from the database,
       //and then spit them out in html to complete the table
       
-      Vector books = TPCW_Database.getNewProducts(subject);
+      Vector books = TPCW_Database.getNewProducts(subject); //TODO: Add-Cache-Candidate
       for(i = 0; i < books.size(); i++){
 	  ShortBook book = (ShortBook) books.elementAt(i);
 	  out.print("<TR><TD>" + (i+1) + "</TD>\n");

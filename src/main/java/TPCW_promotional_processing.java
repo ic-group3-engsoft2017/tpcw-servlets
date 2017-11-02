@@ -71,7 +71,7 @@ public class TPCW_promotional_processing {
 	int i;
 	String url;
 
-	TPCW_Database.getRelated(I_ID, related_item_ids, thumbnails);
+	TPCW_Database.getRelated(I_ID, related_item_ids, thumbnails); //TODO: Add-Cache-Candidate
 
 	String C_ID = req.getParameter("C_ID");
 	String SHOPPING_ID = req.getParameter("SHOPPING_ID");
