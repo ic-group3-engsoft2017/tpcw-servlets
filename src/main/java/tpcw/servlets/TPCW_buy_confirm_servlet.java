@@ -91,7 +91,9 @@ import javax.servlet.http.*;
 //   
  
 public class TPCW_buy_confirm_servlet extends HttpServlet {
-    
+	// TODO não seria de inicio um canditado para cache, 
+	// TODO busca informações do carrinho do cliente logado e busca informações 
+	// TODO para confirmar a compra
   public void doGet(HttpServletRequest req, HttpServletResponse res)
       throws IOException, ServletException {
       int i;

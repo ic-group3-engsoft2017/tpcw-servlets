@@ -55,6 +55,7 @@ package tpcw.servlets;/*
 import tpcw.model.Cart;
 import tpcw.model.CartLine;
 import tpcw.model.Customer;
+import tpcw.repository.TPCW_Database;
 
 import java.io.*;
 import javax.servlet.*;
@@ -62,7 +63,7 @@ import javax.servlet.http.*;
 import java.util.Date;
 
 public class TPCW_buy_request_servlet extends HttpServlet {
-    
+	//TODO não canditado a cache, criar customer novo
   public void doGet(HttpServletRequest req, HttpServletResponse res)
       throws IOException, ServletException {
       PrintWriter out = res.getWriter();

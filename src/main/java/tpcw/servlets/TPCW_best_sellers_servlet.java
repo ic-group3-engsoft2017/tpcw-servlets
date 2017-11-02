@@ -53,6 +53,7 @@ package tpcw.servlets;/*
  ************************************************************************/
 
 import tpcw.model.ShortBook;
+import tpcw.repository.TPCW_Database;
 
 import java.io.*;
 import java.util.*;
@@ -60,7 +61,7 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 
 public class TPCW_best_sellers_servlet extends HttpServlet {
-    
+	//TODO com certeza poderia ter um cache desse resultado, os últimos mais comprados    
   public void doGet(HttpServletRequest req, HttpServletResponse res)
       throws IOException, ServletException {
       String url;

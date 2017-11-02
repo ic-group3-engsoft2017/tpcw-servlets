@@ -188,7 +188,7 @@ public class TPCW_Database {
 	try {
 	    // Prepare SQL
 	    Connection con = getConnection();
-	    PreparedStatemeTPCW_Utilnt statement = con.prepareStatement
+	    PreparedStatement statement = con.prepareStatement
 		("SELECT * FROM ITEM, AUTHOR WHERE ITEM.i_a_id = AUTHOR.a_id AND ITEM.i_subject = ? ORDER BY ITEM.i_title LIMIT 50");
 	    
 	    // Set parameter
@@ -244,7 +244,7 @@ public class TPCW_Database {
 		("SELECT * FROM AUTHOR, ITEM WHERE AUTHOR.a_lname LIKE ? AND ITEM.i_a_id = AUTHOR.a_id ORDER BY ITEM.i_title LIMIT 50");
 
 	    // Set parameter
-	    statement.setSTPCW_Utiltring(1, search_key+"%");
+	    statement.setString(1, search_key+"%");
 	    ResultSet rs = statement.executeQuery();
 
 	    // Results
@@ -322,7 +322,7 @@ public class TPCW_Database {
 
 	    // Results
 	    while(rs.next()) {
-		vec.addElement(new ShortBook(rs));
+	    	vec.addElement(new ShortBook(rs));
 	    }
 	    rs.close();
 	    statement.close();

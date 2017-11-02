@@ -53,13 +53,14 @@ package tpcw.servlets;/*
  ************************************************************************/
 
 import tpcw.model.Book;
+import tpcw.repository.TPCW_Database;
 
 import java.io.*;
 import javax.servlet.*;
 import javax.servlet.http.*;
 
 public class TPCW_admin_request_servlet extends HttpServlet {
-    
+	// TODO acho que não um cache específicio para ele, mas com itens (decidir quais ficar no cache)
   public void doGet(HttpServletRequest req, HttpServletResponse res)
       throws IOException, ServletException {
       String url;

@@ -60,6 +60,7 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 
 public class TPCW_customer_registration_servlet extends HttpServlet {
+	//TODO não canditado a cache, criar customer novo
     
   public void doGet(HttpServletRequest req, HttpServletResponse res)
       throws IOException, ServletException {
