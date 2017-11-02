@@ -53,10 +53,12 @@ package tpcw.model;
  *
  ************************************************************************/
 
+import tpcw.cache.CachableEntity;
+
 import java.util.Date;
 import java.sql.*;
 
-public class Book {
+public class Book extends Entity {
     // Construct a book from a ResultSet
     public Book(ResultSet rs) {
 	// The result set should have all of the fields we expect.
@@ -122,6 +124,24 @@ public class Book {
     public int a_id;
     public String a_fname;
     public String a_lname;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Book book = (Book) o;
+
+        if (i_id != book.i_id) return false;
+        return i_isbn != null ? i_isbn.equals(book.i_isbn) : book.i_isbn == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = i_id;
+        result = 31 * result + (i_isbn != null ? i_isbn.hashCode() : 0);
+        return result;
+    }
 }
 
 

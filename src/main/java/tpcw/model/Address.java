@@ -52,5 +52,24 @@ package tpcw.model;/*
  *
  ************************************************************************/
 
-public class Address {
+import java.sql.ResultSet;
+
+public class Address extends Entity {
+
+	public Address(ResultSet resultSet) {
+		super(resultSet);
+		// TODO Auto-generated constructor stub
+	}
+
+	@Override
+	public int hashCode() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public boolean equals(Object e) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }

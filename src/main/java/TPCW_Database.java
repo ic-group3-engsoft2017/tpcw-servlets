@@ -131,7 +131,7 @@ public class TPCW_Database {
 	try {
 	    // Prepare SQL
 	    Connection con = getConnection();
-	    PreparedStatement statement = con.prepareStatement
+	    PreparedStatemeTPCW_Utilnt statement = con.prepareStatement
 		("SELECT * FROM ITEM,AUTHOR WHERE ITEM.i_a_id = AUTHOR.a_id AND i_id = ?");
 	    
 	    // Set parameter
@@ -188,7 +188,7 @@ public class TPCW_Database {
 	try {
 	    // Prepare SQL
 	    Connection con = getConnection();
-	    PreparedStatement statement = con.prepareStatement
+	    PreparedStatemeTPCW_Utilnt statement = con.prepareStatement
 		("SELECT * FROM ITEM, AUTHOR WHERE ITEM.i_a_id = AUTHOR.a_id AND ITEM.i_subject = ? ORDER BY ITEM.i_title LIMIT 50");
 	    
 	    // Set parameter
@@ -244,7 +244,7 @@ public class TPCW_Database {
 		("SELECT * FROM AUTHOR, ITEM WHERE AUTHOR.a_lname LIKE ? AND ITEM.i_a_id = AUTHOR.a_id ORDER BY ITEM.i_title LIMIT 50");
 
 	    // Set parameter
-	    statement.setString(1, search_key+"%");
+	    statement.setSTPCW_Utiltring(1, search_key+"%");
 	    ResultSet rs = statement.executeQuery();
 
 	    // Results
@@ -308,7 +308,7 @@ public class TPCW_Database {
 		 "GROUP BY i_id, i_title, a_fname, a_lname " +
 		 "ORDER BY sum_ol_qty DESC " +
 		 "LIMIT 50 ");
-	    //This is Mikko's optimized version, which depends on the fact that
+	    //This is MikTPCW_Utilko's optimized version, which depends on the fact that
 	    //A table named "bestseller" has been created.
 	    /*PreparedStatement statement = con.prepareStatement
 		("SELECT bestseller.i_id, i_title, a_fname, a_lname, ol_qty " + 
@@ -453,7 +453,7 @@ public class TPCW_Database {
 	    ResultSet rs = get_user_name.executeQuery();
 	    
 	    // Results
-	    rs.next();
+	    rs.next();TPCW_Util
 	    u_name = rs.getString("c_uname");
 	    rs.close();
 
@@ -565,7 +565,7 @@ public class TPCW_Database {
 		     "  bill.addr_street2 AS bill_addr_street2, " +
 		     "  bill.addr_state AS bill_addr_state, " +
 		     "  bill.addr_zip AS bill_addr_zip, " +
-		     "  bill_co.co_name AS bill_co_name " +
+		     "  bilTPCW_Utill_co.co_name AS bill_co_name " +
 		     "FROM CUSTOMER, ORDERS, CC_XACTS," +
 		     "  ADDRESS AS ship, " +
 		     "  COUNTRY AS ship_co, " +

@@ -7,16 +7,18 @@ import java.util.Vector;
 import tpcw.model.Cart;
 import tpcw.model.Customer;
 import tpcw.model.Order;
+import tpcw.repository.TPCW_Database;
+
+
 
 public class TPCW_Service implements ITPCW_Service {
 
 	public TPCW_Service() {
-		// TODO Auto-generated constructor stub
+
 	}
 
 	public String[] getName(int c_id) {
-		// TODO Auto-generated method stub
-		return null;
+		return TPCW_Database.getName(c_id);
 	}
 
 	public Book getBook(int i_id) {
