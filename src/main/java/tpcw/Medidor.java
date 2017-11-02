@@ -1,4 +1,7 @@
+package tpcw;
+
 import java.io.IOException;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.servlet.Filter;
@@ -10,7 +13,7 @@ import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 
-/* @WebFilter(name = "Medidor", servletNames = { "TPCW_admin_request_servlet",
+/* @WebFilter(name = "tpcw.Medidor", servletNames = { "TPCW_admin_request_servlet",
  "TPCW_admin_response_servlet", "TPCW_buy_confirm_servlet",
   "TPCW_buy_request_servlet", "TPCW_customer_registration_servlet",
   "TPCW_execute_search", "TPCW_home_interaction", "TPCW_new_products_servlet",
@@ -20,7 +23,7 @@ import javax.servlet.http.HttpServletRequest;
 
 @WebFilter("/*")
 public class Medidor implements Filter {
-	static final Logger logger = LoggerFactory.getLogger(Medidor.class);
+	static final Logger logger = Logger.getLogger(Medidor.class.getName());
 
 	public void destroy() { // TODO Auto-generated method stub
 
@@ -33,10 +36,10 @@ public class Medidor implements Filter {
 
 		chain.doFilter(request, response);
 
-		long tempoFinal = System.currentTimeMillis();
+		Long tempoFinal = System.nanoTime();
 		String uri = ((HttpServletRequest) request).getRequestURI();
 
-		logger.error("Tempo da requisicao de " + uri + " demorou (ms): "
+		logger.log(Level.SEVERE, "Tempo da requisicao de " + uri + " demorou (ms): "
 				+ (tempoFinal - tempoInicial));
 		/*System.out.println("Tempo da requisicao de " + uri + " demorou (ms): "
 				+ (tempoFinal - tempoInicial));*/
