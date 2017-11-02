@@ -148,5 +148,15 @@
         <res-type>javax.sql.DataSource</res-type>
         <res-auth>Container</res-auth>
     </resource-ref>
+    
+    <filter>
+  		<filter-name>Medidor</filter-name>
+ 		 <filter-class>src.main.java.Medidor</filter-class>
+	</filter>
+  
+	<filter-mapping>
+  		<filter-name>Medidor</filter-name>
+  		<url-pattern>/*</url-pattern>
+	</filter-mapping>
 
 </web-app>
