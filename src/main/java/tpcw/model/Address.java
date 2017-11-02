@@ -42,6 +42,11 @@ package tpcw.model;/*
  *    source code in return for reimbursement of the cost of
  *    distribution.  This written offer must permit verbatim
  *    duplication by anyone, or
+ *
+ *
+ *
+ *
+ *    
  * C. it is distributed by someone who received only the
  *    executable form, and is accompanied by a copy of the
  *    written offer of source code that they received concurrently.
