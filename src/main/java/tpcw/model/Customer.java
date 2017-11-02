@@ -55,7 +55,7 @@ import java.sql.*;
 import java.util.Date;
 
 //glorified struct used for passing customer info around.
-public class Customer {
+public class Customer extends Entity {
 
     public int c_id;
     public String c_uname;
@@ -130,5 +130,19 @@ public class Customer {
 	    ex.printStackTrace();
 	}
     }
-    
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Customer customer = (Customer) o;
+
+        return c_id == customer.c_id;
+    }
+
+    @Override
+    public int hashCode() {
+        return c_id;
+    }
 }

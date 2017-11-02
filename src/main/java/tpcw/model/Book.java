@@ -61,7 +61,6 @@ import java.sql.*;
 public class Book extends Entity {
     // Construct a book from a ResultSet
     public Book(ResultSet rs) {
-        super(rs);
 	// The result set should have all of the fields we expect.
 	// This relies on using field name access.  It might be a bad
 	// way to break this up since it does not allow us to use the

@@ -54,7 +54,7 @@ package tpcw.model;/*
 
 import java.sql.*;
 
-public class ShortBook {
+public class ShortBook extends Entity {
     // Construct a book from a ResultSet
     public ShortBook(ResultSet rs) {
 	// The result set should have all of the fields we expect.
@@ -79,6 +79,21 @@ public class ShortBook {
     public String i_title;
     public String a_fname;
     public String a_lname;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        ShortBook shortBook = (ShortBook) o;
+
+        return i_id == shortBook.i_id;
+    }
+
+    @Override
+    public int hashCode() {
+        return i_id;
+    }
 }
 
 
