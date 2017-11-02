@@ -9,7 +9,7 @@ public abstract class Entity {
 
     }
 
-    public abstract int hashCode(Entity e);
-    public abstract boolean equals(Entity e);
+    public abstract int hashCode(Object e);
+    public abstract boolean equals(Object e);
 
 }

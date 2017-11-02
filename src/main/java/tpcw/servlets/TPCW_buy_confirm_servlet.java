@@ -59,6 +59,7 @@ package tpcw.servlets;/*
 
 import tpcw.model.BuyConfirmResult;
 import tpcw.model.CartLine;
+import tpcw.repository.TPCW_Database;
 
 import java.io.*;
 import javax.servlet.*;
@@ -122,7 +123,7 @@ public class TPCW_buy_confirm_servlet extends HttpServlet {
 	  String STATE = req.getParameter("STATE");
 	  String ZIP = req.getParameter("ZIP");
 	  String COUNTRY = req.getParameter("COUNTRY");
-	  result = TPCW_Database.doBuyConfirm(SHOPPING_ID, C_ID,CC_TYPE, 
+	  result = TPCW_Database.doBuyConfirm(SHOPPING_ID, C_ID,CC_TYPE,
 					      CC_NUMBER, CC_NAME, 
 					      new java.sql.Date(CC_EXPIRY.getTime()), 
 					      SHIPPING, STREET_1, STREET_2,
