@@ -1,4 +1,8 @@
-package tpcw.model;/*
+package tpcw.model;
+
+import java.sql.ResultSet;
+
+/*
  * tpcw.model.CartLine.java - Class stores the necessary data for a single item in
  *                 a single shopping cart, corresponding to the 
  *                 SHOPPING_CART_LINE table in the DB
@@ -53,16 +57,18 @@ package tpcw.model;/*
  *
  ************************************************************************/
 
-public class CartLine{
+public class CartLine {
     public String scl_title;
     public double scl_cost;
     public double scl_srp;
     public String scl_backing;
     public int scl_qty;
     public int scl_i_id;
-    
+
+ 
     public CartLine(String title, double cost, double srp, String backing,
-		    int qty, int id){
+    		int qty, int id){
+
 	scl_title = title;
 	scl_cost = cost;
 	scl_srp = srp;
@@ -70,4 +76,16 @@ public class CartLine{
 	scl_qty = qty;
 	scl_i_id = id;
     }
+
+	@Override
+	public int hashCode() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public boolean equals(Object e) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }

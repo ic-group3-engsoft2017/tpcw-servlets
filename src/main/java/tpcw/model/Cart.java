@@ -54,7 +54,7 @@ package tpcw.model;/*
 import java.util.*;
 import java.sql.*;
 
-public class Cart {
+public class Cart extends Entity{
     
     public double SC_SUB_TOTAL;
     public double SC_TAX;
@@ -63,8 +63,12 @@ public class Cart {
 
     public Vector lines;
     
+    public Cart(ResultSet rs)
+    {
+    }
+    
     public Cart (ResultSet rs, double C_DISCOUNT) throws java.sql.SQLException{
-	int i;
+    int i;
 	int total_items;
 	lines = new Vector();
 	while(rs.next()){//While there are lines remaining
@@ -91,4 +95,48 @@ public class Cart {
 	SC_SHIP_COST = 3.00 + (1.00 * total_items);
 	SC_TOTAL = SC_SUB_TOTAL + SC_SHIP_COST + SC_TAX;
     }
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		long temp;
+		temp = Double.doubleToLongBits(SC_SHIP_COST);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		temp = Double.doubleToLongBits(SC_SUB_TOTAL);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		temp = Double.doubleToLongBits(SC_TAX);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		temp = Double.doubleToLongBits(SC_TOTAL);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		result = prime * result + ((lines == null) ? 0 : lines.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Cart other = (Cart) obj;
+		if (Double.doubleToLongBits(SC_SHIP_COST) != Double.doubleToLongBits(other.SC_SHIP_COST))
+			return false;
+		if (Double.doubleToLongBits(SC_SUB_TOTAL) != Double.doubleToLongBits(other.SC_SUB_TOTAL))
+			return false;
+		if (Double.doubleToLongBits(SC_TAX) != Double.doubleToLongBits(other.SC_TAX))
+			return false;
+		if (Double.doubleToLongBits(SC_TOTAL) != Double.doubleToLongBits(other.SC_TOTAL))
+			return false;
+		if (lines == null) {
+			if (other.lines != null)
+				return false;
+		} else if (!lines.equals(other.lines))
+			return false;
+		return true;
+	}
+
+	
 }

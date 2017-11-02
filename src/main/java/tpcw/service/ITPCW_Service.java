@@ -37,3 +37,4 @@ public interface ITPCW_Service {
 	
 	public int getStock(Connection con, int i_id);
 }
+

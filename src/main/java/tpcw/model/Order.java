@@ -57,7 +57,7 @@ import java.sql.*;
 
 //Glorified struct to pass order information from the DB to tpcw.servlets
 
-public class Order {
+public class Order extends Entity {
     public Order(ResultSet rs) {
 	try {
 	    o_id = rs.getInt("o_id");
@@ -122,4 +122,167 @@ public class Order {
     public String ship_co_name;
     
     public String cx_type;
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((bill_addr_state == null) ? 0 : bill_addr_state.hashCode());
+		result = prime * result + ((bill_addr_street1 == null) ? 0 : bill_addr_street1.hashCode());
+		result = prime * result + ((bill_addr_street2 == null) ? 0 : bill_addr_street2.hashCode());
+		result = prime * result + ((bill_addr_zip == null) ? 0 : bill_addr_zip.hashCode());
+		result = prime * result + ((bill_co_name == null) ? 0 : bill_co_name.hashCode());
+		result = prime * result + ((c_email == null) ? 0 : c_email.hashCode());
+		result = prime * result + ((c_fname == null) ? 0 : c_fname.hashCode());
+		result = prime * result + ((c_lname == null) ? 0 : c_lname.hashCode());
+		result = prime * result + ((c_passwd == null) ? 0 : c_passwd.hashCode());
+		result = prime * result + ((c_phone == null) ? 0 : c_phone.hashCode());
+		result = prime * result + ((c_uname == null) ? 0 : c_uname.hashCode());
+		result = prime * result + ((cx_type == null) ? 0 : cx_type.hashCode());
+		result = prime * result + ((o_date == null) ? 0 : o_date.hashCode());
+		result = prime * result + o_id;
+		result = prime * result + ((o_ship_date == null) ? 0 : o_ship_date.hashCode());
+		result = prime * result + ((o_ship_type == null) ? 0 : o_ship_type.hashCode());
+		result = prime * result + ((o_status == null) ? 0 : o_status.hashCode());
+		long temp;
+		temp = Double.doubleToLongBits(o_subtotal);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		temp = Double.doubleToLongBits(o_tax);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		temp = Double.doubleToLongBits(o_total);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		result = prime * result + ((ship_addr_state == null) ? 0 : ship_addr_state.hashCode());
+		result = prime * result + ((ship_addr_street1 == null) ? 0 : ship_addr_street1.hashCode());
+		result = prime * result + ((ship_addr_street2 == null) ? 0 : ship_addr_street2.hashCode());
+		result = prime * result + ((ship_addr_zip == null) ? 0 : ship_addr_zip.hashCode());
+		result = prime * result + ((ship_co_name == null) ? 0 : ship_co_name.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Order other = (Order) obj;
+		if (bill_addr_state == null) {
+			if (other.bill_addr_state != null)
+				return false;
+		} else if (!bill_addr_state.equals(other.bill_addr_state))
+			return false;
+		if (bill_addr_street1 == null) {
+			if (other.bill_addr_street1 != null)
+				return false;
+		} else if (!bill_addr_street1.equals(other.bill_addr_street1))
+			return false;
+		if (bill_addr_street2 == null) {
+			if (other.bill_addr_street2 != null)
+				return false;
+		} else if (!bill_addr_street2.equals(other.bill_addr_street2))
+			return false;
+		if (bill_addr_zip == null) {
+			if (other.bill_addr_zip != null)
+				return false;
+		} else if (!bill_addr_zip.equals(other.bill_addr_zip))
+			return false;
+		if (bill_co_name == null) {
+			if (other.bill_co_name != null)
+				return false;
+		} else if (!bill_co_name.equals(other.bill_co_name))
+			return false;
+		if (c_email == null) {
+			if (other.c_email != null)
+				return false;
+		} else if (!c_email.equals(other.c_email))
+			return false;
+		if (c_fname == null) {
+			if (other.c_fname != null)
+				return false;
+		} else if (!c_fname.equals(other.c_fname))
+			return false;
+		if (c_lname == null) {
+			if (other.c_lname != null)
+				return false;
+		} else if (!c_lname.equals(other.c_lname))
+			return false;
+		if (c_passwd == null) {
+			if (other.c_passwd != null)
+				return false;
+		} else if (!c_passwd.equals(other.c_passwd))
+			return false;
+		if (c_phone == null) {
+			if (other.c_phone != null)
+				return false;
+		} else if (!c_phone.equals(other.c_phone))
+			return false;
+		if (c_uname == null) {
+			if (other.c_uname != null)
+				return false;
+		} else if (!c_uname.equals(other.c_uname))
+			return false;
+		if (cx_type == null) {
+			if (other.cx_type != null)
+				return false;
+		} else if (!cx_type.equals(other.cx_type))
+			return false;
+		if (o_date == null) {
+			if (other.o_date != null)
+				return false;
+		} else if (!o_date.equals(other.o_date))
+			return false;
+		if (o_id != other.o_id)
+			return false;
+		if (o_ship_date == null) {
+			if (other.o_ship_date != null)
+				return false;
+		} else if (!o_ship_date.equals(other.o_ship_date))
+			return false;
+		if (o_ship_type == null) {
+			if (other.o_ship_type != null)
+				return false;
+		} else if (!o_ship_type.equals(other.o_ship_type))
+			return false;
+		if (o_status == null) {
+			if (other.o_status != null)
+				return false;
+		} else if (!o_status.equals(other.o_status))
+			return false;
+		if (Double.doubleToLongBits(o_subtotal) != Double.doubleToLongBits(other.o_subtotal))
+			return false;
+		if (Double.doubleToLongBits(o_tax) != Double.doubleToLongBits(other.o_tax))
+			return false;
+		if (Double.doubleToLongBits(o_total) != Double.doubleToLongBits(other.o_total))
+			return false;
+		if (ship_addr_state == null) {
+			if (other.ship_addr_state != null)
+				return false;
+		} else if (!ship_addr_state.equals(other.ship_addr_state))
+			return false;
+		if (ship_addr_street1 == null) {
+			if (other.ship_addr_street1 != null)
+				return false;
+		} else if (!ship_addr_street1.equals(other.ship_addr_street1))
+			return false;
+		if (ship_addr_street2 == null) {
+			if (other.ship_addr_street2 != null)
+				return false;
+		} else if (!ship_addr_street2.equals(other.ship_addr_street2))
+			return false;
+		if (ship_addr_zip == null) {
+			if (other.ship_addr_zip != null)
+				return false;
+		} else if (!ship_addr_zip.equals(other.ship_addr_zip))
+			return false;
+		if (ship_co_name == null) {
+			if (other.ship_co_name != null)
+				return false;
+		} else if (!ship_co_name.equals(other.ship_co_name))
+			return false;
+		return true;
+	}
+	
+	
 }

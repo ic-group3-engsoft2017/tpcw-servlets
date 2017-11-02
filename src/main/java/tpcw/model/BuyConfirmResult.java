@@ -52,7 +52,41 @@ package tpcw.model;/*
  *
  ************************************************************************/
 
-public class BuyConfirmResult {
-    public Cart cart;
+import java.sql.ResultSet;
+
+public class BuyConfirmResult extends Entity {
+    public BuyConfirmResult(ResultSet resultSet) {
+		// TODO Auto-generated constructor stub
+	}
+	public Cart cart;
     public int order_id;
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((cart == null) ? 0 : cart.hashCode());
+		result = prime * result + order_id;
+		return result;
+	}
+	
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		BuyConfirmResult other = (BuyConfirmResult) obj;
+		if (cart == null) {
+			if (other.cart != null)
+				return false;
+		} else if (!cart.equals(other.cart))
+			return false;
+		if (order_id != other.order_id)
+			return false;
+		return true;
+	}
+
 }
