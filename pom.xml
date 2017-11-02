@@ -18,12 +18,15 @@
         <myConfig>default</myConfig>
     </properties>
     <dependencies>
-        <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>servlet-api</artifactId>
-            <version>2.5</version>
-            <scope>provided</scope>
-        </dependency>
+    	<!-- [START servlet] -->
+	    <dependency>
+	      <groupId>javax.servlet</groupId>
+	      <artifactId>javax.servlet-api</artifactId>
+	      <version>3.1.0</version>
+	      <type>jar</type>
+	      <scope>provided</scope>
+		</dependency>
+        
         <dependency>
             <groupId>javax.servlet.jsp</groupId>
             <artifactId>jsp-api</artifactId>
@@ -63,8 +66,8 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>2.0.2</version>
                 <configuration>
-                    <source>1.5</source>
-                    <target>1.5</target>
+                    <source>1.8</source>
+                    <target>1.8</target>
                 </configuration>
             </plugin>
             <plugin>
