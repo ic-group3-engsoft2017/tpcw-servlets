@@ -52,12 +52,8 @@ package tpcw.model;/*
  *
  ************************************************************************/
 
-import java.sql.ResultSet;
-
 public class BuyConfirmResult extends Entity {
-    public BuyConfirmResult(ResultSet resultSet) {
-		// TODO Auto-generated constructor stub
-	}
+
 	public Cart cart;
     public int order_id;
 	@Override
