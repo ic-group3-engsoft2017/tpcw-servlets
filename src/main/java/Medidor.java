@@ -20,7 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 
 @WebFilter("/*")
 public class Medidor implements Filter {
-	//private final static Logger LOGGER = Logger.getLogger(Medidor.class.getName());
+	static final Logger logger = LoggerFactory.getLogger(Medidor.class);
 
 	public void destroy() { // TODO Auto-generated method stub
 
@@ -36,8 +36,10 @@ public class Medidor implements Filter {
 		long tempoFinal = System.currentTimeMillis();
 		String uri = ((HttpServletRequest) request).getRequestURI();
 
-		System.out.println("Tempo da requisicao de " + uri + " demorou (ms): "
+		logger.error("Tempo da requisicao de " + uri + " demorou (ms): "
 				+ (tempoFinal - tempoInicial));
+		/*System.out.println("Tempo da requisicao de " + uri + " demorou (ms): "
+				+ (tempoFinal - tempoInicial));*/
 	}
 
 	public void init(FilterConfig arg0) throws ServletException { // TODO
