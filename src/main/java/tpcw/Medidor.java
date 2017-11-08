@@ -26,7 +26,7 @@ public class Medidor implements Filter {
 	static final Logger logger = Logger.getLogger(Medidor.class.getName());
 
 	public void destroy() { // TODO Auto-generated method stub
-
+		logger.log(Level.INFO, "### Bookstore - FIM Depuracao ###");
 	}
 
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
@@ -37,16 +37,19 @@ public class Medidor implements Filter {
 		chain.doFilter(request, response);
 
 		Long tempoFinal = System.nanoTime();
+		Long resultadoTempo = (tempoFinal - tempoInicial) / 1000000; //Nano para milisegundo
+		
 		String uri = ((HttpServletRequest) request).getRequestURI();
 
-		logger.log(Level.SEVERE, "Tempo da requisicao de " + uri + " demorou (ms): "
-				+ (tempoFinal - tempoInicial));
+		logger.log(Level.INFO, "Tempo da requisicao de " + uri + " demorou (ms): "
+				+ resultadoTempo + " ou (nano) " + (tempoFinal - tempoInicial) + " ##");
+		
 		/*System.out.println("Tempo da requisicao de " + uri + " demorou (ms): "
 				+ (tempoFinal - tempoInicial));*/
 	}
 
 	public void init(FilterConfig arg0) throws ServletException { // TODO
-
+		logger.log(Level.INFO, "####################### Bookstore - INICIO Depuracao #######################");
 	}
 
 }
