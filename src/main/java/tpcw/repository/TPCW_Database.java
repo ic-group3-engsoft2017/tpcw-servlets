@@ -68,6 +68,22 @@ import javax.sql.DataSource;
 
 public class TPCW_Database {
 
+	protected TPCW_Database()
+	{
+		
+	}
+	
+	private static TPCW_Database dataBase;
+	
+	//Tornando TPCW_Database como Singleton
+	 public static TPCW_Database getInstance() {
+	        if(dataBase == null) {
+	        	dataBase = new TPCW_Database();
+	        }
+	        return dataBase;
+	    }
+
+	
     public static synchronized Connection getConnection() {
     	Connection conn = null;
     	try {
