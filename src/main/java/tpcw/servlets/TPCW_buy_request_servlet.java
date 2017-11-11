@@ -63,6 +63,14 @@ import javax.servlet.http.*;
 import java.util.Date;
 
 public class TPCW_buy_request_servlet extends HttpServlet {
+	
+	private ITPCW_Service service;
+	
+	public TPCW_buy_request_servlet {
+		super();
+		service = TPCW_Service.getInstance();
+	}
+	
 	//TODO não canditado a cache, criar customer novo
   public void doGet(HttpServletRequest req, HttpServletResponse res)
       throws IOException, ServletException {
@@ -99,8 +107,8 @@ public class TPCW_buy_request_servlet extends HttpServlet {
 	      return;
 	  }
 
-	  cust = TPCW_Database.getCustomer(UNAME);
-	  TPCW_Database.refreshSession(cust.c_id);
+	  cust = service.getCustomer(UNAME);
+	  service.refreshSession(cust.c_id);
 	  if(!PASSWD.equals(cust.c_passwd)){
 	      out.print("Error: Incorrect Password</BODY></HTML>");
 	      return;
@@ -129,7 +137,7 @@ public class TPCW_buy_request_servlet extends HttpServlet {
 	  return;
       }
       //Update the shopping cart cost and get the current contents
-      Cart mycart = TPCW_Database.getCart(Integer.parseInt(SHOPPING_ID), cust.c_discount);
+      Cart mycart = service.getCart(Integer.parseInt(SHOPPING_ID), cust.c_discount);
       
       //Print out the web page
       out.print("<HR><FORM ACTION=\"tpcw.servlets.TPCW_buy_confirm_servlet;jsessionid="+

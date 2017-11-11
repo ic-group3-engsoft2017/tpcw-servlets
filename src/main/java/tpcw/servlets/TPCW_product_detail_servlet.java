@@ -60,6 +60,14 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 
 public class TPCW_product_detail_servlet extends HttpServlet {
+	
+	
+	private ITPCW_Service service;
+	
+	public TPCW_product_detail_servlet {
+		super();
+		service = TPCW_Service.getInstance();
+	}
     
   public void doGet(HttpServletRequest req, HttpServletResponse res)
       throws IOException, ServletException {
@@ -74,7 +82,7 @@ public class TPCW_product_detail_servlet extends HttpServlet {
       res.setContentType("text/html");
 
       //TODO: Add-Cache-Candidate for serialization, it could be faster
-      Book mybook = TPCW_Database.getBook(I_ID);
+      Book mybook = service.getBook(I_ID);
       
       out.print("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD W3 HTML//EN\">\n"); 
       out.print("<HTML><HEAD> <TITLE>TPC-W Product Detail Page</TITLE>\n");

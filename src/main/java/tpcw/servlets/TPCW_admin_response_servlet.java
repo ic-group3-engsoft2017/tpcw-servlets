@@ -60,6 +60,14 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 
 public class TPCW_admin_response_servlet extends HttpServlet {
+	
+	private ITPCW_Service service;
+	
+	public TPCW_admin_response_servlet {
+		super();
+		service = TPCW_Service.getInstance();
+	}
+	
 	// TODO acho que não um cache específicio para ele, mas com itens (decidir quais ficar no cache)
   public void doGet(HttpServletRequest req, HttpServletResponse res)
       throws IOException, ServletException {
@@ -82,7 +90,7 @@ public class TPCW_admin_response_servlet extends HttpServlet {
       String SHOPPING_ID = req.getParameter("SHOPPING_ID");
       
       //Get this book out of the database
-      Book book = TPCW_Database.getBook(I_ID);
+      Book book = service.getBook(I_ID);
       
       //Spit out the HTML
       out.print("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD W3 HTML//EN\">\n");
@@ -99,7 +107,7 @@ public class TPCW_admin_response_servlet extends HttpServlet {
       }
       else {
 	  //Update the database
-	  TPCW_Database.adminUpdate(I_ID, I_NEW_COSTdbl.doubleValue(),
+      service.adminUpdate(I_ID, I_NEW_COSTdbl.doubleValue(),
 				    I_NEW_IMAGE,I_NEW_THUMBNAIL);
 	  
 	  out.print("<H2>Product Updated</H2>");

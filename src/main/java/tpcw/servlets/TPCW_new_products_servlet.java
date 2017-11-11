@@ -61,6 +61,13 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 
 public class TPCW_new_products_servlet extends HttpServlet {
+	
+	private ITPCW_Service service;
+	
+	public TPCW_new_products_servlet {
+		super();
+		service = TPCW_Service.getInstance();
+	}
     
   public void doGet(HttpServletRequest req, HttpServletResponse res)
       throws IOException, ServletException {
@@ -99,7 +106,7 @@ public class TPCW_new_products_servlet extends HttpServlet {
       //Need to insert code here to get new products from the database,
       //and then spit them out in html to complete the table
       
-      Vector books = TPCW_Database.getNewProducts(subject); //TODO: Add-Cache-Candidate
+      Vector books = service.getNewProducts(subject); //TODO: Add-Cache-Candidate
       for(i = 0; i < books.size(); i++){
 	  ShortBook book = (ShortBook) books.elementAt(i);
 	  out.print("<TR><TD>" + (i+1) + "</TD>\n");
