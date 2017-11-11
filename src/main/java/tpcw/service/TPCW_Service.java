@@ -14,13 +14,18 @@ import tpcw.repository.TPCW_Database;
 public class TPCW_Service implements ITPCW_Service {
 
     private static TPCW_Service service;
-
+    
+    
     public static TPCW_Service getInstance() {
         if(service == null) {
             service = new TPCW_Service();
         }
         return service;
     }
+    
+    private ITPCW_Cache  cache;
+    private TPCW_Database database;
+    
 
 	public String[] getName(int c_id) {
 		return TPCW_Database.getName(c_id);
