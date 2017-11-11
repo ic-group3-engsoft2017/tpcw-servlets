@@ -50,7 +50,8 @@ public class TPCW_Service implements ITPCW_Service {
 	public Vector getNewProducts(String subject) {
 		return TPCW_Database.getNewProducts(subject);
 	}
-
+    // Felipe ^
+	// Luiz V
 	public Vector getBestSellers(String subject) {
 		return TPCW_Database.getBestSellers(subject);
 	}
