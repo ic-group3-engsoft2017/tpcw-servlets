@@ -1,13 +1,14 @@
 package tpcw.service;
 
-import java.sql.Connection;
-import java.util.Vector;
-
+import tpcw.cache.ITPCW_Cache;
 import tpcw.model.Book;
 import tpcw.model.Cart;
 import tpcw.model.Customer;
 import tpcw.model.Order;
 import tpcw.repository.TPCW_Database;
+
+import java.sql.Connection;
+import java.util.Vector;
 
 
 
@@ -23,7 +24,7 @@ public class TPCW_Service implements ITPCW_Service {
         return service;
     }
     
-    private ITPCW_Cache  cache;
+    private ITPCW_Cache cache;
     private TPCW_Database database;
     
 
