@@ -57,15 +57,7 @@ public class CacheService implements ITPCW_Cache {
 		return Optional.empty();
 	}
 	
-	public Optional<CachableEntity> compareId(CachableEntity entity, Integer id) {
-		return entity.getId() == id ? Optional.of(entity) : Optional.empty();
-	}
-	
 	private TreeSet<CachableEntity> createNewSet() {
 		return new TreeSet<>(Comparator.comparingInt(CachableEntity::getNumberOfHits).reversed());
 	}
-    
-    
-    
-	
 }

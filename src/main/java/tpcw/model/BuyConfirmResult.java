@@ -52,7 +52,7 @@ package tpcw.model;/*
  *
  ************************************************************************/
 
-public class BuyConfirmResult extends Entity {
+public class BuyConfirmResult extends Entity<Integer> {
 
 	public Cart cart;
     public int order_id;
