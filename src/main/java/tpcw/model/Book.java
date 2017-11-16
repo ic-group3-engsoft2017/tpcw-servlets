@@ -58,7 +58,7 @@ import tpcw.cache.CachableEntity;
 import java.util.Date;
 import java.sql.*;
 
-public class Book extends Entity {
+public class Book extends CachableEntity {
     // Construct a book from a ResultSet
     public Book(ResultSet rs) {
 	// The result set should have all of the fields we expect.
