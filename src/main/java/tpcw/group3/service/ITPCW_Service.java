@@ -1,39 +1,38 @@
 package tpcw.group3.service;
 
-import java.sql.Connection;
+import tpcw.group3.model.*;
 import java.util.Vector;
 
-import tpcw.group3.model.*;
 
 //Interface para abstrair o comportamento de requisição de serviço de dados.
 public interface ITPCW_Service {
 
-	public String[] getName(int c_id);
+	String[] getName(int c_id);
+
+	Book getBook(int i_id);
 	
-	public tpcw.group3.model.Book getBook(int i_id);
+	Customer getCustomer(String UNAME);
 	
-	public Customer getCustomer(String UNAME);
+	Vector doSubjectSearch(String search_key);
 	
-	public Vector doSubjectSearch(String search_key);
+	Vector doTitleSearch(String search_key);
 	
-	public Vector doTitleSearch(String search_key); 
+	Vector doAuthorSearch(String search_key);
 	
-	public Vector doAuthorSearch(String search_key);
+	Vector getNewProducts(String subject);
 	
-	public Vector getNewProducts(String subject);
+	Vector getBestSellers(String subject);
 	
-	public Vector getBestSellers(String subject);
+	Order GetMostRecentOrder(String c_uname, Vector order_lines);
 	
-	public Order GetMostRecentOrder(String c_uname, Vector order_lines);
+	Cart getCart(int SHOPPING_ID, double c_discount);
 	
-	public Cart getCart(int SHOPPING_ID, double c_discount);
+	double getCDiscount(int c_id);
 	
-	public double getCDiscount(Connection con, int c_id);
+	int getCAddrID(int c_id);
 	
-	public int getCAddrID(Connection con, int c_id);
+	int getCAddr(int c_id);
 	
-	public int getCAddr(Connection con, int c_id);
-	
-	public int getStock(Connection con, int i_id);
+	int getStock(int i_id);
 }
 

@@ -60,6 +60,12 @@ import tpcw.group3.cache.model.CachableEntity;
 import java.sql.*;
 
 public class Book extends CachableEntity {
+
+    public static final String I_ID = "i_id";
+    public static final String I_TITLE = "i_title";
+    public static final String A_FNAME = "a_fname";
+    public static final String A_LNAME = "a_lname";
+
     // Construct a book from a ResultSet
     public Book(ResultSet rs) {
 	// The result set should have all of the fields we expect.
@@ -71,8 +77,8 @@ public class Book extends CachableEntity {
 	// to give to this function.
        
 	try {
-	    i_id = rs.getInt("i_id");
-	    i_title = rs.getString("i_title");
+	    i_id = rs.getInt(I_ID);
+	    i_title = rs.getString(I_TITLE);
 	    i_pub_Date = rs.getDate("i_pub_Date");
 	    i_publisher = rs.getString("i_publisher");
 	    i_subject = rs.getString("i_subject");
@@ -92,8 +98,8 @@ public class Book extends CachableEntity {
 	    i_backing = rs.getString("i_backing");
 	    i_dimensions = rs.getString("i_dimensions");
 	    a_id = rs.getInt("a_id");
-	    a_fname = rs.getString("a_fname");
-	    a_lname = rs.getString("a_lname");		
+	    a_fname = rs.getString(A_FNAME);
+	    a_lname = rs.getString(A_LNAME);
 	} catch (java.lang.Exception ex) {
 	    ex.printStackTrace();
 	}

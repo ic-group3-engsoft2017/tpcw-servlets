@@ -72,6 +72,7 @@ public class TPCW_admin_request_servlet extends HttpServlet {
       String url;
       PrintWriter out = res.getWriter();
 
+      
     // Set the content type of this servlet's result.
       res.setContentType("text/html");
       
