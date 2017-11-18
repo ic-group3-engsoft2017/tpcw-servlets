@@ -8,6 +8,7 @@ import java.util.TreeSet;
 
 import tpcw.cache.CachableEntity;
 import tpcw.cache.ITPCW_Cache;
+import tpcw.model.Book;
 
 public class CacheService implements ITPCW_Cache {
 
@@ -50,6 +51,7 @@ public class CacheService implements ITPCW_Cache {
 			cachables = cacheMap.get(objClass);		
 			for (CachableEntity cachable : cachables) {
 				if (cachable.getId() == id) {
+					cachable.addHit();
 					return Optional.of(cachable);
 				}
 			}
@@ -59,5 +61,14 @@ public class CacheService implements ITPCW_Cache {
 	
 	private TreeSet<CachableEntity> createNewSet() {
 		return new TreeSet<>(Comparator.comparingInt(CachableEntity::getNumberOfHits).reversed());
+	}	
+	
+	public Optional<CachableEntity> findBookByAuthor(String authorName, String authorLastName) {
+		TreeSet<CachableEntity> bookCache = cacheMap.get(Book.class);
+		return bookCache.stream().filter(book -> findByExample(book, authorName, authorLastName)).findFirst();
+	}
+
+	private boolean findByExample(CachableEntity cachableEntity, String authorName, String authorLastName) {
+		return authorName.equals(((Book) cachableEntity).a_fname) || authorLastName.equals(((Book)cachableEntity).a_lname);
 	}
 }
