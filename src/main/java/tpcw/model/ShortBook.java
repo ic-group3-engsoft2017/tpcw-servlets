@@ -54,7 +54,9 @@ package tpcw.model;/*
 
 import java.sql.*;
 
-public class ShortBook extends Entity <Integer>{
+import tpcw.cache.CachableEntity;
+
+public class ShortBook extends CachableEntity {
     // Construct a book from a ResultSet
     public ShortBook(ResultSet rs) {
 	// The result set should have all of the fields we expect.
