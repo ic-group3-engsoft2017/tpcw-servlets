@@ -53,9 +53,10 @@ package tpcw.model;
  *
  ************************************************************************/
 
-import tpcw.cache.CachableEntity;
-
 import java.util.Date;
+
+import tpcw.model.cache.CachableEntity;
+
 import java.sql.*;
 
 public class Book extends CachableEntity {

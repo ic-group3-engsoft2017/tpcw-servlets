@@ -54,7 +54,7 @@ package tpcw.model;/*
 
 import java.sql.*;
 
-import tpcw.cache.CachableEntity;
+import tpcw.model.cache.CachableEntity;
 
 public class ShortBook extends CachableEntity {
     // Construct a book from a ResultSet

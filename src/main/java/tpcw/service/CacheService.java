@@ -6,9 +6,9 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.TreeSet;
 
-import tpcw.cache.CachableEntity;
-import tpcw.cache.ITPCW_Cache;
 import tpcw.model.Book;
+import tpcw.model.cache.CachableEntity;
+import tpcw.model.cache.ITPCW_Cache;
 
 public class CacheService implements ITPCW_Cache {
 

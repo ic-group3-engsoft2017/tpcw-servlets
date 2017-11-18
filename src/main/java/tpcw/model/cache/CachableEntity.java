@@ -1,4 +1,4 @@
-package tpcw.cache;
+package tpcw.model.cache;
 
 import tpcw.model.Entity;
 
