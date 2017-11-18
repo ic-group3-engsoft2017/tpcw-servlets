@@ -1,4 +1,4 @@
-package tpcw.group3.servlets;/*
+package tpcw.group3.service;/*
  * tpcw.servlets.TPCW_say_hello.java - Utility function used by home interaction,
  *                       creates a new session id for new users.
  * 
@@ -52,20 +52,13 @@ package tpcw.group3.servlets;/*
  *
  ************************************************************************/
 
+import tpcw.group3.repository.TPCW_Database;
+
 import java.io.*;
 import javax.servlet.http.*;
 
-import tpcw.group3.repository.TPCW_Database;
-
 public class TPCW_say_hello {
-	
-	private ITPCW_Service service;
-	
-	public TPCW_say_hello {
-		super();
-		service = TPCW_Service.getInstance();
-	}
-    
+
     public static void print_hello(HttpSession session, HttpServletRequest req,
 				   PrintWriter out){
 
@@ -92,7 +85,7 @@ public class TPCW_say_hello {
                 // Use C_ID to get the user name from the database.
                 // Set parameter
                 //TODO : Cache is not entirely required due the select is simple, and fast id query based
-                name = service.getName(C_ID[0]);
+                name = TPCW_Database.getInstance().getName(C_ID[0]);
                 // Set the values for this session.
                 if(name==null){
                    out.println("Hello unknown user!");

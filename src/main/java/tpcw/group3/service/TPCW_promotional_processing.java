@@ -1,4 +1,4 @@
-package tpcw.group3.servlets;/*
+package tpcw.group3.service;/*
  * tpcw.servlets.TPCW_promotional_processing.java - This class is basically just a
  *                                    utility function used to spit
  *                                    out the promotional processing
@@ -62,14 +62,6 @@ import java.util.*;
 import javax.servlet.http.*;
 
 public class TPCW_promotional_processing {
-	
-	
-	private ITPCW_Service service;
-	
-	public TPCW_promotional_processing {
-		super();
-		service = TPCW_Service.getInstance();
-	}
 
     public static void DisplayPromotions(PrintWriter out, 
 					 HttpServletRequest req,
@@ -81,8 +73,8 @@ public class TPCW_promotional_processing {
 	int i;
 	String url;
 
-	//TODO: Add-Cache-Candidate due to OR Statements
-	service.getRelated(I_ID, related_item_ids, thumbnails);
+
+	TPCW_Database.getInstance().getRelated(I_ID, related_item_ids, thumbnails);
 
 	String C_ID = req.getParameter("C_ID");
 	String SHOPPING_ID = req.getParameter("SHOPPING_ID");

@@ -51,6 +51,9 @@ package tpcw.group3.servlets;/*
  *
  ************************************************************************/
 
+import tpcw.group3.service.TPCW_promotional_processing;
+import tpcw.group3.service.TPCW_say_hello;
+
 import java.io.*;
 import java.util.*;
 import javax.servlet.*;
