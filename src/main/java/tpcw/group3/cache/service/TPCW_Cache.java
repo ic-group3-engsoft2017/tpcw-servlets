@@ -9,12 +9,12 @@ import java.util.TreeSet;
 import tpcw.group3.cache.model.CachableEntity;
 import tpcw.group3.model.Book;
 
-public class CacheService implements ITPCW_Cache {
+public class TPCW_Cache implements ITPCW_Cache {
 
     private Map<Class<?>, TreeSet<CachableEntity>> cacheMap;
     private final int CACHE_BUFFER = 50;
     
-    public CacheService() {
+    public TPCW_Cache() {
     	cacheMap = new HashMap<>();
     }
 
