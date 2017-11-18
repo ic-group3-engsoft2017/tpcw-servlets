@@ -32,7 +32,16 @@ public class TPCW_Service implements ITPCW_Service {
 	}
 
 	public Book getBook(int i_id) {
-		return TPCW_Database.getBook(i_id);
+		
+		Book book = cache.getById(c_id);
+		
+		if(book != null ){
+			return book;
+		}else
+		{
+			return TPCW_Database.getBook(i_id);	
+		}
+		
 	}
 
 	public Customer getCustomer(String UNAME) {
