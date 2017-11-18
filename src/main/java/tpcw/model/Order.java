@@ -57,7 +57,7 @@ import java.sql.*;
 
 //Glorified struct to pass order information from the DB to tpcw.servlets
 
-public class Order extends Entity {
+public class Order extends Entity<Integer> {
     public Order(ResultSet rs) {
 	try {
 	    o_id = rs.getInt("o_id");

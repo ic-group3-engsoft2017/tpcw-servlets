@@ -54,7 +54,7 @@ package tpcw.model;/*
 import java.util.*;
 import java.sql.*;
 
-public class Cart extends Entity{
+public class Cart extends Entity <Integer>{
     
     public double SC_SUB_TOTAL;
     public double SC_TAX;

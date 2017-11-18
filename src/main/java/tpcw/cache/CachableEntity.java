@@ -2,35 +2,47 @@ package tpcw.cache;
 
 import tpcw.model.Entity;
 
-import java.util.HashMap;
-import java.util.Optional;
+import java.util.concurrent.atomic.AtomicInteger;
 
-public class CachableEntity<T extends Entity> {
+public class CachableEntity extends Entity<Integer> implements Cloneable {
 
-    private HashMap<Long,T> cacheMap;
-
+	private AtomicInteger numberOfHits;
+	
     public CachableEntity() {
-        cacheMap = new HashMap<>();
+    }
+    
+    public Integer getNumberOfHits() {
+		return numberOfHits.get();
+	}
+    
+    public void addHit() {
+    	numberOfHits.incrementAndGet();
     }
 
-    public Optional<T> getFromCache(Long id) {
-        if(cacheMap.containsKey(id)) {
-            return Optional.of(cacheMap.get(id));
-        } else {
-            return Optional.empty();
-        }
-    }
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((numberOfHits == null) ? 0 : numberOfHits.hashCode());
+		return result;
+	}
 
-    public void addToCache(Long id, T entity) throws IllegalArgumentException {
-        if(cacheMap.containsKey(id)) {
-            throw new IllegalArgumentException("Could not add to cache cause entity of id " +
-                    id +" is already there");
-        }
-        cacheMap.put(id, entity);
-    }
-
-    public void renewCache(Long id, T entity) {
-
-    }
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		CachableEntity other = (CachableEntity) obj;
+		if (numberOfHits == null) {
+			if (other.numberOfHits != null)
+				return false;
+		} else if (!numberOfHits.equals(other.numberOfHits))
+			return false;
+		return true;
+	}
+    
 }
 

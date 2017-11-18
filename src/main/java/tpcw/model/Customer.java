@@ -55,7 +55,7 @@ import java.sql.*;
 import java.util.Date;
 
 //glorified struct used for passing customer info around.
-public class Customer extends Entity {
+public class Customer extends Entity<Integer> {
 
     public int c_id;
     public String c_uname;
