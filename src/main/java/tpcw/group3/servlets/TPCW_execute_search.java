@@ -53,6 +53,8 @@ package tpcw.group3.servlets;/*
  ************************************************************************/
 
 import tpcw.group3.model.Book;
+import tpcw.group3.service.ITPCW_Service;
+import tpcw.group3.service.TPCW_Service;
 import tpcw.group3.service.TPCW_promotional_processing;
 
 import java.io.*;
@@ -64,12 +66,12 @@ public class TPCW_execute_search extends HttpServlet {
 	
 	private ITPCW_Service service;
 	
-	public TPCW_execute_search {
+	public TPCW_execute_search() {
 		super();
 		service = TPCW_Service.getInstance();
 	}
-	// TODO talvez colocar um cache com as ultimas bucas realizadas.... mas é discutivel.
-  public void doGet(HttpServletRequest req, HttpServletResponse res)
+
+    public void doGet(HttpServletRequest req, HttpServletResponse res)
       throws IOException, ServletException {
       
       int i;

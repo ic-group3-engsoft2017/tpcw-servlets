@@ -58,12 +58,14 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 
 import tpcw.group3.repository.TPCW_Database;
+import tpcw.group3.service.ITPCW_Service;
+import tpcw.group3.service.TPCW_Service;
 
 public class TPCW_customer_registration_servlet extends HttpServlet {
 	
 	private ITPCW_Service service;
 	
-	public TPCW_customer_registration_servlet {
+	public TPCW_customer_registration_servlet() {
 		super();
 		service = TPCW_Service.getInstance();
 	}
@@ -84,7 +86,7 @@ public class TPCW_customer_registration_servlet extends HttpServlet {
       String username;
       if(C_ID != null){
 	  int c_idnum = Integer.parseInt(C_ID);
-	  username = service.GetUserName(c_idnum);
+	  username = service.getUserName(c_idnum);
       }
       else username = "";
 

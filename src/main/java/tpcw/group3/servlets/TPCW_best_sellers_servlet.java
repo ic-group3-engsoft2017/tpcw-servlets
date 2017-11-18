@@ -53,6 +53,8 @@ package tpcw.group3.servlets;/*
  ************************************************************************/
 
 import tpcw.group3.model.ShortBook;
+import tpcw.group3.service.ITPCW_Service;
+import tpcw.group3.service.TPCW_Service;
 import tpcw.group3.service.TPCW_promotional_processing;
 
 import java.io.*;
@@ -65,8 +67,7 @@ public class TPCW_best_sellers_servlet extends HttpServlet {
 	
 	private ITPCW_Service service;
 	
-	public TPCW_best_sellers_servlet {
-		super();
+	public TPCW_best_sellers_servlet() {
 		service = TPCW_Service.getInstance();
 	}
 	

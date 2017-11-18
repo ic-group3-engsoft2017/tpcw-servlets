@@ -56,6 +56,8 @@ import tpcw.group3.model.Cart;
 import tpcw.group3.model.CartLine;
 import tpcw.group3.model.Customer;
 import tpcw.group3.repository.TPCW_Database;
+import tpcw.group3.service.ITPCW_Service;
+import tpcw.group3.service.TPCW_Service;
 
 import java.io.*;
 import javax.servlet.*;
@@ -66,12 +68,10 @@ public class TPCW_buy_request_servlet extends HttpServlet {
 	
 	private ITPCW_Service service;
 	
-	public TPCW_buy_request_servlet {
-		super();
+	public TPCW_buy_request_servlet() {
 		service = TPCW_Service.getInstance();
 	}
 	
-	//TODO não canditado a cache, criar customer novo
   public void doGet(HttpServletRequest req, HttpServletResponse res)
       throws IOException, ServletException {
       PrintWriter out = res.getWriter();
@@ -128,7 +128,7 @@ public class TPCW_buy_request_servlet extends HttpServlet {
 	  cust.c_email = req.getParameter("EMAIL");
 	  cust.c_birthdate = new Date(req.getParameter("BIRTHDATE"));
 	  cust.c_data = req.getParameter("DATA");
-	  cust = TPCW_Database.createNewCustomer(cust);
+	  cust = service.createNewCustomer(cust);
       }
       else out.print("ERROR: RETURNING_FLAG not set to Y or N!\n");
       

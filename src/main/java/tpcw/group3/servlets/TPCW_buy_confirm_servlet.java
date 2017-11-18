@@ -60,6 +60,8 @@ package tpcw.group3.servlets;/*
 import tpcw.group3.model.BuyConfirmResult;
 import tpcw.group3.model.CartLine;
 import tpcw.group3.repository.TPCW_Database;
+import tpcw.group3.service.ITPCW_Service;
+import tpcw.group3.service.TPCW_Service;
 
 import java.io.*;
 import javax.servlet.*;
@@ -94,14 +96,10 @@ public class TPCW_buy_confirm_servlet extends HttpServlet {
 	
 	private ITPCW_Service service;
 	
-	public TPCW_buy_confirm_servlet {
-		super();
+	public TPCW_buy_confirm_servlet() {
 		service = TPCW_Service.getInstance();
 	}
-	
-	// TODO não seria de inicio um canditado para cache, 
-	// TODO busca informações do carrinho do cliente logado e busca informações 
-	// TODO para confirmar a compra
+
   public void doGet(HttpServletRequest req, HttpServletResponse res)
       throws IOException, ServletException {
       int i;

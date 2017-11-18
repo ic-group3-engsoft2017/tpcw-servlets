@@ -54,6 +54,8 @@ package tpcw.group3.servlets;/*
 
 import tpcw.group3.model.Cart;
 import tpcw.group3.model.CartLine;
+import tpcw.group3.service.ITPCW_Service;
+import tpcw.group3.service.TPCW_Service;
 import tpcw.group3.service.TPCW_promotional_processing;
 
 import java.io.*;
@@ -65,7 +67,7 @@ public class TPCW_shopping_cart_interaction extends HttpServlet {
 	
 private ITPCW_Service service;
 	
-	public TPCW_shopping_cart_interaction {
+	public TPCW_shopping_cart_interaction() {
 		super();
 		service = TPCW_Service.getInstance();
 	}
@@ -122,8 +124,7 @@ private ITPCW_Service service;
 	    curr_QTYstr = req.getParameter("QTY_" + i);
 	    curr_I_IDstr = req.getParameter("I_ID_" + i);
 	}
-	// TODO: Could separate responsabilities In Service we could cache the Cart and Item
-	//
+
 	cart = service.doCart(SHOPPING_ID, I_ID, ids, quantities);
 
 	//Add the top part of the HTML

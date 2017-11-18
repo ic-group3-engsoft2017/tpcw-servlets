@@ -2,16 +2,15 @@ package tpcw.group3.service;
 
 
 import tpcw.group3.cache.service.ITPCW_Cache;
-import tpcw.group3.model.Book;
-import tpcw.group3.model.Cart;
-import tpcw.group3.model.Customer;
-import tpcw.group3.model.Order;
+import tpcw.group3.model.*;
 import tpcw.group3.repository.TPCW_Database;
 
+import java.sql.Date;
 import java.util.Vector;
 
 
 public class TPCW_Service implements ITPCW_Service {
+
 
     private static TPCW_Service service;
 
@@ -82,4 +81,53 @@ public class TPCW_Service implements ITPCW_Service {
 		return TPCW_Database.getInstance().getStock(i_id);
 	}
 
+	@Override
+	public void adminUpdate(int i_id, double v, String i_new_image, String i_new_thumbnail) {
+		TPCW_Database.getInstance().adminUpdate(i_id, v, i_new_image, i_new_thumbnail);
+	}
+
+	@Override
+	public BuyConfirmResult doBuyConfirm(int shopping_id, int c_id, String cc_type, long cc_number, String cc_name, Date date, String shipping, String street_1, String street_2, String city, String state, String zip, String country) {
+		return TPCW_Database.getInstance().doBuyConfirm(shopping_id, c_id, cc_type, cc_number, cc_name, date, shipping, street_1, street_2, city, state, zip, country);
+	}
+
+	@Override
+	public BuyConfirmResult doBuyConfirm(int shopping_id, int c_id, String cc_type, long cc_number, String cc_name, Date date, String shipping) {
+		return TPCW_Database.getInstance().doBuyConfirm(shopping_id, c_id, cc_type, cc_number, cc_name, date, shipping);
+	}
+
+	@Override
+	public void refreshSession(int c_id) {
+		TPCW_Database.getInstance().refreshSession(c_id);
+	}
+
+	@Override
+	public Customer createNewCustomer(Customer cust) {
+		return TPCW_Database.getInstance().createNewCustomer(cust);
+	}
+
+	@Override
+	public String getUserName(int c_idnum) {
+		return TPCW_Database.getInstance().GetUserName(c_idnum);
+	}
+
+	@Override
+	public String GetPassword(String uname) {
+		return TPCW_Database.getInstance().GetPassword(uname);
+	}
+
+	@Override
+	public void getRelated(int i_id, Vector related_item_ids, Vector thumbnails) {
+
+	}
+
+	@Override
+	public int createEmptyCart() {
+		return 0;
+	}
+
+	@Override
+	public Cart doCart(int shopping_id, Integer i_id, Vector ids, Vector quantities) {
+		return null;
+	}
 }

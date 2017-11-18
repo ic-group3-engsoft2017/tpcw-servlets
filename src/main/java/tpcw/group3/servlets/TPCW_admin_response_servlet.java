@@ -54,6 +54,8 @@ package tpcw.group3.servlets;/*
 
 import tpcw.group3.model.Book;
 import tpcw.group3.repository.TPCW_Database;
+import tpcw.group3.service.ITPCW_Service;
+import tpcw.group3.service.TPCW_Service;
 
 import java.io.*;
 import javax.servlet.*;
@@ -63,12 +65,10 @@ public class TPCW_admin_response_servlet extends HttpServlet {
 	
 	private ITPCW_Service service;
 	
-	public TPCW_admin_response_servlet {
-		super();
+	public TPCW_admin_response_servlet() {
 		service = TPCW_Service.getInstance();
 	}
-	
-	// TODO acho que não um cache específicio para ele, mas com itens (decidir quais ficar no cache)
+
   public void doGet(HttpServletRequest req, HttpServletResponse res)
       throws IOException, ServletException {
       PrintWriter out = res.getWriter();

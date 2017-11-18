@@ -53,6 +53,8 @@ package tpcw.group3.servlets;/*
  ************************************************************************/
 
 import tpcw.group3.model.ShortBook;
+import tpcw.group3.service.ITPCW_Service;
+import tpcw.group3.service.TPCW_Service;
 import tpcw.group3.service.TPCW_promotional_processing;
 
 import java.io.*;
@@ -64,7 +66,7 @@ public class TPCW_new_products_servlet extends HttpServlet {
 	
 	private ITPCW_Service service;
 	
-	public TPCW_new_products_servlet {
+	public TPCW_new_products_servlet() {
 		super();
 		service = TPCW_Service.getInstance();
 	}
@@ -94,7 +96,7 @@ public class TPCW_new_products_servlet extends HttpServlet {
 		subject + "</H2>\n"); 
 	  
       //Display promotions
-      TPCW_promotional_processing.DisplayPromotions(out, req, res,-1); //TODO: Add-Cache-Candidate
+      TPCW_promotional_processing.DisplayPromotions(out, req, res,-1);
 
       //Display new products
       
@@ -106,7 +108,7 @@ public class TPCW_new_products_servlet extends HttpServlet {
       //Need to insert code here to get new products from the database,
       //and then spit them out in html to complete the table
       
-      Vector books = service.getNewProducts(subject); //TODO: Add-Cache-Candidate
+      Vector books = service.getNewProducts(subject);
       for(i = 0; i < books.size(); i++){
 	  ShortBook book = (ShortBook) books.elementAt(i);
 	  out.print("<TR><TD>" + (i+1) + "</TD>\n");
