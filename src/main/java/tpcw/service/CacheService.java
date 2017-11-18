@@ -1,12 +1,9 @@
 package tpcw.service;
 
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
-import java.util.TreeSet;
+import java.util.*;
 
 import tpcw.cache.CachableEntity;
+import tpcw.cache.Filter;
 import tpcw.cache.ITPCW_Cache;
 import tpcw.model.Book;
 
@@ -64,9 +61,15 @@ public class CacheService implements ITPCW_Cache {
 	}	
 	
 	public Optional<CachableEntity> findBookByAuthor(String authorName, String authorLastName) {
+        Filter filterFn = new Filter(Book.A_FNAME, authorName);
+        Filter filterLn = new Filter(Book.A_LNAME, authorLastName);
 		TreeSet<CachableEntity> bookCache = cacheMap.get(Book.class);
 		return bookCache.stream().filter(book -> findByExample(book, authorName, authorLastName)).findFirst();
 	}
+
+    private List<CachableEntity> findByFilter(CachableEntity cachableEntity, String authorName, String authorLastName) {
+        return null;
+    }
 
 	private boolean findByExample(CachableEntity cachableEntity, String authorName, String authorLastName) {
 		return authorName.equals(((Book) cachableEntity).a_fname) || authorLastName.equals(((Book)cachableEntity).a_lname);

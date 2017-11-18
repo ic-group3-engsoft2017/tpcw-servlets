@@ -74,6 +74,8 @@ public class TPCW_Database {
 	}
 	
 	private static TPCW_Database dataBase;
+
+	private static List<Connection> connections;
 	
 	//Tornando TPCW_Database como Singleton
 	 public static TPCW_Database getInstance() {
@@ -84,30 +86,35 @@ public class TPCW_Database {
 	    }
 
 	
-    public static synchronized Connection getConnection() {
-    	Connection conn = null;
-    	try {
-    		Context initContext = new InitialContext();
-    		Context envContext = (Context) initContext.lookup("java:/comp/env");
-    		DataSource ds = (DataSource) envContext.lookup("jdbc/TPCW");
-    		conn = ds.getConnection();
-    		conn.setAutoCommit(false);
-    	} catch (NamingException e) {
-    		// TODO Auto-generated catch block
-    		e.printStackTrace();
-    	} catch (SQLException e) {
-    		// TODO Auto-generated catch block
-    		e.printStackTrace();
-    	}
-    	return conn;
+    public synchronized Connection getConnection() {
+        if(connections.size() > 0 ) {
+            return connections.get(0);
+        } else {
+            Connection conn = null;
+            try {
+                Context initContext = new InitialContext();
+                Context envContext = (Context) initContext.lookup("java:/comp/env");
+                DataSource ds = (DataSource) envContext.lookup("jdbc/TPCW");
+                conn = ds.getConnection();
+                conn.setAutoCommit(false);
+            } catch (NamingException | SQLException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+            if(connections == null) {
+                connections = new LinkedList<>();
+            }
+            connections.add(conn);
+            return conn;
+        }
     }
     
-    public static synchronized void returnConnection(Connection con)
+    public synchronized void returnConnection(Connection con)
     		throws java.sql.SQLException {
     	con.close();
     }
 
-	public static String[] getName(int c_id) {
+	public String[] getName(int c_id) {
 		String name[] = new String[2];
 		try {
 			// Prepare SQL
@@ -142,7 +149,7 @@ public class TPCW_Database {
 		return name;
     }
 
-	public static Book getBook(int i_id) {
+	public Book getBook(int i_id) {
 	Book book = null;
 	try {
 	    // Prepare SQL
@@ -168,7 +175,7 @@ public class TPCW_Database {
 	return book;
     }
 
-    public static Customer getCustomer(String UNAME){
+    public Customer getCustomer(String UNAME){
 	Customer cust = null;
 	try {
 	    // Prepare SQL
@@ -200,7 +207,7 @@ public class TPCW_Database {
 	return cust;
     }
 
-    public static Vector doSubjectSearch(String search_key) {
+    public Vector doSubjectSearch(String search_key) {
 	Vector vec = new Vector();
 	try {
 	    // Prepare SQL
@@ -226,7 +233,7 @@ public class TPCW_Database {
 	return vec;	
     }
 
-    public static Vector doTitleSearch(String search_key) {
+    public Vector doTitleSearch(String search_key) {
 	Vector vec = new Vector();
 	try {
 	    // Prepare SQL
@@ -252,7 +259,7 @@ public class TPCW_Database {
 	return vec;	
     }
 
-    public static Vector doAuthorSearch(String search_key) {
+    public Vector doAuthorSearch(String search_key) {
 	Vector vec = new Vector();
 	try {
 	    // Prepare SQL
@@ -278,7 +285,7 @@ public class TPCW_Database {
 	return vec;	
     }
 
-    public static Vector getNewProducts(String subject) {
+    public Vector getNewProducts(String subject) {
 	Vector vec = new Vector();  // Vector of Books
 	try {
 	    // Prepare SQL
@@ -309,7 +316,7 @@ public class TPCW_Database {
 	return vec;	
     }
 
-    public static Vector getBestSellers(String subject) {
+    public Vector getBestSellers(String subject) {
 	Vector vec = new Vector();  // Vector of Books
 	try {
 	    // Prepare SQL
@@ -351,7 +358,7 @@ public class TPCW_Database {
 	return vec;	
     }
 
-    public static void getRelated(int i_id, Vector i_id_vec, Vector i_thumbnail_vec) {
+    public void getRelated(int i_id, Vector i_id_vec, Vector i_thumbnail_vec) {
 	try {
 	    // Prepare SQL
 	    Connection con = getConnection();
@@ -384,7 +391,7 @@ public class TPCW_Database {
 	}
     }
 
-    public static void adminUpdate(int i_id, double cost, String image, String thumbnail) {
+    public void adminUpdate(int i_id, double cost, String image, String thumbnail) {
 	try {
 	    // Prepare SQL
 	    Connection con = getConnection();
@@ -457,7 +464,7 @@ public class TPCW_Database {
 	}	
     }
 
-    public static String GetUserName(int C_ID){
+    public String GetUserName(int C_ID){
 	String u_name = null;
 	try {
 	    // Prepare SQL
@@ -483,7 +490,7 @@ public class TPCW_Database {
 	return u_name;
     }
 
-    public static String GetPassword(String C_UNAME){
+    public String GetPassword(String C_UNAME){
 	String passwd = null;
 	try {
 	    // Prepare SQL
@@ -511,7 +518,7 @@ public class TPCW_Database {
 
     //This function gets the value of I_RELATED1 for the row of
     //the item table corresponding to I_ID
-    private static int getRelated1(int I_ID, Connection con){
+    private int getRelated1(int I_ID, Connection con){
 	int related1 = -1;
 	try {
 	    PreparedStatement statement = con.prepareStatement
@@ -529,7 +536,7 @@ public class TPCW_Database {
 	return related1;
     }
 
-    public static Order GetMostRecentOrder(String c_uname, Vector order_lines){
+    public Order GetMostRecentOrder(String c_uname, Vector order_lines){
 	try {
 	    order_lines.removeAllElements();
 	    int order_id;
@@ -647,7 +654,7 @@ public class TPCW_Database {
     // ********************** Shopping tpcw.model.Cart code below *************************
 
     // Called from: tpcw.servlets.TPCW_shopping_cart_interaction
-    public static int createEmptyCart(){
+    public int createEmptyCart(){
 	int SHOPPING_ID = 0;
 	//	boolean success = false;
 	Connection con = null;
@@ -683,7 +690,7 @@ public class TPCW_Database {
 	return SHOPPING_ID;
     }
     
-    public static Cart doCart(int SHOPPING_ID, Integer I_ID, Vector ids, Vector quantities) {	
+    public Cart doCart(int SHOPPING_ID, Integer I_ID, Vector ids, Vector quantities) {
 	Cart cart = null;
 	try {
 	    Connection con = getConnection();
@@ -694,7 +701,7 @@ public class TPCW_Database {
 	    refreshCart(con, SHOPPING_ID, ids, quantities);
 	    addRandomItemToCartIfNecessary(con, SHOPPING_ID);
 	    resetCartTime(con, SHOPPING_ID);
-	    cart = TPCW_Database.getCart(con, SHOPPING_ID, 0.0);
+	    cart = getCart(SHOPPING_ID, 0.0);
 	    
 	    // Close connection
 	    con.commit();
@@ -709,7 +716,7 @@ public class TPCW_Database {
     //and I_ID. If the item does not already exist, we create one with QTY=1,
     //otherwise we increment the quantity.
 
-    private static void addItem(Connection con, int SHOPPING_ID, int I_ID){
+    private void addItem(Connection con, int SHOPPING_ID, int I_ID){
 	try {
 	    // Prepare SQL
 	    PreparedStatement find_entry = con.prepareStatement
@@ -750,7 +757,7 @@ public class TPCW_Database {
 	}
     }
 
-    private static void refreshCart(Connection con, int SHOPPING_ID, Vector ids, 
+    private void refreshCart(Connection con, int SHOPPING_ID, Vector ids,
 				    Vector quantities){
 	int i;
 	try {
@@ -783,7 +790,7 @@ public class TPCW_Database {
 	}
     }
 
-    private static void addRandomItemToCartIfNecessary(Connection con, int SHOPPING_ID){
+    private void addRandomItemToCartIfNecessary(Connection con, int SHOPPING_ID){
 	// check and see if the cart is empty. If it's not, we do
 	// nothing.
 	int related_item = 0;
@@ -812,7 +819,7 @@ public class TPCW_Database {
 
 
     // Only called from this class 
-    private static void resetCartTime(Connection con, int SHOPPING_ID){
+    private void resetCartTime(Connection con, int SHOPPING_ID){
 	try {
 	    PreparedStatement statement = con.prepareStatement
 		("UPDATE SHOPPING_CART SET sc_time = CURRENT_TIMESTAMP WHERE sc_id = ?");
@@ -826,7 +833,7 @@ public class TPCW_Database {
 	}
     }
 
-    public static Cart getCart(int SHOPPING_ID, double c_discount) {
+    public Cart getCart(int SHOPPING_ID, double c_discount) {
 	Cart mycart = null;
 	try {
 	    Connection con = getConnection();
@@ -840,7 +847,7 @@ public class TPCW_Database {
     }
 
     //time .05s
-    private static Cart getCart(Connection con, int SHOPPING_ID, double c_discount){
+    private Cart getCart(Connection con, int SHOPPING_ID, double c_discount){
 	Cart mycart = null;
 	try {
 	    PreparedStatement get_cart = con.prepareStatement
@@ -862,7 +869,7 @@ public class TPCW_Database {
 
     //This should probably return an error code if the customer
     //doesn't exist, but ...
-    public static void refreshSession(int C_ID) {
+    public void refreshSession(int C_ID) {
 	try {
 	    // Prepare SQL
 	    Connection con = getConnection();
@@ -881,7 +888,7 @@ public class TPCW_Database {
 	}
     }    
 
-    public static Customer createNewCustomer(Customer cust) {
+    public Customer createNewCustomer(Customer cust) {
 	try {
 	    // Get largest customer ID already in use.
 	    Connection con = getConnection();
@@ -953,7 +960,7 @@ public class TPCW_Database {
 
     //BUY CONFIRM 
 
-    public static BuyConfirmResult doBuyConfirm(int shopping_id,
+    public BuyConfirmResult doBuyConfirm(int shopping_id,
 						int customer_id,
 						String cc_type,
 						long cc_number,
@@ -964,11 +971,11 @@ public class TPCW_Database {
 	BuyConfirmResult result = new BuyConfirmResult();
 	try {
 	    Connection con = getConnection();
-	    double c_discount = getCDiscount(con, customer_id);
+	    double c_discount = getCDiscount(customer_id);
 	    result.cart = getCart(con, shopping_id, c_discount);
-	    int ship_addr_id = getCAddr(con, customer_id);
+	    int ship_addr_id = getCAddr(customer_id);
 	    result.order_id = enterOrder(con, customer_id, result.cart, ship_addr_id, shipping, c_discount);
-	    enterCCXact(con, result.order_id, cc_type, cc_number, cc_name, cc_expiry, result.cart.SC_TOTAL, ship_addr_id);
+	    enterCCXact(result.order_id, cc_type, cc_number, cc_name, cc_expiry, result.cart.SC_TOTAL, ship_addr_id);
 	    clearCart(con, shopping_id);
 	    con.commit();
 	    returnConnection(con);
@@ -978,7 +985,7 @@ public class TPCW_Database {
 	return result;
     }
     
-    public static BuyConfirmResult doBuyConfirm(int shopping_id,
+    public BuyConfirmResult doBuyConfirm(int shopping_id,
 				    int customer_id,
 				    String cc_type,
 				    long cc_number,
@@ -993,11 +1000,11 @@ public class TPCW_Database {
 	BuyConfirmResult result = new BuyConfirmResult();
 	try {
 	    Connection con = getConnection();
-	    double c_discount = getCDiscount(con, customer_id);
+	    double c_discount = getCDiscount(customer_id);
 	    result.cart = getCart(con, shopping_id, c_discount);
 	    int ship_addr_id = enterAddress(con, street_1, street_2, city, state, zip, country);
 	    result.order_id = enterOrder(con, customer_id, result.cart, ship_addr_id, shipping, c_discount);
-	    enterCCXact(con, result.order_id, cc_type, cc_number, cc_name, cc_expiry, result.cart.SC_TOTAL, ship_addr_id);
+	    enterCCXact(result.order_id, cc_type, cc_number, cc_name, cc_expiry, result.cart.SC_TOTAL, ship_addr_id);
 	    clearCart(con, shopping_id);
 	    con.commit();
 	    returnConnection(con);
@@ -1009,7 +1016,8 @@ public class TPCW_Database {
 
 
     //DB query time: .05s
-    public static double getCDiscount(Connection con, int c_id) {
+    public double getCDiscount(int c_id) {
+	Connection con = getConnection();
 	double c_discount = 0.0;
 	try {
 	    // Prepare SQL
@@ -1032,7 +1040,31 @@ public class TPCW_Database {
     }
 
     //DB time: .05s
-    public static int getCAddrID(Connection con, int c_id) {
+    public int getCAddrID(int c_id) {
+	int c_addr_id = 0;
+	Connection con = getConnection();
+	try {
+	    // Prepare SQL
+	    PreparedStatement statement = con.prepareStatement
+		("SELECT c_addr_id FROM CUSTOMER WHERE CUSTOMER.c_id = ?");
+	    
+	    // Set parameter
+	    statement.setInt(1, c_id);
+	    ResultSet rs = statement.executeQuery();
+	    
+	    // Results
+	    rs.next();
+	    c_addr_id = rs.getInt(1);
+	    rs.close();
+	    statement.close();
+	} catch (java.lang.Exception ex) {
+	    ex.printStackTrace();
+	}
+	return c_addr_id;
+    }
+
+    public int getCAddr(int c_id) {
+        Connection con = getConnection();
 	int c_addr_id = 0;
 	try {
 	    // Prepare SQL
@@ -1054,29 +1086,7 @@ public class TPCW_Database {
 	return c_addr_id;
     }
 
-    public static int getCAddr(Connection con, int c_id) {
-	int c_addr_id = 0;
-	try {
-	    // Prepare SQL
-	    PreparedStatement statement = con.prepareStatement
-		("SELECT c_addr_id FROM CUSTOMER WHERE CUSTOMER.c_id = ?");
-	    
-	    // Set parameter
-	    statement.setInt(1, c_id);
-	    ResultSet rs = statement.executeQuery();
-	    
-	    // Results
-	    rs.next();
-	    c_addr_id = rs.getInt(1);
-	    rs.close();
-	    statement.close();
-	} catch (java.lang.Exception ex) {
-	    ex.printStackTrace();
-	}
-	return c_addr_id;
-    }
-
-    public static void enterCCXact(Connection con,
+    public void enterCCXact(
 				   int o_id,        // tpcw.model.Order id
 				   String cc_type,
 				   long cc_number,
@@ -1084,7 +1094,7 @@ public class TPCW_Database {
 				   Date cc_expiry,
 				   double total,   // Total from shopping cart
 				   int ship_addr_id) {
-
+    Connection con = getConnection();
 	// Updates the CC_XACTS table
 	if(cc_type.length() > 10)
 	    cc_type = cc_type.substring(0,10);
@@ -1112,7 +1122,7 @@ public class TPCW_Database {
 	}
     }
     
-    public static void clearCart(Connection con, int shopping_id) {
+    public void clearCart(Connection con, int shopping_id) {
 	// Empties all the lines from the shopping_cart_line for the
 	// shopping id.  Does not remove the actually shopping cart
 	try {
@@ -1129,9 +1139,9 @@ public class TPCW_Database {
 	}
     }
 
-    private static int max_addr_id_taken = 0;
+    private int max_addr_id_taken = 0;
 
-    public static int enterAddress(Connection con,  // Do we need to do this as part of a transaction?
+    public int enterAddress(Connection con,  // Do we need to do this as part of a transaction?
 				   String street1, String street2,
 				   String city, String state,
 				   String zip, String country) {
@@ -1212,9 +1222,9 @@ public class TPCW_Database {
 	return addr_id;
     }
 
-    private static int last_order_id_taken = 0;
+    private int last_order_id_taken = 0;
  
-    public static int enterOrder(Connection con, int customer_id, Cart cart, int ship_addr_id, String shipping, double c_discount) {
+    public int enterOrder(Connection con, int customer_id, Cart cart, int ship_addr_id, String shipping, double c_discount) {
 	// returns the new order_id
 	int o_id = 0;
 	// - Creates an entry in the 'orders' table 
@@ -1230,7 +1240,7 @@ public class TPCW_Database {
 	    insert_row.setDouble(3, cart.SC_SUB_TOTAL);
 	    insert_row.setDouble(4, cart.SC_TOTAL);
 	    insert_row.setString(5, shipping);
-	    insert_row.setInt(6, getCAddrID(con, customer_id));
+	    insert_row.setInt(6, getCAddrID(customer_id));
 	    insert_row.setInt(7, ship_addr_id);
 
 	    PreparedStatement get_max_id = con.prepareStatement
@@ -1269,7 +1279,7 @@ public class TPCW_Database {
 	    counter++;
 
 	    // - Adjusts the stock for each item ordered
-	    int stock = getStock(con, cart_line.scl_i_id);
+	    int stock = getStock(cart_line.scl_i_id);
 	    if ((stock - cart_line.scl_qty) < 10) {
 		setStock(con, cart_line.scl_i_id, 
 			 stock - cart_line.scl_qty + 21);
@@ -1280,7 +1290,7 @@ public class TPCW_Database {
 	return o_id;
     }
     
-    public static void addOrderLine(Connection con, 
+    public void addOrderLine(Connection con,
 				    int ol_id, int ol_o_id, int ol_i_id, 
 				    int ol_qty, double ol_discount, String ol_comment) {
 	int success = 0;
@@ -1302,7 +1312,8 @@ public class TPCW_Database {
 	}
     }
 
-    public static int getStock(Connection con, int i_id) {
+    public int getStock(int i_id) {
+        Connection con = getConnection();
 	int stock = 0;
 	try {
 	    PreparedStatement get_stock = con.prepareStatement
@@ -1323,7 +1334,7 @@ public class TPCW_Database {
 	return stock;
     }
 
-    public static void setStock(Connection con, int i_id, int new_stock) {
+    public void setStock(Connection con, int i_id, int new_stock) {
 	try {
 	    PreparedStatement update_row = con.prepareStatement
 		("UPDATE ITEM SET i_stock = ? WHERE i_id = ?");
@@ -1336,7 +1347,7 @@ public class TPCW_Database {
 	}
     }
 
-    public static void verifyDBConsistency(){
+    public void verifyDBConsistency(){
 	try {
 	    Connection con = getConnection();
 	    int this_id;
