@@ -61,6 +61,13 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 
 public class TPCW_execute_search extends HttpServlet {
+	
+	private ITPCW_Service service;
+	
+	public TPCW_execute_search {
+		super();
+		service = TPCW_Service.getInstance();
+	}
 	// TODO talvez colocar um cache com as ultimas bucas realizadas.... mas é discutivel.
   public void doGet(HttpServletRequest req, HttpServletResponse res)
       throws IOException, ServletException {
@@ -100,11 +107,11 @@ public class TPCW_execute_search extends HttpServlet {
       Vector books = null; //placate javac
       //Display new products
       if(search_type.equals("author"))
-	  books = TPCW_Database.doAuthorSearch(search_string);
+	  books = service.doAuthorSearch(search_string);
       else if(search_type.equals("title"))
-	  books = TPCW_Database.doTitleSearch(search_string);
+	  books = service.doTitleSearch(search_string);
       else if(search_type.equals("subject"))
-	  books = TPCW_Database.doSubjectSearch(search_string);
+	  books = service.doSubjectSearch(search_string);
 
       out.print("<TABLE BORDER=\"1\" CELLPADDING=\"1\" CELLSPACING=\"1\">\n");
       out.print("<TR> <TD WIDTH=\"30\"></TD>\n");

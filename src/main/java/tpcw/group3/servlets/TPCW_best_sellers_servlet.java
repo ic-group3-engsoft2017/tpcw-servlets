@@ -61,6 +61,15 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 
 public class TPCW_best_sellers_servlet extends HttpServlet {
+	
+	
+	private ITPCW_Service service;
+	
+	public TPCW_best_sellers_servlet {
+		super();
+		service = TPCW_Service.getInstance();
+	}
+	
 	//TODO com certeza poderia ter um cache desse resultado, os últimos mais comprados    
   public void doGet(HttpServletRequest req, HttpServletResponse res)
       throws IOException, ServletException {
@@ -100,7 +109,7 @@ public class TPCW_best_sellers_servlet extends HttpServlet {
       
 
       //Get best sellers from DB
-      Vector books = TPCW_Database.getBestSellers(subject);
+      Vector books = service.getBestSellers(subject);
 
       //Print out the best sellers.
       int i;

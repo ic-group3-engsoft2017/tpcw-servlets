@@ -91,6 +91,14 @@ import javax.servlet.http.*;
 //   
  
 public class TPCW_buy_confirm_servlet extends HttpServlet {
+	
+	private ITPCW_Service service;
+	
+	public TPCW_buy_confirm_servlet {
+		super();
+		service = TPCW_Service.getInstance();
+	}
+	
 	// TODO não seria de inicio um canditado para cache, 
 	// TODO busca informações do carrinho do cliente logado e busca informações 
 	// TODO para confirmar a compra
@@ -125,13 +133,13 @@ public class TPCW_buy_confirm_servlet extends HttpServlet {
 	  String STATE = req.getParameter("STATE");
 	  String ZIP = req.getParameter("ZIP");
 	  String COUNTRY = req.getParameter("COUNTRY");
-	  result = TPCW_Database.doBuyConfirm(SHOPPING_ID, C_ID,CC_TYPE,
+	  result = service.doBuyConfirm(SHOPPING_ID, C_ID,CC_TYPE,
 					      CC_NUMBER, CC_NAME, 
 					      new java.sql.Date(CC_EXPIRY.getTime()), 
 					      SHIPPING, STREET_1, STREET_2,
 					      CITY, STATE, ZIP, COUNTRY);
       }
-      else result = TPCW_Database.doBuyConfirm(SHOPPING_ID, C_ID, 
+      else result = service.doBuyConfirm(SHOPPING_ID, C_ID, 
 					       CC_TYPE,CC_NUMBER,CC_NAME, 
 					       new java.sql.Date(CC_EXPIRY.getTime()),
 					       SHIPPING);

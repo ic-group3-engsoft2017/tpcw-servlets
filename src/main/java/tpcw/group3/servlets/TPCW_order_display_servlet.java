@@ -62,6 +62,13 @@ import javax.servlet.http.*;
 import java.util.*;
 
 public class TPCW_order_display_servlet extends HttpServlet {
+	
+	private ITPCW_Service service;
+	
+	public TPCW_order_display_servlet {
+		super();
+		service = TPCW_Service.getInstance();
+	}
     
   public void doGet(HttpServletRequest req, HttpServletResponse res)
       throws IOException, ServletException {
@@ -87,14 +94,14 @@ public class TPCW_order_display_servlet extends HttpServlet {
      if(uname!= null && passwd!=null){
 
      // TODO: should not cache sensible information
-	 String storedpasswd = TPCW_Database.GetPassword(uname);
+	 String storedpasswd = service.GetPassword(uname);
 	 if(!storedpasswd.equals(passwd)){
 	     out.print("Error: Incorrect password.\n");
 	 }
 	 else {
 	     Vector lines = new Vector();
          //TODO: Cache would be helpful due to serialization of object but the most recent part is questionable
-	     Order order = TPCW_Database.GetMostRecentOrder(uname, lines);
+	     Order order = service.GetMostRecentOrder(uname, lines);
 	     if(order!=null)
 		 printOrder(order, lines,out);
 	     else out.print("User has no order!\n");

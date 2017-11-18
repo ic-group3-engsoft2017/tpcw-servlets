@@ -25,7 +25,7 @@ import javax.servlet.http.HttpServletRequest;
 public class Medidor implements Filter {
 	static final Logger logger = Logger.getLogger(Medidor.class.getName());
 
-	public void destroy() { // TODO Auto-generated method stub
+	public void destroy() { 
 		logger.log(Level.INFO, "### Bookstore - FIM Depuracao ###");
 	}
 
@@ -42,10 +42,7 @@ public class Medidor implements Filter {
 		String uri = ((HttpServletRequest) request).getRequestURI();
 
 		logger.log(Level.INFO, "Tempo da requisicao de " + uri + " demorou (ms): "
-				+ resultadoTempo + " ou (nano) " + (tempoFinal - tempoInicial) + " ##");
-		
-		/*System.out.println("Tempo da requisicao de " + uri + " demorou (ms): "
-				+ (tempoFinal - tempoInicial));*/
+				+ resultadoTempo + " ou (nano) " + (tempoFinal - tempoInicial) + " ##");		
 	}
 
 	public void init(FilterConfig arg0) throws ServletException { // TODO

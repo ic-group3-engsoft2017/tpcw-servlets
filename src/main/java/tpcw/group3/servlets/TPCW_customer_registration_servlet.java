@@ -60,6 +60,13 @@ import javax.servlet.http.*;
 import tpcw.group3.repository.TPCW_Database;
 
 public class TPCW_customer_registration_servlet extends HttpServlet {
+	
+	private ITPCW_Service service;
+	
+	public TPCW_customer_registration_servlet {
+		super();
+		service = TPCW_Service.getInstance();
+	}
 	//TODO não canditado a cache, criar customer novo
     
   public void doGet(HttpServletRequest req, HttpServletResponse res)
@@ -77,7 +84,7 @@ public class TPCW_customer_registration_servlet extends HttpServlet {
       String username;
       if(C_ID != null){
 	  int c_idnum = Integer.parseInt(C_ID);
-	  username = TPCW_Database.GetUserName(c_idnum);
+	  username = service.GetUserName(c_idnum);
       }
       else username = "";
 

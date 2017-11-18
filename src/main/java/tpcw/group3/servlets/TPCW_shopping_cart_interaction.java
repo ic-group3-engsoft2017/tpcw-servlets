@@ -61,8 +61,14 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import java.util.Vector;
 
-
 public class TPCW_shopping_cart_interaction extends HttpServlet {
+	
+private ITPCW_Service service;
+	
+	public TPCW_shopping_cart_interaction {
+		super();
+		service = TPCW_Service.getInstance();
+	}
     
     public void doGet(HttpServletRequest req, HttpServletResponse res)
       throws IOException, ServletException {
@@ -79,7 +85,7 @@ public class TPCW_shopping_cart_interaction extends HttpServlet {
 	String SHOPPING_IDstr = req.getParameter("SHOPPING_ID");
 	int SHOPPING_ID;
 	if(SHOPPING_IDstr == null) {
-	    SHOPPING_ID = TPCW_Database.createEmptyCart();
+	    SHOPPING_ID = service.createEmptyCart(); //TPCW_Database
 	} else {
 	    SHOPPING_ID = Integer.parseInt(SHOPPING_IDstr);
 	}
@@ -118,7 +124,7 @@ public class TPCW_shopping_cart_interaction extends HttpServlet {
 	}
 	// TODO: Could separate responsabilities In Service we could cache the Cart and Item
 	//
-	cart = TPCW_Database.doCart(SHOPPING_ID, I_ID, ids, quantities);
+	cart = service.doCart(SHOPPING_ID, I_ID, ids, quantities);
 
 	//Add the top part of the HTML
 	
