@@ -1,6 +1,7 @@
 package tpcw.group3.service;
 
 
+import tpcw.group3.cache.model.CachableEntity;
 import tpcw.group3.cache.service.BookCacheCriteriaService;
 import tpcw.group3.cache.service.CacheCriteria;
 import tpcw.group3.cache.service.ITPCW_Cache;
@@ -9,7 +10,12 @@ import tpcw.group3.model.*;
 import tpcw.group3.repository.TPCW_Database;
 
 import java.sql.Date;
+import java.util.Collections;
+import java.util.List;
+import java.util.TreeSet;
 import java.util.Vector;
+
+import static tpcw.group3.cache.model.criteria.builder.BookCriteriaBuilder.builder;
 
 
 public class TPCW_Service implements ITPCW_Service {
@@ -55,6 +61,11 @@ public class TPCW_Service implements ITPCW_Service {
 	}
 
 	public Vector doAuthorSearch(String search_key) {
+
+        List<CachableEntity> listForCriteria = bookCacheService.getByCriteria(
+                builder().withAuthorLastName(search_key)
+                        .build());
+
 		return TPCW_Database.getInstance().doAuthorSearch(search_key);
 	}
 

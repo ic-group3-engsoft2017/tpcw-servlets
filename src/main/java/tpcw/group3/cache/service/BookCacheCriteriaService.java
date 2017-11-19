@@ -1,18 +1,16 @@
 package tpcw.group3.cache.service;
 
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-import java.util.TreeSet;
-
 import tpcw.group3.cache.model.CachableEntity;
 import tpcw.group3.cache.model.criteria.Criteria;
-import tpcw.group3.model.Book;
+
+import java.util.*;
+import java.util.logging.Logger;
+
+import static java.util.logging.Level.INFO;
 
 public class BookCacheCriteriaService implements CacheCriteria {
+
+    private static Logger LOG = Logger.getLogger("BookCacheCriteriaService");
 
 	private static BookCacheCriteriaService service;
 
@@ -23,58 +21,50 @@ public class BookCacheCriteriaService implements CacheCriteria {
 		return service;
 	}
 
-    private Map<Criteria<Integer>, TreeSet<CachableEntity>> cacheMap;
+    private Map<Criteria, List<CachableEntity>> cacheMap;
     private final int CACHE_BUFFER = 50;
     
     public BookCacheCriteriaService() {
     	cacheMap = new HashMap<>();
     }
 
-	@Override
-	public void add(Criteria<Integer> criteria, CachableEntity entity) {
-		TreeSet<CachableEntity> cachables;
+	public void add(Criteria criteria, List<CachableEntity> entities) {
 		if (cacheMap.containsKey(criteria)) {
-			cachables = cacheMap.get(criteria);
-			applyPolice(cachables);
-		} else {
-			cachables = createNewSet();			
+			cacheMap.get(criteria);
 		}
-		cache(criteria, entity, cachables);
+		cache(criteria, entities);
 	}
 	
-	@Override
-	public List<CachableEntity> getByCriteria(Criteria<Integer> criteria, CachableEntity entity) {
-		TreeSet<CachableEntity> cachables;
+	public List<CachableEntity> getByCriteria(Criteria criteria) {
 		if (cacheMap.containsKey(criteria)) {
-			cachables = cacheMap.get(criteria);		
-		}
+		    return cacheMap.get(criteria);
+        }
 		return Collections.emptyList();
 	}
 
-	private void cache(Criteria<Integer> criteria,  CachableEntity entity, TreeSet<CachableEntity> cachables) {
-		entity.addHit();
-		cachables.add(entity);
-		cacheMap.put(criteria, cachables);
-	}
+	private void cache(Criteria criteria, List<CachableEntity> entities) {
+        // Add a hit to cache if cache present and Return
+        Optional<Criteria> criteriaOptional = cacheMap.keySet().stream().filter(cacheKey -> cacheKey.equals(criteria)).findAny();
+        criteriaOptional.ifPresent(Criteria::addHit);
+        if(criteriaOptional.isPresent() ) {
+            return;
+        }
 
-	private void applyPolice(TreeSet<CachableEntity> cachables) {
-		if (cachables.size() >= CACHE_BUFFER) {
-			CachableEntity last = cachables.last();
-			cachables.remove(last);
-		}
+        // If not Present check if Buffer is full to add
+        if( cacheMap.size() < CACHE_BUFFER) {
+            cacheMap.put(criteria, entities);
+        } else  {
+          LOG.log(INFO, "CACHE NOT ADDED DUE TO BUFFER FULL");
+        }
+
 	}
 	
 	private TreeSet<CachableEntity> createNewSet() {
 		return new TreeSet<>(Comparator.comparingInt(CachableEntity::getNumberOfHits).reversed());
 	}	
 	
-	public Optional<CachableEntity> findBookByAuthor(String authorName, String authorLastName) {
-		TreeSet<CachableEntity> bookCache = cacheMap.get(Book.class);
-		return bookCache.stream().filter(book -> findByExample(book, authorName, authorLastName)).findFirst();
-	}
 
-	private boolean findByExample(CachableEntity cachableEntity, String authorName, String authorLastName) {
-		return authorName.equals(((Book) cachableEntity).a_fname) || authorLastName.equals(((Book)cachableEntity).a_lname);
-	}
+
+
 	
 }
