@@ -7,6 +7,7 @@ import java.util.*;
 import java.util.logging.Logger;
 
 import static java.util.logging.Level.INFO;
+import static java.util.logging.Level.SEVERE;
 
 public class BookCacheCriteriaService implements CacheCriteria {
 
@@ -36,6 +37,9 @@ public class BookCacheCriteriaService implements CacheCriteria {
 	}
 	
 	public List<CachableEntity> getByCriteria(Criteria criteria) {
+        // Add a hit to cache if cache present and Return
+        Optional<Criteria> criteriaOptional = cacheMap.keySet().stream().filter(cacheKey -> cacheKey.equals(criteria)).findAny();
+        criteriaOptional.ifPresent(Criteria::addHit);
 		if (cacheMap.containsKey(criteria)) {
 		    return cacheMap.get(criteria);
         }
@@ -43,28 +47,20 @@ public class BookCacheCriteriaService implements CacheCriteria {
 	}
 
 	private void cache(Criteria criteria, List<CachableEntity> entities) {
-        // Add a hit to cache if cache present and Return
         Optional<Criteria> criteriaOptional = cacheMap.keySet().stream().filter(cacheKey -> cacheKey.equals(criteria)).findAny();
-        criteriaOptional.ifPresent(Criteria::addHit);
         if(criteriaOptional.isPresent() ) {
+            LOG.log(SEVERE, "CACHE NOT ADDED DUE TO IT IS ALREADY IN BUFFER");
             return;
         }
 
         // If not Present check if Buffer is full to add
         if( cacheMap.size() < CACHE_BUFFER) {
+            criteria.addHit();
             cacheMap.put(criteria, entities);
         } else  {
           LOG.log(INFO, "CACHE NOT ADDED DUE TO BUFFER FULL");
         }
 
 	}
-	
-	private TreeSet<CachableEntity> createNewSet() {
-		return new TreeSet<>(Comparator.comparingInt(CachableEntity::getNumberOfHits).reversed());
-	}	
-	
 
-
-
-	
 }

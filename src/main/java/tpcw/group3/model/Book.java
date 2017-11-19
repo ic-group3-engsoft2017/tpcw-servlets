@@ -66,6 +66,14 @@ public class Book extends CachableEntity {
     public static final String A_FNAME = "a_fname";
     public static final String A_LNAME = "a_lname";
 
+    // Construct with required arguments for use of mocks
+    public Book(int i_id, String i_title, String a_fname, String a_lname) {
+        this.i_id = i_id;
+        this.i_title = i_title;
+        this.a_fname = a_fname;
+        this.a_lname = a_lname;
+    }
+
     // Construct a book from a ResultSet
     public Book(ResultSet rs) {
 	// The result set should have all of the fields we expect.
