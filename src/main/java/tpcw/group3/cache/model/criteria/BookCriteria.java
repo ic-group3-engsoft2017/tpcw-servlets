@@ -1,6 +1,6 @@
 package tpcw.group3.cache.model.criteria;
 
-public class BookCriteria extends Criteria<Integer> {
+public class BookCriteria extends Criteria {
 
 	private String subject;
 	private String authorFirstName;

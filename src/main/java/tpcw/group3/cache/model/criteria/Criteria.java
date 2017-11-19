@@ -1,21 +1,17 @@
 package tpcw.group3.cache.model.criteria;
 
-public class Criteria <T> {
-	
-	private T id;
-    private String name;
-    
-	public T getId() {
-		return id;
+import java.util.concurrent.atomic.AtomicInteger;
+
+public class Criteria {
+
+	private AtomicInteger numberOfHits;
+
+	public Integer getNumberOfHits() {
+		return numberOfHits.get();
 	}
-	public void setId(T id) {
-		this.id = id;
-	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
+
+	public void addHit() {
+		numberOfHits.incrementAndGet();
 	}
 
 }
