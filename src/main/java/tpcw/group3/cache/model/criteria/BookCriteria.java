@@ -31,5 +31,28 @@ public class BookCriteria extends Criteria<Integer> {
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (!(o instanceof BookCriteria)) return false;
+
+		BookCriteria that = (BookCriteria) o;
+
+		if (getSubject() != null ? !getSubject().equals(that.getSubject()) : that.getSubject() != null) return false;
+		if (getAuthorFirstName() != null ? !getAuthorFirstName().equals(that.getAuthorFirstName()) : that.getAuthorFirstName() != null)
+			return false;
+		if (getAuthorLastName() != null ? !getAuthorLastName().equals(that.getAuthorLastName()) : that.getAuthorLastName() != null)
+			return false;
+		return getTitle() != null ? getTitle().equals(that.getTitle()) : that.getTitle() == null;
+	}
+
+	@Override
+	public int hashCode() {
+		int result = getSubject() != null ? getSubject().hashCode() : 0;
+		result = 31 * result + (getAuthorFirstName() != null ? getAuthorFirstName().hashCode() : 0);
+		result = 31 * result + (getAuthorLastName() != null ? getAuthorLastName().hashCode() : 0);
+		result = 31 * result + (getTitle() != null ? getTitle().hashCode() : 0);
+		return result;
+	}
 }

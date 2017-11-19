@@ -1,7 +1,10 @@
 package tpcw.group3.service;
 
 
+import tpcw.group3.cache.service.BookCacheCriteriaService;
+import tpcw.group3.cache.service.CacheCriteria;
 import tpcw.group3.cache.service.ITPCW_Cache;
+import tpcw.group3.cache.service.TPCW_Cache;
 import tpcw.group3.model.*;
 import tpcw.group3.repository.TPCW_Database;
 
@@ -11,6 +14,11 @@ import java.util.Vector;
 
 public class TPCW_Service implements ITPCW_Service {
 
+    public TPCW_Service() {
+        this.cache = TPCW_Cache.getInstance();
+        this.database = TPCW_Database.getInstance();
+        this.bookCacheService = BookCacheCriteriaService.getInstance();
+    }
 
     private static TPCW_Service service;
 
@@ -23,6 +31,7 @@ public class TPCW_Service implements ITPCW_Service {
     
     private ITPCW_Cache cache;
     private TPCW_Database database;
+    private CacheCriteria bookCacheService;
 
 	public String[] getName(int c_id) {
 		return TPCW_Database.getInstance().getName(c_id);

@@ -14,6 +14,15 @@ import tpcw.group3.model.Book;
 
 public class BookCacheCriteriaService implements CacheCriteria {
 
+	private static BookCacheCriteriaService service;
+
+	public static BookCacheCriteriaService getInstance() {
+		if (service == null) {
+			service = new BookCacheCriteriaService();
+		}
+		return service;
+	}
+
     private Map<Criteria<Integer>, TreeSet<CachableEntity>> cacheMap;
     private final int CACHE_BUFFER = 50;
     
