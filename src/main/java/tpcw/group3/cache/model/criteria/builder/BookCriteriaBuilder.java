@@ -4,6 +4,10 @@ import tpcw.group3.cache.model.criteria.BookCriteria;
 
 public class BookCriteriaBuilder {
 
+    public BookCriteriaBuilder() {
+        bookCriteria = new BookCriteria();
+    }
+
     public static BookCriteriaBuilder builder() {
         return new BookCriteriaBuilder();
     }

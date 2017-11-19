@@ -4,6 +4,10 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class Criteria {
 
+	public Criteria() {
+		numberOfHits = new AtomicInteger();
+	}
+
 	private AtomicInteger numberOfHits;
 
 	public Integer getNumberOfHits() {
