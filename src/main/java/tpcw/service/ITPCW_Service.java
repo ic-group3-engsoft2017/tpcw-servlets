@@ -35,5 +35,15 @@ public interface ITPCW_Service {
 	public int getCAddr(Connection con, int c_id);
 	
 	public int getStock(Connection con, int i_id);
+	
+	public String getUserName(int c_id);
+	
+	public String getPassword(String c_uname);
+	
+	public int getRelated(int i_id, Connection con);
+	
+	public int createEmptyCart();
+	
+	public Cart doCart(int SHOPPING_ID, Integer I_ID, Vector ids, Vector quantities);
 }
 

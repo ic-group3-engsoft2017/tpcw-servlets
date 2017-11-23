@@ -79,5 +79,25 @@ public class TPCW_Service implements ITPCW_Service {
 
 		return TPCW_Database.getStock(con, i_id);
 	}
+	
+	public String GetUserName(int C_ID) {
+		return TPCW_Database.GetUserName(C_ID);
+	}
+	
+	public String GetPassword(String c_uname) {
+		return TPCW_Database.GetPassword(c_uname);
+	}
+	
+	public int getRelated(int i_id, Connection con) {
+		return TPCW_Database.getRelated(i_id, con);
+	}
+	
+	public int createEmptyCart() {
+		return TPCW_Database.createEmptyCart();
+	}
+	
+	public Cart doCart(int SHOPPING_ID, Integer I_ID, Vector ids, Vector quantities) {
+		return TPCW_Database.doCart(SHOPPING_ID, I_ID, ids, quantities);
+	}
 
 }
