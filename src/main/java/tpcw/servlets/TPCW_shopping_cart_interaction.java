@@ -54,18 +54,21 @@ package tpcw.servlets;/*
 
 import tpcw.model.Cart;
 import tpcw.model.CartLine;
-import tpcw.repository.TPCW_Database;
+import tpcw.service.ITPCW_Service;
+import tpcw.service.TPCW_Service;
 
 import java.io.*;
+
 import javax.servlet.*;
 import javax.servlet.http.*;
+
 import java.util.Vector;
 
 public class TPCW_shopping_cart_interaction extends HttpServlet {
 	
 private ITPCW_Service service;
 	
-	public TPCW_shopping_cart_interaction {
+	public TPCW_shopping_cart_interaction() {
 		super();
 		service = TPCW_Service.getInstance();
 	}

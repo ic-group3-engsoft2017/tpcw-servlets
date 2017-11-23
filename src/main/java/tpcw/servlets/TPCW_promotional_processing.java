@@ -55,18 +55,19 @@ package tpcw.servlets;/*
  ************************************************************************/
 
 import tpcw.TPCW_Util;
-import tpcw.repository.TPCW_Database;
+import tpcw.service.ITPCW_Service;
+import tpcw.service.TPCW_Service;
 
 import java.io.*;
 import java.util.*;
+
 import javax.servlet.http.*;
 
 public class TPCW_promotional_processing {
+		
+	private static ITPCW_Service service;
 	
-	
-	private ITPCW_Service service;
-	
-	public TPCW_promotional_processing {
+	public TPCW_promotional_processing() {
 		super();
 		service = TPCW_Service.getInstance();
 	}

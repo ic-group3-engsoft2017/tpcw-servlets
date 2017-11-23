@@ -53,10 +53,12 @@ package tpcw.servlets;/*
  ************************************************************************/
 
 import tpcw.model.Book;
-import tpcw.repository.TPCW_Database;
+import tpcw.service.ITPCW_Service;
+import tpcw.service.TPCW_Service;
 
 import java.io.*;
 import java.util.*;
+
 import javax.servlet.*;
 import javax.servlet.http.*;
 
@@ -64,7 +66,7 @@ public class TPCW_execute_search extends HttpServlet {
 	
 	private ITPCW_Service service;
 	
-	public TPCW_execute_search {
+	public TPCW_execute_search() {
 		super();
 		service = TPCW_Service.getInstance();
 	}

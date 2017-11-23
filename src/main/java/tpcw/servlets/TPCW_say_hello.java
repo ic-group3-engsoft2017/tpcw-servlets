@@ -52,16 +52,18 @@ package tpcw.servlets;/*
  *
  ************************************************************************/
 
-import tpcw.repository.TPCW_Database;
+import tpcw.service.ITPCW_Service;
+import tpcw.service.TPCW_Service;
 
 import java.io.*;
+
 import javax.servlet.http.*;
 
 public class TPCW_say_hello {
 	
-	private ITPCW_Service service;
+	private static ITPCW_Service service;
 	
-	public TPCW_say_hello {
+	public TPCW_say_hello() {
 		super();
 		service = TPCW_Service.getInstance();
 	}

@@ -59,9 +59,11 @@ package tpcw.servlets;/*
 
 import tpcw.model.BuyConfirmResult;
 import tpcw.model.CartLine;
-import tpcw.repository.TPCW_Database;
+import tpcw.service.ITPCW_Service;
+import tpcw.service.TPCW_Service;
 
 import java.io.*;
+
 import javax.servlet.*;
 import javax.servlet.http.*;
 
@@ -94,7 +96,7 @@ public class TPCW_buy_confirm_servlet extends HttpServlet {
 	
 	private ITPCW_Service service;
 	
-	public TPCW_buy_confirm_servlet {
+	public TPCW_buy_confirm_servlet() {
 		super();
 		service = TPCW_Service.getInstance();
 	}

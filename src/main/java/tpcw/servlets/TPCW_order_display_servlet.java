@@ -54,18 +54,21 @@ package tpcw.servlets;/*
 
 import tpcw.model.Order;
 import tpcw.model.OrderLine;
-import tpcw.repository.TPCW_Database;
+import tpcw.service.ITPCW_Service;
+import tpcw.service.TPCW_Service;
 
 import java.io.*;
+
 import javax.servlet.*;
 import javax.servlet.http.*;
+
 import java.util.*;
 
 public class TPCW_order_display_servlet extends HttpServlet {
 	
 	private ITPCW_Service service;
 	
-	public TPCW_order_display_servlet {
+	public TPCW_order_display_servlet() {
 		super();
 		service = TPCW_Service.getInstance();
 	}
@@ -94,7 +97,7 @@ public class TPCW_order_display_servlet extends HttpServlet {
      if(uname!= null && passwd!=null){
 
      // TODO: should not cache sensible information
-	 String storedpasswd = service.GetPassword(uname);
+	 String storedpasswd = service.getPassword(uname);
 	 if(!storedpasswd.equals(passwd)){
 	     out.print("Error: Incorrect password.\n");
 	 }

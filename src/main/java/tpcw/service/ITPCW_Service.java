@@ -1,6 +1,7 @@
 package tpcw.service;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.util.Vector;
 
 import tpcw.model.*;
@@ -40,10 +41,19 @@ public interface ITPCW_Service {
 	
 	public String getPassword(String c_uname);
 	
-	public int getRelated(int i_id, Connection con);
-	
 	public int createEmptyCart();
 	
 	public Cart doCart(int SHOPPING_ID, Integer I_ID, Vector ids, Vector quantities);
+	
+	public void refreshSession(int c_id);
+	
+	public BuyConfirmResult doBuyConfirm(int shopping_id, int customer_id, String cc_type, long cc_number, String cc_name, Date cc_expiry, String shipping);
+	
+	public BuyConfirmResult doBuyConfirm(int shopping_id, int customer_id, String cc_type, long cc_number, String cc_name, Date cc_expiry, String shipping, String street_1, String street_2, String city, String state, String zip, String country);
+
+	public void adminUpdate(int i_id, double cost, String image, String thumbnail);
+
+	public void getRelated(int i_ID, Vector related_item_ids, Vector thumbnails);
+
 }
 

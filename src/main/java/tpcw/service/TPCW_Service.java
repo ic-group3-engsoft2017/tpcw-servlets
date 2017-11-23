@@ -1,9 +1,11 @@
 package tpcw.service;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.util.Vector;
 
 import tpcw.model.Book;
+import tpcw.model.BuyConfirmResult;
 import tpcw.model.Cart;
 import tpcw.model.Customer;
 import tpcw.model.Order;
@@ -88,8 +90,11 @@ public class TPCW_Service implements ITPCW_Service {
 		return TPCW_Database.GetPassword(c_uname);
 	}
 	
-	public int getRelated(int i_id, Connection con) {
-		return TPCW_Database.getRelated(i_id, con);
+	
+	//TODO
+	public void getRelated(int i_id, Vector related_item_ids, Vector thumbnails) {
+		//return TPCW_Database.getRelated(i_id, related_item_ids, thumbnails);
+		return;
 	}
 	
 	public int createEmptyCart() {
@@ -100,4 +105,33 @@ public class TPCW_Service implements ITPCW_Service {
 		return TPCW_Database.doCart(SHOPPING_ID, I_ID, ids, quantities);
 	}
 
+	//TODO
+	public void refreshSession(int C_ID) {
+		//return TPCW_Database.refreshSession(C_ID);
+		return;
+	}
+	
+	public BuyConfirmResult doBuyConfirm(int shopping_id, int customer_id, String cc_type, long cc_number, String cc_name, Date cc_expiry, String shipping) {
+		return TPCW_Database.doBuyConfirm(shopping_id, customer_id, cc_type, cc_number, cc_name, cc_expiry, shipping);
+	}
+	
+	public BuyConfirmResult doBuyConfirm(int shopping_id, int customer_id, String cc_type, long cc_number, String cc_name, Date cc_expiry, String shipping, String street_1, String street_2, String city, String state, String zip, String country) {
+		return TPCW_Database.doBuyConfirm(shopping_id, customer_id, cc_type, cc_number, cc_name, cc_expiry, shipping, street_1, street_2, city, state, zip, country);
+	}
+	
+	//TODO	
+	public void adminUpdate(int i_id, double cost, String image, String thumbnail) {
+		//return TPCW_Database.adminUpdate(i_id, cost, image, thumbnail);
+		return;
+	}
+
+	public String getUserName(int c_id) {
+		return TPCW_Database.GetUserName(c_id);
+	}
+
+	public String getPassword(String c_uname) {
+		return TPCW_Database.GetPassword(c_uname);
+	}
+
 }
+
