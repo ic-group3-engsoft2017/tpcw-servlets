@@ -53,13 +53,20 @@ package tpcw.servlets;/*
 
 import java.io.*;
 import java.util.*;
+
 import javax.servlet.*;
 import javax.servlet.http.*;
 
 public class TPCW_home_interaction extends HttpServlet {
     
-  public void doGet(HttpServletRequest req, HttpServletResponse res)
-    throws IOException, ServletException {
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	    processRequest(req, resp);
+	}
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	    processRequest(req, resp);
+	}
+	
+	private void processRequest(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
       int i;	
       String url;
       Vector column1 = new Vector();

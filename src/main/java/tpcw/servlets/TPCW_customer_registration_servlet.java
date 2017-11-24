@@ -69,10 +69,15 @@ public class TPCW_customer_registration_servlet extends HttpServlet {
 		super();
 		service = TPCW_Service.getInstance();
 	}
-	//TODO não canditado a cache, criar customer novo
     
-  public void doGet(HttpServletRequest req, HttpServletResponse res)
-      throws IOException, ServletException {
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	    processRequest(req, resp);
+	}
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	    processRequest(req, resp);
+	}
+	
+	private void processRequest(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
 
       String url;
       HttpSession session = req.getSession(false);

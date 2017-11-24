@@ -70,9 +70,14 @@ public class TPCW_execute_search extends HttpServlet {
 		super();
 		service = TPCW_Service.getInstance();
 	}
-	// TODO talvez colocar um cache com as ultimas bucas realizadas.... mas é discutivel.
-  public void doGet(HttpServletRequest req, HttpServletResponse res)
-      throws IOException, ServletException {
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	    processRequest(req, resp);
+	}
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	    processRequest(req, resp);
+	}
+	
+	private void processRequest(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
       
       int i;
       

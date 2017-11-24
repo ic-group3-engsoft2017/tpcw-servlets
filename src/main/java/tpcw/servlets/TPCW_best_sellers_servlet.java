@@ -72,9 +72,14 @@ public class TPCW_best_sellers_servlet extends HttpServlet {
 		service = TPCW_Service.getInstance();
 	}
 	
-	//TODO com certeza poderia ter um cache desse resultado, os últimos mais comprados    
-  public void doGet(HttpServletRequest req, HttpServletResponse res)
-      throws IOException, ServletException {
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	    processRequest(req, resp);
+	}
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	    processRequest(req, resp);
+	}
+	
+	private void processRequest(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
       String url;
       PrintWriter out = res.getWriter();
 

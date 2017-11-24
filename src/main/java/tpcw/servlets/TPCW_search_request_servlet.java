@@ -53,13 +53,20 @@ package tpcw.servlets;/*
  ************************************************************************/
 
 import java.io.*;
+
 import javax.servlet.*;
 import javax.servlet.http.*;
 
 public class TPCW_search_request_servlet extends HttpServlet {
     
-  public void doGet(HttpServletRequest req, HttpServletResponse res)
-      throws IOException, ServletException {
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	    processRequest(req, resp);
+	}
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	    processRequest(req, resp);
+	}
+	
+	private void processRequest(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
       PrintWriter out = res.getWriter();
     // Set the content type of this servlet's result.
       res.setContentType("text/html");

@@ -70,9 +70,15 @@ public class TPCW_admin_response_servlet extends HttpServlet {
 		service = TPCW_Service.getInstance();
 	}
 	
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	    processRequest(req, resp);
+	}
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	    processRequest(req, resp);
+	}
+	
 	// TODO acho que não um cache específicio para ele, mas com itens (decidir quais ficar no cache)
-  public void doGet(HttpServletRequest req, HttpServletResponse res)
-      throws IOException, ServletException {
+	private void processRequest(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
       PrintWriter out = res.getWriter();
       String url;
 
