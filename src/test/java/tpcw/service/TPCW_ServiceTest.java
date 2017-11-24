@@ -1,13 +1,5 @@
 package tpcw.service;
 
-import java.io.PrintWriter;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-//import javax.servlet.http.HttpSession;
-
-
-
 import org.junit.Test;
 
 import tpcw.servlets.TPCW_admin_request_servlet;
@@ -25,7 +17,7 @@ import tpcw.servlets.TPCW_shopping_cart_interaction;
 
 import com.meterware.httpunit.PostMethodWebRequest;
 import com.meterware.httpunit.WebRequest;
-import com.meterware.servletunit.InvocationContext;
+import com.meterware.httpunit.WebResponse;
 import com.meterware.servletunit.ServletRunner;
 import com.meterware.servletunit.ServletUnitClient;
 
@@ -66,18 +58,14 @@ public class TPCW_ServiceTest {
     	    	 	
     	//Inicio testes para TPCW_say_hello
     	sr.registerServlet("TPCW_say_hello", TPCW_say_hello.class.getName()); 
-    	WebRequest request = new PostMethodWebRequest("http://localhost:8080/servlet/TPCW_say_hello?c_id=1"); // TODO trocar para endereco da amazon
+    	WebRequest request = new PostMethodWebRequest("http://localhost:8080/TPCW_say_hello"); // TODO trocar para endereco da amazon
  
 	    try {
-	        InvocationContext ic = sc.newInvocation(request);
-	        //TPCW_say_hello sayHelloServlet = (TPCW_say_hello) ic.getServlet();
-	        HttpServletRequest sayHelloServletRequest = ic.getRequest();
-	        //HttpSession sessao = sayHelloServletRequest.getSession();
-	        sayHelloServletRequest.setAttribute("c_id", "999");
-	        HttpServletResponse sayHelloServletResponse =  ic.getResponse();
-	        PrintWriter pw = sayHelloServletResponse.getWriter();	  
-	        
-	        assertEquals("Hello unknown user", pw);        
+	    	request.setParameter( "c_id", "999" );
+	        WebResponse response = sc.getResponse( request );
+	        assertNotNull( "No response received", response );
+	        assertEquals( "content type", "text/plain", response.getContentType() );
+	        assertEquals( "requested resource", "Hello unknown user", response.getText() );	       	        
 	    }
 	    catch (Exception e){
 	        fail("Error testing method getName from TPCW_say_hello. Exception is  " + e);
