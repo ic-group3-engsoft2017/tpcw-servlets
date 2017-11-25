@@ -145,7 +145,7 @@ private ITPCW_Service service;
 						      SHOPPING_ID);
 
 	//Display the shopping cart contents
-	out.print("<FORM ACTION=\"tpcw.servlets.TPCW_shopping_cart_interaction;jsessionid="+
+	out.print("<FORM ACTION=\"TPCW_shopping_cart_interaction;jsessionid="+
 		  req.getRequestedSessionId()+"\" METHOD=\"get\">\n");
 	out.print("<CENTER><P></P><TABLE BORDER=\"0\">\n");
 	out.print("<TR><TD><B>Qty</B></TD><TD><B>Product</B></TD></TR>\n"); 
