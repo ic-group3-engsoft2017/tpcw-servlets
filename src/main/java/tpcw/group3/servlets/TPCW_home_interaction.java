@@ -198,7 +198,7 @@ public class TPCW_home_interaction extends HttpServlet {
       out.print("<A HREF=\"" + res.encodeUrl(url)); 
 
       out.print("\"><IMG SRC=\"../tpcw/Images/shopping_cart_B.gif\"" +
-		" ALT=\"Shopping tpcw.model.Cart\"></A>\n");
+		" ALT=\"Shopping Cart\"></A>\n");
       
       url = "TPCW_search_request_servlet";
       if(SHOPPING_ID != null){
@@ -225,7 +225,7 @@ public class TPCW_home_interaction extends HttpServlet {
       out.print("<A HREF=\"" + res.encodeUrl(url));
       
       out.print("\"><IMG SRC=\"../tpcw/Images/order_status_B.gif\"" +
-		" ALT=\"tpcw.model.Order Status\"></A>\n");
+		" ALT=\".Order Status\"></A>\n");
       
       //Generate Trailer
       out.print("<hr><font size=-1>\n");

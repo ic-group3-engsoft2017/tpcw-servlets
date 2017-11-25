@@ -146,7 +146,7 @@ public class TPCW_execute_search extends HttpServlet {
 
       out.print("<A HREF=\""+ res.encodeUrl(url));
       out.print("\"><IMG SRC=\"../tpcw/Images/shopping_cart_B.gif\" " +
-		"ALT=\"Shopping tpcw.model.Cart\"></A>\n");
+		"ALT=\"Shopping Cart\"></A>\n");
 
       url = "TPCW_search_request_servlet";
       if(SHOPPING_ID != null){

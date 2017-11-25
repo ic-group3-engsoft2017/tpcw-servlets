@@ -130,14 +130,14 @@ private ITPCW_Service service;
 	//Add the top part of the HTML
 	
 	out.print("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD W3 HTML//EN\">\n");
-	out.print("<HTML><!--Shopping tpcw.model.Cart--> <HEAD><TITLE>TPC W Shopping tpcw.model.Cart</TITLE></HEAD> \n");
+	out.print("<HTML><!--Shopping Cart--> <HEAD><TITLE>TPC W Shopping Cart</TITLE></HEAD> \n");
 	out.print("<BODY BGCOLOR=\"#ffffff\">\n");
 	out.print("<H1 ALIGN=\"center\">TPC Web Commerce Benchmark " +
 		  "(TPC-W)</H1>\n");
 	out.print("<CENTER><IMG SRC=\"../tpcw/Images/tpclogo.gif\" " +
 		  "ALIGN=\"BOTTOM\" BORDER=\"0\" WIDTH=\"288\" " + 
 		  "HEIGHT=\"67\"></CENTER>\n");
-	out.print("<H2 ALIGN=\"center\">Shopping tpcw.model.Cart Page</H2>\n");
+	out.print("<H2 ALIGN=\"center\">Shopping Cart Page</H2>\n");
 
 
 	//Print out the promotional processing stuff
@@ -182,8 +182,6 @@ private ITPCW_Service service;
 	out.print("<P>If you have changed the quantities and/or taken " + 
 		  "anything out<BR> of your shopping cart, click here to " + 
 		  "refresh your shopping cart:</P> ");
-	//out.print("<INPUT TYPE=HIDDEN NAME=\"" + tpcw.TPCW_Util.SESSION_ID +
-	//	   "\" value = \"" + req.getRequestedSessionId() + "\">\n");
 	out.print("<INPUT TYPE=HIDDEN NAME=\"ADD_FLAG\" value = \"N\">\n");
 	out.print("<INPUT TYPE=HIDDEN NAME=\"SHOPPING_ID\" value = \"" + 
 		    SHOPPING_ID + "\">\n");
@@ -191,7 +189,7 @@ private ITPCW_Service service;
 	    out.print("<INPUT TYPE=HIDDEN NAME=\"C_ID\" value = \"" + 
 		      C_IDstr + "\">\n");
 	
-	out.print("<P><INPUT TYPE=\"IMAGE\" NAME=\"Refresh Shopping tpcw.model.Cart\"" +
+	out.print("<P><INPUT TYPE=\"IMAGE\" NAME=\"Refresh Shopping Cart\"" +
 		  "SRC=\"../tpcw/Images/refresh_B.gif\"></P>\n");
 	out.print("</CENTER></FORM></BODY></HTML>");
 	out.close();

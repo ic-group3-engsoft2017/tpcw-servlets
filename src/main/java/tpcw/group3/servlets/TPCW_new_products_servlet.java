@@ -132,7 +132,7 @@ public class TPCW_new_products_servlet extends HttpServlet {
 	  url = url + "&C_ID=" + C_ID;
       out.print("<A HREF=\""+ res.encodeUrl(url));
       out.print("\"><IMG SRC=\"../tpcw/Images/shopping_cart_B.gif\" " +
-		"ALT=\"Shopping tpcw.model.Cart\"></A>\n");
+		"ALT=\"Shopping Cart\"></A>\n");
 
       url = "TPCW_search_request_servlet";
       if(SHOPPING_ID != null){

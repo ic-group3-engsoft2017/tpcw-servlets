@@ -72,10 +72,10 @@ public class TPCW_order_inquiry_servlet extends HttpServlet {
 
       
       out.print("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD W3 HTML//EN\">\n");
-      out.print("<HTML><HEAD><TITLE>TPC-W tpcw.model.Order Inquiry Page</TITLE>\n");
+      out.print("<HTML><HEAD><TITLE>TPC-W Order Inquiry Page</TITLE>\n");
       out.print("</HEAD><BODY BGCOLOR=\"#ffffff\">\n"); 
       out.print("<H1 ALIGN=\"center\">TPC Web Commerce Benchmark (TPC-W)</H1>\n"); 
-      out.print("<H2 ALIGN=\"center\">tpcw.model.Order Inquiry Page</H2>\n");
+      out.print("<H2 ALIGN=\"center\"r>Order Inquiry Page</H2>\n");
 
       out.print("<FORM ACTION=\"TPCW_order_display_servlet;jsessionid="+
 		req.getRequestedSessionId()+"\" METHOD=\"get\">\n");
@@ -88,7 +88,7 @@ public class TPCW_order_inquiry_servlet extends HttpServlet {
 		"TYPE=\"password\"></TD>\n");
       out.print("</TR></TABLE> <P ALIGN=\"CENTER\"><CENTER>\n");
 
-      out.print("<INPUT TYPE=\"IMAGE\" NAME=\"Display Last tpcw.model.Order\" "
+      out.print("<INPUT TYPE=\"IMAGE\" NAME=\"Display Last Order\" "
 		+ "SRC=\"../tpcw/Images/display_last_order_B.gif\">\n");
       //      out.print("<INPUT TYPE=HIDDEN NAME=\"" + tpcw.TPCW_Util.SESSION_ID +
       //	"\" value = \"" +

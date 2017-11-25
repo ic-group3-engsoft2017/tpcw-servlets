@@ -85,10 +85,10 @@ public class TPCW_order_display_servlet extends HttpServlet {
       res.setContentType("text/html");
 
      out.print("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD W3 HTML//EN\">\n"); 
-     out.print("<HTML><HEAD><TITLE>TPC-W tpcw.model.Order Display Page</TITLE></HEAD>\n");
+     out.print("<HTML><HEAD><TITLE>TPC-W Order Display Page</TITLE></HEAD>\n");
      out.print("<BODY BGCOLOR=\"#FFFFFF\"><H1 ALIGN=\"CENTER\">" + 
 	       "TPC Web Commerce Benchmark (TPC-W)</H1>\n"); 
-     out.print("<H2 ALIGN=\"CENTER\">tpcw.model.Order Display Page</H2>\n");
+     out.print("<H2 ALIGN=\"CENTER\"r>Order Display Page</H2>\n");
      out.print("<BLOCKQUOTE> <BLOCKQUOTE> <BLOCKQUOTE> <BLOCKQUOTE> <HR>\n"); 
 
      String uname = req.getParameter("UNAME");
@@ -143,13 +143,13 @@ public class TPCW_order_display_servlet extends HttpServlet {
 
   private void printOrder(Order order, Vector lines, PrintWriter out){
       int i;
-      out.print("<P>tpcw.model.Order ID:" + order.o_id +"<BR>\n");
-      out.print("tpcw.model.Order Placed on " + order.o_date +"<BR>\n");
+      out.print("<Pr>Order ID:" + order.o_id +"<BR>\n");
+      out.print(".Order Placed on " + order.o_date +"<BR>\n");
       out.print("Shipping Type:"+ order.o_ship_type + "<BR>\n");
       out.print("Ship Date: "+ order.o_ship_date + "<BR>\n");
-      out.print("tpcw.model.Order Subtotal: "+ order.o_subtotal +"<BR>\n");
-      out.print("tpcw.model.Order Tax: "+ order.o_tax +"<BR>\n");
-      out.print("tpcw.model.Order Total:"+ order.o_total +"<BR></P>\n");
+      out.print(".Order Subtotal: "+ order.o_subtotal +"<BR>\n");
+      out.print(".Order Tax: "+ order.o_tax +"<BR>\n");
+      out.print(".Order Total:"+ order.o_total +"<BR></P>\n");
       
       out.print("<TABLE BORDER=\"0\" WIDTH=\"80%\">\n");
       out.print("<TR><TD><B>Bill To:</B></TD><TD><B>Ship To:</B></TD></TR>");
@@ -163,7 +163,7 @@ public class TPCW_order_display_servlet extends HttpServlet {
       out.print("Email: " + order.c_email + "<BR>\n");
       out.print("Phone: " + order.c_phone +"</ADDRESS><BR><P>\n");
       out.print("Credit Card Type: " + order.cx_type + "<BR>\n");
-      out.print("tpcw.model.Order Status: " + order.o_status +"</P></TD>\n");
+      out.print(".Order Status: " + order.o_status +"</P></TD>\n");
       out.print("<TD VALIGN=\"TOP\" WIDTH=\"50%\"><ADDRESS>" 
 		+ order.bill_addr_street1 + 
 		"<BR>\n");

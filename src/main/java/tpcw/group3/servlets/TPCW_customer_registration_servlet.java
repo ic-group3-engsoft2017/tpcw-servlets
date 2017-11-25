@@ -93,14 +93,14 @@ public class TPCW_customer_registration_servlet extends HttpServlet {
 
       out.print("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD W3 HTML//EN\">\n");
       out.print("<HTML>\n");
-      out.print("<HEAD><TITLE>tpcw.model.Customer Registration</TITLE></HEAD>\n");
+      out.print("<HEAD><TITLE>Customer Registration</TITLE></HEAD>\n");
       out.print("<BODY BGCOLOR=\"#ffffff\">\n");
       out.print("<H1 ALIGN=\"center\">TPC Web Commerce Benchmark (TPC-W)"
 		+"</H1><H1 ALIGN=\"center\">\n");
  
       out.print("<IMG SRC=\"../tpcw/Images/tpclogo.gif\" " +
 		"ALIGN=\"BOTTOM\" BORDER=\"0\" WIDTH=\"288\" HEIGHT=\"67\">");
-      out.print("</H1><H2 ALIGN=\"center\">tpcw.model.Customer Registration Page</H2>\n");
+      out.print("</H1><H2 ALIGN=\"center\">moCustomer Registration Page</H2>\n");
       out.print("<FORM ACTION=\"TPCW_buy_request_servlet;jsessionid="+
 		req.getRequestedSessionId()+"\" METHOD=\"get\">");
       out.print("<BLOCKQUOTE><BLOCKQUOTE>\n");
@@ -125,9 +125,9 @@ public class TPCW_customer_registration_servlet extends HttpServlet {
       out.print("<TD> <INPUT NAME=\"FNAME\" SIZE=\"15\"></TD></TR>\n");
       out.print("<TR><TD>Enter your Last Name:</TD>\n");
       out.print("<TD><INPUT NAME=\"LNAME\" SIZE=\"15\"></TD></TR>\n");
-      out.print("<TR><TD>Enter your tpcw.model.Address 1:</TD>\n");
+      out.print("<TR><TD>Enter your Address 1:</TD>\n");
       out.print("<TD><INPUT NAME=\"STREET1\" SIZE=\"40\"></TD></TR>\n");
-      out.print("<TR><TD>Enter your tpcw.model.Address 2:</TD>\n");
+      out.print("<TR><TD>Enter your Address 2:</TD>\n");
       out.print("<TD> <INPUT NAME=\"STREET2\" SIZE=\"40\"></TD></TR>\n");
       
       out.print("<TR><TD>Enter your City, State, Zip:</TD>\n");
@@ -147,7 +147,7 @@ public class TPCW_customer_registration_servlet extends HttpServlet {
       out.print("<TEXTAREA COLS=\"65\" NAME=\"DATA\" ROWS=\"4\">" + 
 		"</TEXTAREA></TD></TR></TABLE></BLOCKQUOTE></BLOCKQUOTE>" +
 		"<CENTER>\n");
-      out.print("<INPUT TYPE=\"IMAGE\" NAME=\"Enter tpcw.model.Order\" " +
+      out.print("<INPUT TYPE=\"IMAGE\" NAME=\"Enter Order\" " +
 		"SRC=\"../tpcw/Images/submit_B.gif\">\n");
       //      out.print("<INPUT TYPE=HIDDEN NAME=\"" + tpcw.TPCW_Util.SESSION_ID +
       //	"\" value = \"" + req.getRequestedSessionId() + "\">\n");

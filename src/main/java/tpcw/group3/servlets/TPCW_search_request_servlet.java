@@ -126,7 +126,7 @@ public class TPCW_search_request_servlet extends HttpServlet {
 
       out.print("<A HREF=\"" + res.encodeUrl(url));
       out.print("\"><IMG SRC=\"../tpcw/Images/shopping_cart_B.gif\"" +
-		" ALT=\"Shopping tpcw.model.Cart\"></A>\n");
+		" ALT=\"Shopping Cart\"></A>\n");
       out.print("</CENTER></P></FORM></BODY></HTML>");
       out.close();
       return;

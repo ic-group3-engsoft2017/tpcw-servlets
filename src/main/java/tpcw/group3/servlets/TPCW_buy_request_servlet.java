@@ -133,7 +133,7 @@ public class TPCW_buy_request_servlet extends HttpServlet {
       else out.print("ERROR: RETURNING_FLAG not set to Y or N!\n");
       
       if(SHOPPING_ID == null){
-	  out.print("ERROR: Shopping tpcw.model.Cart ID not set!</BODY></HTML>");
+	  out.print("ERROR: Shopping Cart ID not set!</BODY></HTML>");
 	  return;
       }
       //Update the shopping cart cost and get the current contents
@@ -188,11 +188,11 @@ public class TPCW_buy_request_servlet extends HttpServlet {
       //
 
       out.print("</TABLE></TD></TR></TABLE>\n");
-      out.print("<HR><H2>tpcw.model.Order Information:</H2>\n");
+      out.print("<HR><H2r>Order Information:</H2>\n");
       out.print("<TABLE BORDER=\"1\" CELLSPACING=\"0\" CELLPADDING=\"0\">\n");
       out.print("<TR><TD><B>Qty</B></TD><TD><B>Product</B></TD></TR>\n");
 
-      //Insert Shopping tpcw.model.Cart Contents Here!
+      //Insert Shopping Cart Contents Here!
       //
       int i;
       for(i = 0; i < mycart.lines.size(); i++){
@@ -262,7 +262,7 @@ public class TPCW_buy_request_servlet extends HttpServlet {
 	  url = url + "&SHOPPING_ID=" + SHOPPING_ID;
       out.print("<A HREF=\"" +res.encodeUrl(url));
       out.print("\"><IMG SRC=\"../tpcw/Images/shopping_cart_B.gif\" " +
-		"ALT=\"Shopping tpcw.model.Cart\"></A>\n");
+		"ALT=\"Shopping Cart\"></A>\n");
       
       url = "TPCW_order_inquiry_servlet?C_ID=" + cust.c_id;
       if(SHOPPING_ID != null)
@@ -270,7 +270,7 @@ public class TPCW_buy_request_servlet extends HttpServlet {
       
       out.print("<A HREF=\"" + res.encodeUrl(url));
       out.print("\"><IMG SRC=\"../tpcw/Images/order_status_B.gif\" " +
-		"ALT=\"tpcw.model.Order Status\"></A>\n");
+		"ALT=\".Order Status\"></A>\n");
       out.print("</P></CENTER></BODY></HTML>");
       out.close();
       return;

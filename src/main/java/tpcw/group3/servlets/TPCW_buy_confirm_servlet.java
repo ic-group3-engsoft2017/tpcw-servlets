@@ -151,13 +151,13 @@ public class TPCW_buy_confirm_servlet extends HttpServlet {
 
       //Print out the HTML page
       out.print("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD W3 HTML//EN\"> <HTML>\n");
-      out.print("<HEAD><TITLE>tpcw.model.Order Confirmation</TITLE></HEAD> ");
+      out.print("<HEAD><TITLE>Order Confirmation</TITLE></HEAD> ");
       out.print("<BODY BGCOLOR=\"#FFFFFF\">"); 
       out.print("<H1 ALIGN=\"CENTER\">TPC Web Commerce Benchmark " + 
 		"(TPC-W)</H1>\n");
       out.print("<H2 ALIGN=\"CENTER\">Buy Confirm Page</H2>\n");
       out.print("<BLOCKQUOTE><BLOCKQUOTE><BLOCKQUOTE><BLOCKQUOTE>\n");
-      out.print("<H2 ALIGN=\"LEFT\">tpcw.model.Order Information:</H2>\n");
+      out.print("<H2 ALIGN=\"LEFT\">Order Information:</H2>\n");
       out.print("<TABLE BORDER=\"1\" CELLSPACING=\"0\" CELLPADDING=\"0\">\n");
       out.print("<TR><TD><B>Qty</B></TD><TD><B>Product</B></TD></TR> ");
 
@@ -171,7 +171,7 @@ public class TPCW_buy_confirm_servlet extends HttpServlet {
 		    "<FONT COLOR=\"#aa0000\"><B>Your Price: $" + 
 		    line.scl_cost + "</FONT> </TD></TR>\n");
       }
-      out.print("</TABLE><H2 ALIGN=\"LEFT\">Your tpcw.model.Order has been processed.</H2>\n");
+      out.print("</TABLE><H2 ALIGN=\"LEFT\">Your Order has been processed.</H2>\n");
       out.print("<TABLE BORDER=\"1\" CELLPADDING=\"5\" CELLSPACING=\"0\">\n");
       out.print("<TR><TD><H4>Subtotal with discount:</H4></TD>\n");
       out.print("<TD> <H4>$" + result.cart.SC_SUB_TOTAL +"</H4></TD></TR>");
@@ -181,7 +181,7 @@ public class TPCW_buy_confirm_servlet extends HttpServlet {
       out.print("<TD><H4>$"+ result.cart.SC_SHIP_COST + "</H4></TD></TR>\n");
       out.print("<TR><TD> <H4>Total:</H4></TD>\n");
       out.print("<TD><H4>$" + result.cart.SC_TOTAL + "</H4></TD></TR></TABLE>\n");
-      out.print("<P><BR></P><H2>tpcw.model.Order Number: " + result.order_id + "</H2>\n");
+      out.print("<P><BR></P><H2>Order Number: " + result.order_id + "</H2>\n");
       out.print("<H1>Thank you for shopping at TPC-W</H1> <P></P>\n");
 
       //Add the buttons
