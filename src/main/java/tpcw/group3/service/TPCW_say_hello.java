@@ -85,7 +85,7 @@ public class TPCW_say_hello {
                 // Use C_ID to get the user name from the database.
                 // Set parameter
                 //TODO : Cache is not entirely required due the select is simple, and fast id query based
-                name = TPCW_Database.getInstance().getName(C_ID[0]);
+                name = TPCW_Database.getName(C_ID[0]);
                 // Set the values for this session.
                 if(name==null){
                    out.println("Hello unknown user!");
