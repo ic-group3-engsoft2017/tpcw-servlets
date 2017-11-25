@@ -18,7 +18,11 @@ import static tpcw.group3.cache.model.criteria.builder.BookCriteriaBuilder.build
 
 public class TPCW_Service implements ITPCW_Service {
 
-    public TPCW_Service() {
+	private ITPCW_Cache cache;
+	private TPCW_Database database;
+	private CacheCriteria bookCacheService;
+	
+    private TPCW_Service() {
         this.cache = TPCW_Cache.getInstance();
         this.database = TPCW_Database.getInstance();
         this.bookCacheService = BookCacheCriteriaService.getInstance();
@@ -33,9 +37,6 @@ public class TPCW_Service implements ITPCW_Service {
         return service;
     }
     
-    private ITPCW_Cache cache;
-    private TPCW_Database database;
-    private CacheCriteria bookCacheService;
 
 	public String[] getName(int c_id) {
 		return TPCW_Database.getInstance().getName(c_id);
