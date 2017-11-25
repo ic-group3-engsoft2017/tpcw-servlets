@@ -139,7 +139,7 @@
     </servlet-mapping>
 
     <welcome-file-list>
-        <welcome-file>tpcw.servlets.TPCW_home_interaction</welcome-file>
+        <welcome-file>tpcw.group3.servlets.TPCW_home_interaction</welcome-file>
     </welcome-file-list>
   
     <resource-ref>
