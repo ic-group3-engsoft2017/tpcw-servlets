@@ -1,5 +1,5 @@
 package tpcw.group3.servlets;/*
- * tpcw.servlets.TPCW_order_display_servlet.java - Servlet Class implements order
+ * TPCW_order_display_servlet.java - Servlet Class implements order
  *                                   display servlet.
  *
  ************************************************************************
@@ -108,12 +108,12 @@ public class TPCW_order_display_servlet extends HttpServlet {
 	 }	 
 	 
      }
-     else out.print("Error:tpcw.servlets.TPCW_order_display_servlet, "
+     else out.print("Error:TPCW_order_display_servlet, "
 		    + "uname and passwd not set!.\n");
      
      //Print out the buttons that are on the bottom of the page
     out.print("<CENTER>\n");
-    url = "tpcw.servlets.TPCW_search_request_servlet";
+    url = "TPCW_search_request_servlet";
     if(SHOPPING_ID != null){
 	url = url+"?SHOPPING_ID="+SHOPPING_ID;
 	if(C_ID!=null)
@@ -126,7 +126,7 @@ public class TPCW_order_display_servlet extends HttpServlet {
     out.print("\"><IMG SRC=\"../tpcw/Images/search_B.gif\" "
 	      + "ALT=\"Search\"></A>\n");
 
-    url = "tpcw.servlets.TPCW_home_interaction";
+    url = "TPCW_home_interaction";
         if(SHOPPING_ID != null){
 	url = url+"?SHOPPING_ID="+SHOPPING_ID;
 	if(C_ID!=null)

@@ -1,7 +1,7 @@
 package tpcw.group3.repository;/*
  * tpcw.repository.TPCW_Database.java - Contains all of the code involved with database
  *                      accesses, including all of the JDBC calls. These
- *                      functions are called by many of the tpcw.servlets.
+ *                      functions are called by many of the tpcw.group3.servlets.
  *
  ************************************************************************
  *
@@ -656,7 +656,7 @@ public class TPCW_Database {
 
     // ********************** Shopping tpcw.model.Cart code below *************************
 
-    // Called from: tpcw.servlets.TPCW_shopping_cart_interaction
+    // Called from: tpcw.group3.servlets.TPCW_shopping_cart_interaction
     public int createEmptyCart(){
 	int SHOPPING_ID = 0;
 	//	boolean success = false;

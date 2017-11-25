@@ -1,5 +1,5 @@
 package tpcw.group3.servlets;/*
- * tpcw.servlets.TPCW_admin_request_servlet - Servlet Class implements the admin
+ * TPCW_admin_request_servlet - Servlet Class implements the admin
  *                              request web interaction.
  *
  ************************************************************************
@@ -105,7 +105,7 @@ public class TPCW_admin_request_servlet extends HttpServlet {
       out.print("<IMG SRC=\"../tpcw/Images/" + book.i_thumbnail +  
 		"\" ALIGN=\"RIGHT\" BORDER=\"0\">");
       out.print("<P><BR><BR></P>");
-      out.print("<FORM ACTION=\"tpcw.servlets.TPCW_admin_response_servlet;jsessionid="+
+      out.print("<FORM ACTION=\"TPCW_admin_response_servlet;jsessionid="+
 		req.getRequestedSessionId()
 		+"\" METHOD=\"get\">\n");
       out.print("<INPUT NAME=\"I_ID\" TYPE=\"hidden\" VALUE=\"" + I_ID 
@@ -132,7 +132,7 @@ public class TPCW_admin_request_servlet extends HttpServlet {
 		    C_ID + "\">\n");
       out.print("<INPUT TYPE=\"IMAGE\" NAME=\"Submit\"" +
 		" SRC=\"../tpcw/Images/submit_B.gif\">\n");
-      url = "tpcw.servlets.TPCW_search_request_servlet";
+      url = "TPCW_search_request_servlet";
       if(SHOPPING_ID != null){
 	  url = url+"?SHOPPING_ID="+SHOPPING_ID;
 	  if(C_ID!=null)
@@ -144,7 +144,7 @@ public class TPCW_admin_request_servlet extends HttpServlet {
       out.print("<A HREF=\"" + res.encodeUrl(url));
       out.print("\"><IMG SRC=\"../tpcw/Images/search_B.gif\" "
 		+ "ALT=\"Search\"></A>\n");
-      url = "tpcw.servlets.TPCW_home_interaction";
+      url = "TPCW_home_interaction";
       if(SHOPPING_ID != null){
 	  url = url+"?SHOPPING_ID="+SHOPPING_ID;
 	  if(C_ID!=null)

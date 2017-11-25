@@ -1,5 +1,5 @@
 package tpcw.group3.service;/*
- * tpcw.servlets.TPCW_say_hello.java - Utility function used by home interaction,
+ * tpcw.group3.servlets.TPCW_say_hello.java - Utility function used by home interaction,
  *                       creates a new session id for new users.
  * 
  ************************************************************************

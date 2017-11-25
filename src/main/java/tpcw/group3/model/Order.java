@@ -55,7 +55,7 @@ package tpcw.group3.model;/*
 import java.util.Date;
 import java.sql.*;
 
-//Glorified struct to pass order information from the DB to tpcw.servlets
+//Glorified struct to pass order information from the DB to tpcw.group3.servlets
 
 public class Order extends Entity<Integer> {
     public Order(ResultSet rs) {

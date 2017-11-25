@@ -1,5 +1,5 @@
 package tpcw.group3.servlets;/*
- * tpcw.servlets.TPCW_order_inquiry_servlet.java - Servlet Class implements order
+ * TPCW_order_inquiry_servlet.java - Servlet Class implements order
  *                                   inquiry web interaction.
  *
  ************************************************************************
@@ -77,7 +77,7 @@ public class TPCW_order_inquiry_servlet extends HttpServlet {
       out.print("<H1 ALIGN=\"center\">TPC Web Commerce Benchmark (TPC-W)</H1>\n"); 
       out.print("<H2 ALIGN=\"center\">tpcw.model.Order Inquiry Page</H2>\n");
 
-      out.print("<FORM ACTION=\"tpcw.servlets.TPCW_order_display_servlet;jsessionid="+
+      out.print("<FORM ACTION=\"TPCW_order_display_servlet;jsessionid="+
 		req.getRequestedSessionId()+"\" METHOD=\"get\">\n");
       out.print("<TABLE ALIGN=\"CENTER\">\n"); 
       out.print("<TR> <TD> <H4>Username:</H4></TD>\n"); 
@@ -99,7 +99,7 @@ public class TPCW_order_inquiry_servlet extends HttpServlet {
       if(C_ID!=null)
 	  out.print("<INPUT TYPE=HIDDEN NAME=\"C_ID\" value = \"" + 
 		    C_ID + "\">\n");
-      url = "tpcw.servlets.TPCW_search_request_servlet";
+      url = "TPCW_search_request_servlet";
       if(SHOPPING_ID != null){
 	  url = url+"?SHOPPING_ID="+SHOPPING_ID;
 	  if(C_ID!=null)
@@ -112,7 +112,7 @@ public class TPCW_order_inquiry_servlet extends HttpServlet {
       out.print("\"><IMG SRC=\"../tpcw/Images/search_B.gif\" "
 		+ "ALT=\"Search\"></A>\n");
 
-      url = "tpcw.servlets.TPCW_home_interaction";
+      url = "TPCW_home_interaction";
       if(SHOPPING_ID != null){
 	  url = url+"?SHOPPING_ID="+SHOPPING_ID;
 	  if(C_ID!=null)

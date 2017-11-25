@@ -1,5 +1,5 @@
 package tpcw.group3.service;/*
- * tpcw.servlets.TPCW_promotional_processing.java - This class is basically just a
+ * tpcw.group3.servlets.TPCW_promotional_processing.java - This class is basically just a
  *                                    utility function used to spit
  *                                    out the promotional processing
  *                                    at the top of many web pages.
@@ -89,7 +89,7 @@ public class TPCW_promotional_processing {
 	
 	//Create links and references to book images
 	for(i = 0; i < related_item_ids.size(); i++){
-	    url = "./tpcw.servlets.TPCW_product_detail_servlet";
+	    url = "./tpcw.group3.servlets.TPCW_product_detail_servlet";
 	    url = url + "?I_ID=" + 
 		String.valueOf(related_item_ids.elementAt(i));
 	    if(SHOPPING_ID != null)

@@ -1,5 +1,5 @@
 package tpcw.group3.servlets;/*
- * tpcw.servlets.TPCW_new_products_servlet.java - Servlet Class implements new products
+ * TPCW_new_products_servlet.java - Servlet Class implements new products
  *                                  web interaction.
  *
  ************************************************************************
@@ -113,7 +113,7 @@ public class TPCW_new_products_servlet extends HttpServlet {
 	  ShortBook book = (ShortBook) books.elementAt(i);
 	  out.print("<TR><TD>" + (i+1) + "</TD>\n");
 	  out.print("<TD><I>"+ book.a_fname +" "+ book.a_lname +"</I></TD>\n");
-	  url = "./tpcw.servlets.TPCW_product_detail_servlet?I_ID="
+	  url = "./TPCW_product_detail_servlet?I_ID="
 	      + String.valueOf(book.i_id);
 	  if(SHOPPING_ID != null)
 	      url = url + "&SHOPPING_ID=" + SHOPPING_ID;
@@ -125,7 +125,7 @@ public class TPCW_new_products_servlet extends HttpServlet {
 
       out.print("</TABLE><P><CENTER>\n");
 
-      url = "tpcw.servlets.TPCW_shopping_cart_interaction?ADD_FLAG=N";
+      url = "TPCW_shopping_cart_interaction?ADD_FLAG=N";
       if(SHOPPING_ID != null)
 	  url = url + "&SHOPPING_ID=" + SHOPPING_ID;
       if(C_ID != null)
@@ -134,7 +134,7 @@ public class TPCW_new_products_servlet extends HttpServlet {
       out.print("\"><IMG SRC=\"../tpcw/Images/shopping_cart_B.gif\" " +
 		"ALT=\"Shopping tpcw.model.Cart\"></A>\n");
 
-      url = "tpcw.servlets.TPCW_search_request_servlet";
+      url = "TPCW_search_request_servlet";
       if(SHOPPING_ID != null){
 	  url = url+"?SHOPPING_ID="+SHOPPING_ID;
 	  if(C_ID!=null)
@@ -147,7 +147,7 @@ public class TPCW_new_products_servlet extends HttpServlet {
       out.print("\"><IMG SRC=\"../tpcw/Images/search_B.gif\" "
 		+ "ALT=\"Search\"></A>\n");
 
-      url = "tpcw.servlets.TPCW_home_interaction";
+      url = "TPCW_home_interaction";
       if(SHOPPING_ID != null){
 	  url = url+"?SHOPPING_ID="+SHOPPING_ID;
 	  if(C_ID!=null)
