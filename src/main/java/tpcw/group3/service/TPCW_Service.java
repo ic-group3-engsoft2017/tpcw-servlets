@@ -50,7 +50,13 @@ public class TPCW_Service implements ITPCW_Service {
 	}
 
 	public Vector doSubjectSearch(String search_key) {
-		return TPCW_Database.getInstance().doSubjectSearch(search_key);
+		BookCriteria criteria = builder().withSubject(search_key).build();
+		Vector listForCriteria = new Vector<>(bookCacheService.getByCriteria(criteria));
+		if (listForCriteria.size() <= 0) {
+			listForCriteria = (TPCW_Database.getInstance().doSubjectSearch(search_key));
+			bookCacheService.add(criteria, listForCriteria);
+		}
+		return listForCriteria;
 	}
 
 	public Vector doTitleSearch(String search_key) {
@@ -78,8 +84,18 @@ public class TPCW_Service implements ITPCW_Service {
 	public Vector getNewProducts(String subject) {
 		return TPCW_Database.getInstance().getNewProducts(subject);
 	}
+	
 	public Vector getBestSellers(String subject) {
-		return TPCW_Database.getInstance().getBestSellers(subject);
+		
+		BookCriteria criteria = builder().withSubject(subject).build();
+		
+		Vector listForCriteria = new Vector<>(bookCacheService.getByCriteria(
+                criteria));
+        if(listForCriteria.isEmpty()) {
+            listForCriteria = TPCW_Database.getInstance().getBestSellers(subject);
+            bookCacheService.add(criteria, listForCriteria);
+        }
+        return listForCriteria;
 	}
 
 	public Order GetMostRecentOrder(String c_uname, Vector order_lines) {
