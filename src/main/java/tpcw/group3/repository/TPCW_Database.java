@@ -70,7 +70,7 @@ public class TPCW_Database {
 
 	protected TPCW_Database()
 	{
-		
+		this.connections = new ArrayList<>();
 	}
 	
 	private static TPCW_Database dataBase;
@@ -100,9 +100,6 @@ public class TPCW_Database {
             } catch (NamingException | SQLException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
-            }
-            if(connections == null) {
-                connections = new LinkedList<>();
             }
             connections.add(conn);
             return conn;
