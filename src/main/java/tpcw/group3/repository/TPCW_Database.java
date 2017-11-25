@@ -115,6 +115,7 @@ public class TPCW_Database {
     public synchronized void returnConnection(Connection con)
     		throws java.sql.SQLException {
     	con.close();
+    	connections.remove(con);
     }
 
 	public String[] getName(int c_id) {
