@@ -630,10 +630,7 @@ public class TPCW_Database {
         return null;
     }
 
-    // ********************** Shopping tpcw.model.Cart code below *************************
-
-    // Called from: tpcw.group3.servlets.TPCW_shopping_cart_interaction
-    public int createEmptyCart(){
+    public static int createEmptyCart(){
 	int SHOPPING_ID = 0;
 	//	boolean success = false;
 	Connection con = null;
