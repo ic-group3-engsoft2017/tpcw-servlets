@@ -118,7 +118,7 @@ public class TPCW_admin_response_servlet extends HttpServlet {
 		    "\" ALIGN=\"RIGHT\" BORDER=\"0\" WIDTH=\"200\" " +
 		    "HEIGHT=\"200\">");
 	  out.print("<IMG SRC=\"../tpcw/Images/" + I_NEW_THUMBNAIL + 
-		    "\" ALT=\"tpcw.model.Book 1\" ALIGN=\"RIGHT\" WIDTH=\"100\""
+		    "\" ALT=\".Book 1\" ALIGN=\"RIGHT\" WIDTH=\"100\""
 		    +" HEIGHT=\"150\">\n");
 	  out.print("Description: " + book.i_desc + "</P>\n");
 	  out.print("<BLOCKQUOTE><P><B>Suggested Retail: $" + book.i_srp +
@@ -137,7 +137,7 @@ public class TPCW_admin_response_servlet extends HttpServlet {
 		    "</FONT><BR CLEAR=\"ALL\"></P>\n");
 	  
 	  out.print("<CENTER>");
-	  url = "tpcw.servlets.TPCW_search_request_servlet";
+	  url = "TPCW_search_request_servlet";
 	  if(SHOPPING_ID != null){
 	      url = url+"?SHOPPING_ID="+SHOPPING_ID;
 	      if(C_ID!=null)
@@ -150,7 +150,7 @@ public class TPCW_admin_response_servlet extends HttpServlet {
 	  out.print("\"><IMG SRC=\"../tpcw/Images/search_B.gif\" "
 		    + "ALT=\"Search\"></A>\n");
 	  
-	  url = "tpcw.servlets.TPCW_home_interaction";
+	  url = "TPCW_home_interaction";
 	  if(SHOPPING_ID != null){
 	      url = url+"?SHOPPING_ID="+SHOPPING_ID;
 	      if(C_ID!=null)
