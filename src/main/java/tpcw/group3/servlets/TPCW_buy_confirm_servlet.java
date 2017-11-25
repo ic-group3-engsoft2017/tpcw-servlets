@@ -1,5 +1,5 @@
 package tpcw.group3.servlets;/*
- * tpcw.servlets.TPCW_buy_confirm_servlet.java - Servlet Class implements the buy
+ * TPCW_buy_confirm_servlet.java - Servlet Class implements the buy
  *                                 confirm web interaction.
  *
  * CAVEAT: This servlet does not fully adhere to the TPC-W
@@ -185,7 +185,7 @@ public class TPCW_buy_confirm_servlet extends HttpServlet {
       out.print("<H1>Thank you for shopping at TPC-W</H1> <P></P>\n");
 
       //Add the buttons
-      url = "tpcw.servlets.TPCW_search_request_servlet?SHOPPING_ID=" + SHOPPING_ID;
+      url = "TPCW_search_request_servlet?SHOPPING_ID=" + SHOPPING_ID;
       if(C_IDstr != null)
 	  url = url  + "&C_ID=" + C_IDstr;
       out.print("<CENTER><P><A HREF=\"" + 
@@ -193,7 +193,7 @@ public class TPCW_buy_confirm_servlet extends HttpServlet {
       out.print("\"><IMG SRC=\"../tpcw/Images/search_B.gif\"" +
 		" ALT=\"Search\"></A>\n");
       
-      url = "tpcw.servlets.TPCW_home_interaction?SHOPPING_ID=" + SHOPPING_ID;
+      url = "TPCW_home_interaction?SHOPPING_ID=" + SHOPPING_ID;
       if(C_IDstr != null)
 	  url = url  + "&C_ID=" + C_IDstr;
       

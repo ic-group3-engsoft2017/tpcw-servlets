@@ -1,5 +1,5 @@
 package tpcw.group3.servlets;/*
- * tpcw.servlets.TPCW_product_detail_servlet.java - Servlet Class implements product
+ * TPCW_product_detail_servlet.java - Servlet Class implements product
  *                                    detail web interaction.
  *
  ************************************************************************
@@ -115,7 +115,7 @@ public class TPCW_product_detail_servlet extends HttpServlet {
       out.print("Dimensions (in inches): " + mybook.i_dimensions + "<BR>\n");
       out.print("ISBN: " + mybook.i_isbn +"</FONT></DT></DL><P>\n");
 
-      url = "tpcw.servlets.TPCW_shopping_cart_interaction?I_ID="+I_ID+"&QTY=1";
+      url = "TPCW_shopping_cart_interaction?I_ID="+I_ID+"&QTY=1";
       if(SHOPPING_ID != null)
 	  url = url + "&SHOPPING_ID=" + SHOPPING_ID;
       if(C_ID != null)
@@ -127,7 +127,7 @@ public class TPCW_product_detail_servlet extends HttpServlet {
 
       out.print("<IMG SRC=\"../tpcw/Images/add_B.gif\"" +
 		  " ALT=\"Add to Basket\"></A>\n");
-      url = "tpcw.servlets.TPCW_search_request_servlet";
+      url = "TPCW_search_request_servlet";
 
       if(SHOPPING_ID != null){
 	  url = url+"?SHOPPING_ID="+SHOPPING_ID;
@@ -141,7 +141,7 @@ public class TPCW_product_detail_servlet extends HttpServlet {
 
       out.print("\"><IMG SRC=\"../tpcw/Images/search_B.gif\"" +
 		" ALT=\"Search\"></A>\n");
-      url = "tpcw.servlets.TPCW_home_interaction";
+      url = "TPCW_home_interaction";
       if(SHOPPING_ID != null){
 	  url = url+"?SHOPPING_ID="+SHOPPING_ID;
 	  if(C_ID!=null)
@@ -154,7 +154,7 @@ public class TPCW_product_detail_servlet extends HttpServlet {
       out.print("\"><IMG SRC=\"../tpcw/Images/home_B.gif\" " + 
 		"ALT=\"Home\"></A>\n");
 
-      url = "tpcw.servlets.TPCW_admin_request_servlet?I_ID=" + I_ID;
+      url = "TPCW_admin_request_servlet?I_ID=" + I_ID;
       if(SHOPPING_ID != null)
 	  url = url + "&SHOPPING_ID=" + SHOPPING_ID;
       if(C_ID != null)

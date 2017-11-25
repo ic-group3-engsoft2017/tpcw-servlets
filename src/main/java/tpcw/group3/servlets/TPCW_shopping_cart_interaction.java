@@ -1,5 +1,5 @@
 package tpcw.group3.servlets;/*
- * tpcw.servlets.TPCW_shopping_cart_interaction.java - Servlet class implements the
+ * TPCW_shopping_cart_interaction.java - Servlet class implements the
  *                                       shopping cart web interaction.
  *
  ************************************************************************
@@ -167,13 +167,13 @@ private ITPCW_Service service;
 
 	out.print("</TABLE><B><I>Subtotal price: "  + cart.SC_SUB_TOTAL + 
 		  "</I></B>\n");
-	url = "tpcw.servlets.TPCW_customer_registration_servlet?SHOPPING_ID=" + SHOPPING_ID;
+	url = "TPCW_customer_registration_servlet?SHOPPING_ID=" + SHOPPING_ID;
 	if(C_IDstr != null)
 	    url = url + "&C_ID=" + C_IDstr;
 	out.print("<P><BR><A HREF=\"" + res.encodeUrl(url)); 
 	out.print("\"><IMG SRC=\"../tpcw/Images/checkout_B.gif\"></A>\n");
 
-	url = "tpcw.servlets.TPCW_home_interaction?SHOPPING_ID=" + SHOPPING_ID;
+	url = "TPCW_home_interaction?SHOPPING_ID=" + SHOPPING_ID;
 	if(C_IDstr != null)
 	    url = url + "&C_ID=" + C_IDstr;
 	out.print("<A HREF=\"" + res.encodeUrl(url)); 

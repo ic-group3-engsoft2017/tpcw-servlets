@@ -1,5 +1,5 @@
 package tpcw.group3.servlets;/*
- * tpcw.servlets.TPCW_admin_request_servlet - Servlet Class implements the admin
+ * TPCW_admin_request_servlet - Servlet Class implements the admin
  *                              request web interaction.
  *
  ************************************************************************

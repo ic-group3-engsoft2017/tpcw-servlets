@@ -1,5 +1,5 @@
 package tpcw.group3;/*
- * tpcw.TPCW_Util.java - Some random utility functions needed by the tpcw.servlets.
+ * tpcw.TPCW_Util.java - Some random utility functions needed by the tpcw.group3.servlets.
  *
  ************************************************************************
  *

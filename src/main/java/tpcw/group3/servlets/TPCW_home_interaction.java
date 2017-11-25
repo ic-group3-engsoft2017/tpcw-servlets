@@ -1,5 +1,5 @@
 package tpcw.group3.servlets;/*
- * tpcw.servlets.TPCW_home_interaction.java - Servlet Class implements home interaction.
+ * TPCW_home_interaction.java - Servlet Class implements home interaction.
  *
  ************************************************************************
  *
@@ -138,7 +138,7 @@ public class TPCW_home_interaction extends HttpServlet {
       
       for(i = 0; i < column1.size(); i++){
 	  out.print("<TR><TD><P ALIGN=\"center\">");
-	  url = "tpcw.servlets.TPCW_new_products_servlet";
+	  url = "TPCW_new_products_servlet";
 	  url = url+"?subject=" + column1.elementAt(i);
 	  if(SHOPPING_ID != null)
 	      url = url + "&SHOPPING_ID=" + SHOPPING_ID;
@@ -147,7 +147,7 @@ public class TPCW_home_interaction extends HttpServlet {
 	  out.print("<A HREF=\"" +res.encodeUrl(url));
 	  
 	  out.print("\">" + column1.elementAt(i) + "</A></P></TD>\n");
-	  url = "tpcw.servlets.TPCW_new_products_servlet";
+	  url = "TPCW_new_products_servlet";
 	  url = url+"?subject=" +column2.elementAt(i);
 	  if(SHOPPING_ID != null)
 	      url = url + "&SHOPPING_ID=" + SHOPPING_ID;
@@ -161,7 +161,7 @@ public class TPCW_home_interaction extends HttpServlet {
 	  out.print("\">" + column2.elementAt(i)+"</A></P></TD>\n");
 	  out.print("<TD BGCOLOR=\"#ffffff\" WIDTH=\"50\"></TD>\n");
 	  out.print("<TD> <P ALIGN=\"center\">");
-	  url = "tpcw.servlets.TPCW_best_sellers_servlet";
+	  url = "TPCW_best_sellers_servlet";
 	  url = url + "?subject=" + column1.elementAt(i);
 	  if(SHOPPING_ID != null)
 	      url = url + "&SHOPPING_ID=" + SHOPPING_ID;
@@ -172,7 +172,7 @@ public class TPCW_home_interaction extends HttpServlet {
 	  
 	  out.print("\">" + column1.elementAt(i) + "</A></P></TD>\n");
 	  
-	  url = "tpcw.servlets.TPCW_best_sellers_servlet";
+	  url = "TPCW_best_sellers_servlet";
 	  url = url + "?subject=" + column2.elementAt(i);
 	  if(SHOPPING_ID != null)
 	      url = url + "&SHOPPING_ID=" + SHOPPING_ID;
@@ -188,7 +188,7 @@ public class TPCW_home_interaction extends HttpServlet {
       
       //Generate shopping cart, search, and order status buttons.
       out.print("<P ALIGN=\"CENTER\">\n");
-      url = "tpcw.servlets.TPCW_shopping_cart_interaction";
+      url = "TPCW_shopping_cart_interaction";
       url = url + "?ADD_FLAG=N";
       if(SHOPPING_ID != null)
 	  url = url + "&SHOPPING_ID=" + SHOPPING_ID;
@@ -200,7 +200,7 @@ public class TPCW_home_interaction extends HttpServlet {
       out.print("\"><IMG SRC=\"../tpcw/Images/shopping_cart_B.gif\"" +
 		" ALT=\"Shopping tpcw.model.Cart\"></A>\n");
       
-      url = "tpcw.servlets.TPCW_search_request_servlet";
+      url = "TPCW_search_request_servlet";
       if(SHOPPING_ID != null){
 	  url = url+"?SHOPPING_ID="+SHOPPING_ID;
 	  if(C_ID!=null)
@@ -213,7 +213,7 @@ public class TPCW_home_interaction extends HttpServlet {
       out.print("\"><IMG SRC=\"../tpcw/Images/search_B.gif\"" +
 		" ALT=\"Search\"></A>\n");
       
-      url = "tpcw.servlets.TPCW_order_inquiry_servlet";
+      url = "TPCW_order_inquiry_servlet";
       if(SHOPPING_ID != null){
 	  url = url+"?SHOPPING_ID="+SHOPPING_ID;
 	  if(C_ID!=null)

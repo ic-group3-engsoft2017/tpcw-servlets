@@ -1,5 +1,5 @@
 package tpcw.group3.servlets;/*
- * tpcw.servlets.TPCW_buy_request_servlet.java - Servlet Class implements the buy request
+ * TPCW_buy_request_servlet.java - Servlet Class implements the buy request
  *                                 web interaction.
  *
  ************************************************************************
@@ -257,14 +257,14 @@ public class TPCW_buy_request_servlet extends HttpServlet {
       out.print("<INPUT TYPE=HIDDEN NAME=\"C_ID\" value = \"" + 
 		cust.c_id + "\">\n");
       out.print("<INPUT TYPE=\"IMAGE\" NAME=\"Confirm Buy\" SRC=\"../tpcw/Images/submit_B.gif\">\n");
-      url = "tpcw.servlets.TPCW_shopping_cart_interaction?ADD_FLAG=N&C_ID=" + cust.c_id;
+      url = "TPCW_shopping_cart_interaction?ADD_FLAG=N&C_ID=" + cust.c_id;
       if(SHOPPING_ID != null)
 	  url = url + "&SHOPPING_ID=" + SHOPPING_ID;
       out.print("<A HREF=\"" +res.encodeUrl(url));
       out.print("\"><IMG SRC=\"../tpcw/Images/shopping_cart_B.gif\" " +
 		"ALT=\"Shopping tpcw.model.Cart\"></A>\n");
       
-      url = "tpcw.servlets.TPCW_order_inquiry_servlet?C_ID=" + cust.c_id;
+      url = "TPCW_order_inquiry_servlet?C_ID=" + cust.c_id;
       if(SHOPPING_ID != null)
 	  url = url + "&SHOPPING_ID=" + SHOPPING_ID;
       
