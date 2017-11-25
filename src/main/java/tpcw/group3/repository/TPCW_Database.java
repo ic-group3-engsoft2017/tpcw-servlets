@@ -87,23 +87,29 @@ public class TPCW_Database {
 
 	
     public synchronized Connection getConnection() {
+	     Connection conn = null;
         if(connections.size() > 0 ) {
-            return connections.get(0);
-        } else {
-            Connection conn = null;
+            conn = connections.get(0);
             try {
-                Context initContext = new InitialContext();
-                Context envContext = (Context) initContext.lookup("java:/comp/env");
-                DataSource ds = (DataSource) envContext.lookup("jdbc/TPCW");
-                conn = ds.getConnection();
-                conn.setAutoCommit(false);
-            } catch (NamingException | SQLException e) {
-                // TODO Auto-generated catch block
+                if (!conn.isClosed()) {
+                    return conn;
+                }
+            } catch (SQLException e) {
                 e.printStackTrace();
             }
-            connections.add(conn);
-            return conn;
         }
+        try {
+            Context initContext = new InitialContext();
+            Context envContext = (Context) initContext.lookup("java:/comp/env");
+            DataSource ds = (DataSource) envContext.lookup("jdbc/TPCW");
+            conn = ds.getConnection();
+            conn.setAutoCommit(false);
+        } catch (NamingException | SQLException e) {
+            e.printStackTrace();
+        }
+        connections.add(conn);
+        return conn;
+
     }
     
     public synchronized void returnConnection(Connection con)
