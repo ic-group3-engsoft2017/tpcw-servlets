@@ -75,7 +75,7 @@ public class TPCW_Database {
 	
 	private static TPCW_Database dataBase;
 
-	private static List<Connection> connections;
+	private List<Connection> connections;
 	
 	//Tornando TPCW_Database como Singleton
 	 public static TPCW_Database getInstance() {
