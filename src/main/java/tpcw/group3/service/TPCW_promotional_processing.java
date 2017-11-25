@@ -89,7 +89,7 @@ public class TPCW_promotional_processing {
 	
 	//Create links and references to book images
 	for(i = 0; i < related_item_ids.size(); i++){
-	    url = "./tpcw.group3.servlets.TPCW_product_detail_servlet";
+	    url = "./TPCW_product_detail_servlet";
 	    url = url + "?I_ID=" + 
 		String.valueOf(related_item_ids.elementAt(i));
 	    if(SHOPPING_ID != null)
@@ -100,7 +100,7 @@ public class TPCW_promotional_processing {
 		url = url + "&C_ID=" + C_ID;
 	    out.print("<TD><A HREF=\""+ res.encodeUrl(url));
 	    out.print("\"><IMG SRC=\"../tpcw/Images/" +thumbnails.elementAt(i)
-		      + "\" ALT=\"tpcw.model.Book " + String.valueOf(i+1)
+		      + "\" ALT=\"Book " + String.valueOf(i+1)
 		      + "\" WIDTH=\"100\" HEIGHT=\"150\"></A>\n");
 	    out.print("</TD>");
 	}
