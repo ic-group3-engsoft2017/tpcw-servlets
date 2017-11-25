@@ -50,19 +50,24 @@ public class TPCW_Service implements ITPCW_Service {
 	}
 
 	public Vector doSubjectSearch(String search_key) {
-
 		return TPCW_Database.getInstance().doSubjectSearch(search_key);
 	}
 
 	public Vector doTitleSearch(String search_key) {
-		return TPCW_Database.getInstance().doTitleSearch(search_key);
+        BookCriteria criteria = builder().withTitle(search_key).build();
+        Vector listForCriteria = new Vector<>(bookCacheService.getByCriteria(
+                criteria));
+        if(listForCriteria.isEmpty()) {
+            listForCriteria = (TPCW_Database.getInstance().doTitleSearch(search_key));
+            bookCacheService.add(criteria, listForCriteria);
+        }
+		return listForCriteria;
 	}
 
 	public Vector doAuthorSearch(String search_key) {
         BookCriteria criteria = builder().withAuthorLastName(search_key).build();
-        Vector listForCriteria = new Vector<>(bookCacheService.getByCriteria(
-                criteria));
-        if(listForCriteria.size() <= 0) {
+        Vector listForCriteria = new Vector<>(bookCacheService.getByCriteria(criteria));
+        if(listForCriteria.isEmpty()) {
             listForCriteria = (TPCW_Database.getInstance().doAuthorSearch(search_key));
             bookCacheService.add(criteria, listForCriteria);
         }
