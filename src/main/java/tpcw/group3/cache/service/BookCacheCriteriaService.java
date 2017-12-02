@@ -4,6 +4,7 @@ import tpcw.group3.cache.model.CachableEntity;
 import tpcw.group3.cache.model.criteria.Criteria;
 
 import java.util.*;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.logging.Logger;
 
 import static java.util.logging.Level.INFO;
@@ -22,11 +23,12 @@ public class BookCacheCriteriaService implements CacheCriteria {
 		return service;
 	}
 
-    private Map<Criteria, List<CachableEntity>> cacheMap;
-    private final int CACHE_BUFFER = 50;
+    private SortedMap<Criteria, List<CachableEntity>> cacheMap;
+    private final AtomicInteger CACHE_BUFFER = new AtomicInteger(50);
+    private final int CACHE_THRESHOLD = 1000;
     
     public BookCacheCriteriaService() {
-    	cacheMap = new HashMap<>();
+    	cacheMap = new TreeMap<>(Comparator.comparing(Criteria::getNumberOfHits));
     }
 
 	public void add(Criteria criteria, List<CachableEntity> entities) {
@@ -54,13 +56,23 @@ public class BookCacheCriteriaService implements CacheCriteria {
         }
 
         // If not Present check if Buffer is full to add
-        if( cacheMap.size() < CACHE_BUFFER) {
+        if( cacheMap.size() < CACHE_BUFFER.get()) {
             criteria.addHit();
             cacheMap.put(criteria, entities);
         } else  {
-          LOG.log(INFO, "CACHE NOT ADDED DUE TO BUFFER FULL");
+          LOG.log(INFO, "APPLYING POLICY");
+          applyPolicy(criteria, entities);
         }
 
+	}
+
+	private void applyPolicy(Criteria criteria, List<CachableEntity> entities) {
+        if(CACHE_THRESHOLD < cacheMap.size()) {
+            CACHE_BUFFER.addAndGet(CACHE_BUFFER.get());
+            cacheMap.put(criteria, entities);
+        } else {
+            LOG.log(SEVERE, "CACHE NOT ADDED DUE TO BUFFER HIT THRESOLD");
+        }
 	}
 
 }
