@@ -30,15 +30,15 @@ import static org.junit.Assert.*;
  * TPCW_admin_request_servlet
  * TPCW_admin_response_servlet
  * TPCW_product_detail_servlet
- * TPCW_buy_request_servlet --> CANDIDATO A CACHE
+ * TPCW_buy_request_servlet
  * TPCW_execute_search
  * TPCW_new_products_servlet
- * TPCW_best_sellers_servlet --> CANDIDATO A CACHE
+ * TPCW_best_sellers_servlet
  * TPCW_order_display_servlet
  * TPCW_buy_confirm_servlet
  * TPCW_customer_registration_servlet
  * TPCW_promotional_processing
- * TPCW_shopping_cart_interaction --> CANDIDATO A CACHE
+ * TPCW_shopping_cart_interaction
  * TPCW_buy_request_servlet
  */
 public class TPCW_ServiceTest {
