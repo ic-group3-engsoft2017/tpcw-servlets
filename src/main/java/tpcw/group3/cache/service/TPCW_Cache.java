@@ -9,21 +9,21 @@ import tpcw.group3.model.Book;
 
 public class TPCW_Cache implements ITPCW_Cache {
 
-	private static TPCW_Cache singleton;
-
-	public static TPCW_Cache getInstance() {
-		if (singleton == null) {
-			singleton = new TPCW_Cache();
-		}
-		return singleton;
-	}
-
+	private static TPCW_Cache instance;
     private Map<Class<?>, TreeSet<CachableEntity>> cacheMap;
     private final int CACHE_BUFFER = 50;
 
-    public TPCW_Cache() {
+    private TPCW_Cache() {
     	cacheMap = new HashMap<>();
     }
+    
+	public static TPCW_Cache getInstance() {
+		if (instance == null) {
+			instance = new TPCW_Cache();
+		}
+		return instance;
+	}
+
 
 	@Override
 	public void add(CachableEntity entity) {

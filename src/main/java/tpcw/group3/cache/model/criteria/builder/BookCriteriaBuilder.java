@@ -32,7 +32,7 @@ public class BookCriteriaBuilder {
         bookCriteria.setAuthorLastName(authorLastName);
         return this;
     }
-
+ 
     public BookCriteriaBuilder withTitle(String title) {
         bookCriteria.setTitle(title);
         return this;

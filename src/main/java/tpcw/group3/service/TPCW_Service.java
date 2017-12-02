@@ -17,7 +17,11 @@ import static tpcw.group3.cache.model.criteria.builder.BookCriteriaBuilder.build
 
 public class TPCW_Service implements ITPCW_Service {
 
-    public TPCW_Service() {
+	private ITPCW_Cache cache;
+	private TPCW_Database database;
+	private CacheCriteria bookCacheService;
+	
+    private TPCW_Service() {
         this.cache = TPCW_Cache.getInstance();
         this.database = TPCW_Database.getInstance();
         this.bookCacheService = BookCacheCriteriaService.getInstance();
@@ -32,9 +36,6 @@ public class TPCW_Service implements ITPCW_Service {
         return service;
     }
     
-    private ITPCW_Cache cache;
-    private TPCW_Database database;
-    private CacheCriteria bookCacheService;
 
 	public String[] getName(int c_id) {
 		return TPCW_Database.getInstance().getName(c_id);
@@ -49,19 +50,30 @@ public class TPCW_Service implements ITPCW_Service {
 	}
 
 	public Vector doSubjectSearch(String search_key) {
-
-		return TPCW_Database.getInstance().doSubjectSearch(search_key);
+		BookCriteria criteria = builder().withSubject(search_key).build();
+		Vector listForCriteria = new Vector<>(bookCacheService.getByCriteria(criteria));
+		if (listForCriteria.size() <= 0) {
+			listForCriteria = (TPCW_Database.getInstance().doSubjectSearch(search_key));
+			bookCacheService.add(criteria, listForCriteria);
+		}
+		return listForCriteria;
 	}
 
 	public Vector doTitleSearch(String search_key) {
-		return TPCW_Database.getInstance().doTitleSearch(search_key);
+        BookCriteria criteria = builder().withTitle(search_key).build();
+        Vector listForCriteria = new Vector<>(bookCacheService.getByCriteria(
+                criteria));
+        if(listForCriteria.isEmpty()) {
+            listForCriteria = (TPCW_Database.getInstance().doTitleSearch(search_key));
+            bookCacheService.add(criteria, listForCriteria);
+        }
+		return listForCriteria;
 	}
 
 	public Vector doAuthorSearch(String search_key) {
         BookCriteria criteria = builder().withAuthorLastName(search_key).build();
-        Vector listForCriteria = new Vector<>(bookCacheService.getByCriteria(
-                criteria));
-        if(listForCriteria.size() <= 0) {
+        Vector listForCriteria = new Vector<>(bookCacheService.getByCriteria(criteria));
+        if(listForCriteria.isEmpty()) {
             listForCriteria = (TPCW_Database.getInstance().doAuthorSearch(search_key));
             bookCacheService.add(criteria, listForCriteria);
         }
@@ -72,8 +84,18 @@ public class TPCW_Service implements ITPCW_Service {
 	public Vector getNewProducts(String subject) {
 		return TPCW_Database.getInstance().getNewProducts(subject);
 	}
+	
 	public Vector getBestSellers(String subject) {
-		return TPCW_Database.getInstance().getBestSellers(subject);
+		
+		BookCriteria criteria = builder().withSubject(subject).build();
+		
+		Vector listForCriteria = new Vector<>(bookCacheService.getByCriteria(
+                criteria));
+        if(listForCriteria.isEmpty()) {
+            listForCriteria = TPCW_Database.getInstance().getBestSellers(subject);
+            bookCacheService.add(criteria, listForCriteria);
+        }
+        return listForCriteria;
 	}
 
 	public Order GetMostRecentOrder(String c_uname, Vector order_lines) {
