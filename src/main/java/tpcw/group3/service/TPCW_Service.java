@@ -1,7 +1,6 @@
 package tpcw.group3.service;
 
 
-import tpcw.group3.cache.model.CachableEntity;
 import tpcw.group3.cache.model.criteria.BookCriteria;
 import tpcw.group3.cache.service.BookCacheCriteriaService;
 import tpcw.group3.cache.service.CacheCriteria;
@@ -11,7 +10,7 @@ import tpcw.group3.model.*;
 import tpcw.group3.repository.TPCW_Database;
 
 import java.sql.Date;
-import java.util.*;
+import java.util.Vector;
 
 import static tpcw.group3.cache.model.criteria.builder.BookCriteriaBuilder.builder;
 
