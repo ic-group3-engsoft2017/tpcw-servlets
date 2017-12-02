@@ -1,0 +1,10 @@
+tpcw.group3
+tpcw.group3.cache.model
+tpcw.group3.cache.model.criteria
+tpcw.group3.cache.model.criteria.builder
+tpcw.group3.cache.service
+tpcw.group3.model
+tpcw.group3.repository
+tpcw.group3.service
+tpcw.group3.servlets
+tpcw.service
