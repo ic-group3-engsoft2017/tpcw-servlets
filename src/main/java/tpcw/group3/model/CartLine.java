@@ -57,15 +57,46 @@ import java.sql.ResultSet;
  *
  ************************************************************************/
 
+/**
+ * The type Cart line.
+ */
 public class CartLine {
+    /**
+     * The Scl title.
+     */
     public String scl_title;
+    /**
+     * The Scl cost.
+     */
     public double scl_cost;
+    /**
+     * The Scl srp.
+     */
     public double scl_srp;
+    /**
+     * The Scl backing.
+     */
     public String scl_backing;
+    /**
+     * The Scl qty.
+     */
     public int scl_qty;
+    /**
+     * The Scl i id.
+     */
     public int scl_i_id;
 
- 
+
+    /**
+     * Instantiates a new Cart line.
+     *
+     * @param title   the title
+     * @param cost    the cost
+     * @param srp     the srp
+     * @param backing the backing
+     * @param qty     the qty
+     * @param id      the id
+     */
     public CartLine(String title, double cost, double srp, String backing,
     		int qty, int id){
 

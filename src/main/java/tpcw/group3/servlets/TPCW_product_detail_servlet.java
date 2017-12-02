@@ -64,12 +64,18 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+/**
+ * The type Tpcw product detail servlet.
+ */
 public class TPCW_product_detail_servlet extends HttpServlet {
 	
 	
 	private ITPCW_Service service;
-	
-	public TPCW_product_detail_servlet() {
+
+    /**
+     * Instantiates a new Tpcw product detail servlet.
+     */
+    public TPCW_product_detail_servlet() {
 		super();
 		service = TPCW_Service.getInstance();
 	}

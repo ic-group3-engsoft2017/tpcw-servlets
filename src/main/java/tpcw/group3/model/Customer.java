@@ -54,40 +54,123 @@ package tpcw.group3.model;/*
 import java.sql.*;
 import java.util.Date;
 
+/**
+ * The type Customer.
+ */
 //glorified struct used for passing customer info around.
 public class Customer extends Entity<Integer> {
 
+    /**
+     * The C id.
+     */
     public int c_id;
+    /**
+     * The C uname.
+     */
     public String c_uname;
+    /**
+     * The C passwd.
+     */
     public String c_passwd;
+    /**
+     * The C fname.
+     */
     public String c_fname;
+    /**
+     * The C lname.
+     */
     public String c_lname;
+    /**
+     * The C phone.
+     */
     public String c_phone;
+    /**
+     * The C email.
+     */
     public String c_email;
+    /**
+     * The C since.
+     */
     public Date c_since;
+    /**
+     * The C last visit.
+     */
     public Date c_last_visit;
+    /**
+     * The C login.
+     */
     public Date c_login;
+    /**
+     * The C expiration.
+     */
     public Date c_expiration;
+    /**
+     * The C discount.
+     */
     public double c_discount;
+    /**
+     * The C balance.
+     */
     public double c_balance;
+    /**
+     * The C ytd pmt.
+     */
     public double c_ytd_pmt;
+    /**
+     * The C birthdate.
+     */
     public Date c_birthdate;
+    /**
+     * The C data.
+     */
     public String c_data;
 
-    //From the addess table
+    /**
+     * The Addr id.
+     */
+//From the addess table
     public int addr_id;
+    /**
+     * The Addr street 1.
+     */
     public String addr_street1;
+    /**
+     * The Addr street 2.
+     */
     public String addr_street2;
+    /**
+     * The Addr city.
+     */
     public String addr_city;
+    /**
+     * The Addr state.
+     */
     public String addr_state;
+    /**
+     * The Addr zip.
+     */
     public String addr_zip;
+    /**
+     * The Addr co id.
+     */
     public int addr_co_id;
 
-    //From the country table
+    /**
+     * The Co name.
+     */
+//From the country table
     public String co_name;
-    
+
+    /**
+     * Instantiates a new Customer.
+     */
     public Customer(){}
 
+    /**
+     * Instantiates a new Customer.
+     *
+     * @param rs the rs
+     */
     public Customer(ResultSet rs) {
 	// The result set should have all of the fields we expect.
 	// This relies on using field name access.  It might be a bad

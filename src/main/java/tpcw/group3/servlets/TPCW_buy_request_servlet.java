@@ -64,11 +64,17 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import java.util.Date;
 
+/**
+ * The type Tpcw buy request servlet.
+ */
 public class TPCW_buy_request_servlet extends HttpServlet {
 	
 	private ITPCW_Service service;
-	
-	public TPCW_buy_request_servlet() {
+
+    /**
+     * Instantiates a new Tpcw buy request servlet.
+     */
+    public TPCW_buy_request_servlet() {
 		service = TPCW_Service.getInstance();
 	}
 	

@@ -55,7 +55,15 @@ package tpcw.group3.model;/*
 
 import java.sql.*;
 
+/**
+ * The type Order line.
+ */
 public class OrderLine {
+    /**
+     * Instantiates a new Order line.
+     *
+     * @param rs the rs
+     */
     public OrderLine(ResultSet rs) {
 	try {
 	    ol_i_id = rs.getInt("ol_i_id");
@@ -70,11 +78,32 @@ public class OrderLine {
 	}
     }
 
+    /**
+     * The Ol i id.
+     */
     public int ol_i_id;
+    /**
+     * The Title.
+     */
     public String i_title;
+    /**
+     * The Publisher.
+     */
     public String i_publisher;
+    /**
+     * The Cost.
+     */
     public double i_cost;
+    /**
+     * The Ol qty.
+     */
     public int ol_qty;
+    /**
+     * The Ol discount.
+     */
     public double ol_discount;
+    /**
+     * The Ol comments.
+     */
     public String ol_comments;
 }

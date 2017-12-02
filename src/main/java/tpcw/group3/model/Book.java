@@ -59,14 +59,37 @@ import tpcw.group3.cache.model.CachableEntity;
 
 import java.sql.*;
 
+/**
+ * The type Book.
+ */
 public class Book extends CachableEntity {
 
+    /**
+     * The constant I_ID.
+     */
     public static final String I_ID = "i_id";
+    /**
+     * The constant I_TITLE.
+     */
     public static final String I_TITLE = "i_title";
+    /**
+     * The constant A_FNAME.
+     */
     public static final String A_FNAME = "a_fname";
+    /**
+     * The constant A_LNAME.
+     */
     public static final String A_LNAME = "a_lname";
 
-    // Construct with required arguments for use of mocks
+    /**
+     * Instantiates a new Book.
+     *
+     * @param i_id    the id
+     * @param i_title the title
+     * @param a_fname the a fname
+     * @param a_lname the a lname
+     */
+// Construct with required arguments for use of mocks
     public Book(int i_id, String i_title, String a_fname, String a_lname) {
         this.i_id = i_id;
         this.i_title = i_title;
@@ -74,7 +97,12 @@ public class Book extends CachableEntity {
         this.a_lname = a_lname;
     }
 
-    // Construct a book from a ResultSet
+    /**
+     * Instantiates a new Book.
+     *
+     * @param rs the rs
+     */
+// Construct a book from a ResultSet
     public Book(ResultSet rs) {
 	// The result set should have all of the fields we expect.
 	// This relies on using field name access.  It might be a bad
@@ -112,32 +140,102 @@ public class Book extends CachableEntity {
 	    ex.printStackTrace();
 	}
     }
-    // From Item
+
+    /**
+     * The Id.
+     */
+// From Item
     public int i_id;
+    /**
+     * The Title.
+     */
     public String i_title;
+    /**
+     * The Pub date.
+     */
 //  public int i_a_id;   // Redundant
     public Date i_pub_Date;
+    /**
+     * The Publisher.
+     */
     public String i_publisher;
+    /**
+     * The Subject.
+     */
     public String i_subject;
+    /**
+     * The Desc.
+     */
     public String i_desc;
+    /**
+     * The Related 1.
+     */
     public int i_related1;
+    /**
+     * The Related 2.
+     */
     public int i_related2;
+    /**
+     * The Related 3.
+     */
     public int i_related3;
+    /**
+     * The Related 4.
+     */
     public int i_related4;
+    /**
+     * The Related 5.
+     */
     public int i_related5;
+    /**
+     * The Thumbnail.
+     */
     public String i_thumbnail;
+    /**
+     * The Image.
+     */
     public String i_image;
+    /**
+     * The Srp.
+     */
     public double i_srp;
+    /**
+     * The Cost.
+     */
     public double i_cost;
+    /**
+     * The Avail.
+     */
     public Date i_avail;
+    /**
+     * The Isbn.
+     */
     public String i_isbn;
+    /**
+     * The Page.
+     */
     public int i_page;
+    /**
+     * The Backing.
+     */
     public String i_backing;
+    /**
+     * The Dimensions.
+     */
     public String i_dimensions;
 
-    // From Author
+    /**
+     * The A id.
+     */
+// From Author
     public int a_id;
+    /**
+     * The A fname.
+     */
     public String a_fname;
+    /**
+     * The A lname.
+     */
     public String a_lname;
 
     @Override

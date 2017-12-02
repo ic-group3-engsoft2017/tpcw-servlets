@@ -7,11 +7,19 @@ import tpcw.group3.cache.model.CachableEntity;
 import tpcw.group3.model.Book;
 
 
+/**
+ * The type Tpcw cache.
+ */
 public class TPCW_Cache implements ITPCW_Cache {
 
 	private static TPCW_Cache singleton;
 
-	public static TPCW_Cache getInstance() {
+    /**
+     * Gets instance.
+     *
+     * @return the instance
+     */
+    public static TPCW_Cache getInstance() {
 		if (singleton == null) {
 			singleton = new TPCW_Cache();
 		}
@@ -21,6 +29,9 @@ public class TPCW_Cache implements ITPCW_Cache {
     private Map<Class<?>, TreeSet<CachableEntity>> cacheMap;
     private final int CACHE_BUFFER = 50;
 
+    /**
+     * Instantiates a new Tpcw cache.
+     */
     public TPCW_Cache() {
     	cacheMap = new HashMap<>();
     }
@@ -67,9 +78,16 @@ public class TPCW_Cache implements ITPCW_Cache {
 	
 	private TreeSet<CachableEntity> createNewSet() {
 		return new TreeSet<>(Comparator.comparingInt(CachableEntity::getNumberOfHits).reversed());
-	}	
-	
-	public Optional<CachableEntity> findBookByAuthor(String authorName, String authorLastName) {
+	}
+
+    /**
+     * Find book by author optional.
+     *
+     * @param authorName     the author name
+     * @param authorLastName the author last name
+     * @return the optional
+     */
+    public Optional<CachableEntity> findBookByAuthor(String authorName, String authorLastName) {
 		TreeSet<CachableEntity> bookCache = cacheMap.get(Book.class);
 		return bookCache.stream().filter(book -> findByExample(book, authorName, authorLastName)).findFirst();
 	}

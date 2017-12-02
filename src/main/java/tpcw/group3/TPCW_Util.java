@@ -53,26 +53,53 @@ package tpcw.group3;/*
 
 import java.util.*;
 
+/**
+ * The type Tpcw util.
+ */
 public class TPCW_Util {
-    
-    //public final String SESSION_ID="JIGSAW_SESSION_ID";
+
+    /**
+     * The constant SESSION_ID.
+     */
+//public final String SESSION_ID="JIGSAW_SESSION_ID";
     //public static final String SESSION_ID="JServSessionIdroot";
     public static final String SESSION_ID="jsessionid=";
 
-    //This must be equal to the number of items in the ITEM table
+    /**
+     * The constant NUM_ITEMS.
+     */
+//This must be equal to the number of items in the ITEM table
     public static final int NUM_ITEMS = 10000;
 
+    /**
+     * Get random i id int.
+     *
+     * @return the int
+     */
     public static int getRandomI_ID(){
 	Random rand = new Random();
 	Double temp = new Double(Math.floor(rand.nextFloat() * NUM_ITEMS));
 	return temp.intValue() + 1;
     }
 
+    /**
+     * Gets random.
+     *
+     * @param i the
+     * @return the random
+     */
     public static int getRandom(int i) {  // Returns integer 1, 2, 3 ... i
 	return ((int) (java.lang.Math.random() * i)+1);
     }
 
-    //Not very random function. If called in swift sucession, it will
+    /**
+     * Get random string string.
+     *
+     * @param min the min
+     * @param max the max
+     * @return the string
+     */
+//Not very random function. If called in swift sucession, it will
     //return the same string because the system time used to seed the
     //random number generator won't change. 
     public static String getRandomString(int min, int max){
@@ -100,8 +127,15 @@ public class TPCW_Util {
     private static final String [] digS = {
 	"BA","OG","AL","RI","RE","SE","AT","UL","IN","NG"
     };
-  
 
+
+    /**
+     * Dig syl string.
+     *
+     * @param d the d
+     * @param n the n
+     * @return the string
+     */
     public static String DigSyl(int d, int n)
     {
 	String s = "";
@@ -115,7 +149,13 @@ public class TPCW_Util {
 	
 	return(s);
     }
-    
+
+    /**
+     * Dig syl string.
+     *
+     * @param d the d
+     * @return the string
+     */
     public static String DigSyl(int d)
     {
 	String s = "";

@@ -10,13 +10,21 @@ import java.util.logging.Logger;
 import static java.util.logging.Level.INFO;
 import static java.util.logging.Level.SEVERE;
 
+/**
+ * The type Book cache criteria service.
+ */
 public class BookCacheCriteriaService implements CacheCriteria {
 
     private static Logger LOG = Logger.getLogger("BookCacheCriteriaService");
 
 	private static BookCacheCriteriaService service;
 
-	public static BookCacheCriteriaService getInstance() {
+    /**
+     * Gets instance.
+     *
+     * @return the instance
+     */
+    public static BookCacheCriteriaService getInstance() {
 		if (service == null) {
 			service = new BookCacheCriteriaService();
 		}
@@ -26,7 +34,10 @@ public class BookCacheCriteriaService implements CacheCriteria {
     private SortedMap<Criteria, List<CachableEntity>> cacheMap;
     private final AtomicInteger CACHE_BUFFER = new AtomicInteger(50);
     private final int CACHE_THRESHOLD = 1000;
-    
+
+    /**
+     * Instantiates a new Book cache criteria service.
+     */
     public BookCacheCriteriaService() {
     	cacheMap = new TreeMap<>(Comparator.comparing(Criteria::getNumberOfHits));
     }

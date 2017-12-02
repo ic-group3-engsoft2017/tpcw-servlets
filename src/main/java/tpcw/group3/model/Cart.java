@@ -54,19 +54,49 @@ package tpcw.group3.model;/*
 import java.util.*;
 import java.sql.*;
 
+/**
+ * The type Cart.
+ */
 public class Cart extends Entity <Integer>{
-    
+
+    /**
+     * The Sc sub total.
+     */
     public double SC_SUB_TOTAL;
+    /**
+     * The Sc tax.
+     */
     public double SC_TAX;
+    /**
+     * The Sc ship cost.
+     */
     public double SC_SHIP_COST;
+    /**
+     * The Sc total.
+     */
     public double SC_TOTAL;
 
+    /**
+     * The Lines.
+     */
     public Vector lines;
-    
+
+    /**
+     * Instantiates a new Cart.
+     *
+     * @param rs the rs
+     */
     public Cart(ResultSet rs)
     {
     }
-    
+
+    /**
+     * Instantiates a new Cart.
+     *
+     * @param rs         the rs
+     * @param C_DISCOUNT the c discount
+     * @throws SQLException the sql exception
+     */
     public Cart (ResultSet rs, double C_DISCOUNT) throws java.sql.SQLException{
     int i;
 	int total_items;

@@ -63,11 +63,17 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import java.util.Vector;
 
+/**
+ * The type Tpcw shopping cart interaction.
+ */
 public class TPCW_shopping_cart_interaction extends HttpServlet {
 	
 private ITPCW_Service service;
-	
-	public TPCW_shopping_cart_interaction() {
+
+    /**
+     * Instantiates a new Tpcw shopping cart interaction.
+     */
+    public TPCW_shopping_cart_interaction() {
 		super();
 		service = TPCW_Service.getInstance();
 	}

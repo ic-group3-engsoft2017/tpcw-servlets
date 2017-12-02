@@ -57,8 +57,18 @@ import tpcw.group3.repository.TPCW_Database;
 import java.io.*;
 import javax.servlet.http.*;
 
+/**
+ * The type Tpcw say hello.
+ */
 public class TPCW_say_hello {
 
+    /**
+     * Print hello.
+     *
+     * @param session the session
+     * @param req     the req
+     * @param out     the out
+     */
     public static void print_hello(HttpSession session, HttpServletRequest req,
 				   PrintWriter out){
 

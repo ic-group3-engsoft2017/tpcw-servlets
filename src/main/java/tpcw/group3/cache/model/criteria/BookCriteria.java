@@ -1,33 +1,83 @@
 package tpcw.group3.cache.model.criteria;
 
+/**
+ * The type Book criteria.
+ */
 public class BookCriteria extends Criteria {
 
 	private String subject;
 	private String authorFirstName;
 	private String authorLastName;
 	private String title;
-	
+
+	/**
+	 * Gets subject.
+	 *
+	 * @return the subject
+	 */
 	public String getSubject() {
 		return subject;
 	}
+
+	/**
+	 * Sets subject.
+	 *
+	 * @param subject the subject
+	 */
 	public void setSubject(String subject) {
 		this.subject = subject;
 	}
+
+	/**
+	 * Gets author first name.
+	 *
+	 * @return the author first name
+	 */
 	public String getAuthorFirstName() {
 		return authorFirstName;
 	}
+
+	/**
+	 * Sets author first name.
+	 *
+	 * @param authorFirstName the author first name
+	 */
 	public void setAuthorFirstName(String authorFirstName) {
 		this.authorFirstName = authorFirstName;
 	}
+
+	/**
+	 * Gets author last name.
+	 *
+	 * @return the author last name
+	 */
 	public String getAuthorLastName() {
 		return authorLastName;
 	}
+
+	/**
+	 * Sets author last name.
+	 *
+	 * @param authorLastName the author last name
+	 */
 	public void setAuthorLastName(String authorLastName) {
 		this.authorLastName = authorLastName;
 	}
+
+	/**
+	 * Gets title.
+	 *
+	 * @return the title
+	 */
 	public String getTitle() {
 		return title;
 	}
+
+	/**
+	 * Sets title.
+	 *
+	 * @param title the title
+	 */
 	public void setTitle(String title) {
 		this.title = title;
 	}

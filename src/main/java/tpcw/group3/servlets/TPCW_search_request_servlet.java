@@ -58,6 +58,9 @@ import java.io.*;
 import javax.servlet.*;
 import javax.servlet.http.*;
 
+/**
+ * The type Tpcw search request servlet.
+ */
 public class TPCW_search_request_servlet extends HttpServlet {
     
   public void doGet(HttpServletRequest req, HttpServletResponse res)

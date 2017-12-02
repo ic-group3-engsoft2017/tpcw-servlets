@@ -21,9 +21,15 @@ import javax.servlet.http.HttpServletRequest;
   "TPCW_product_detail_servlet", "TPCW_search_request_servlet",
   "TPCW_shopping_cart_interaction" })*/
 
+/**
+ * The type Medidor.
+ */
 @WebFilter("/*")
 public class Medidor implements Filter {
-	static final Logger logger = Logger.getLogger(Medidor.class.getName());
+    /**
+     * The Logger.
+     */
+    static final Logger logger = Logger.getLogger(Medidor.class.getName());
 
 	public void destroy() { 
 		logger.log(Level.INFO, "### Bookstore - FIM Depuracao ###");

@@ -62,12 +62,18 @@ import java.util.*;
 import javax.servlet.*;
 import javax.servlet.http.*;
 
+/**
+ * The type Tpcw best sellers servlet.
+ */
 public class TPCW_best_sellers_servlet extends HttpServlet {
 	
 	
 	private ITPCW_Service service;
-	
-	public TPCW_best_sellers_servlet() {
+
+    /**
+     * Instantiates a new Tpcw best sellers servlet.
+     */
+    public TPCW_best_sellers_servlet() {
 		service = TPCW_Service.getInstance();
 	}
 	
