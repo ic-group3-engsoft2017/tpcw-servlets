@@ -56,6 +56,9 @@ import java.io.*;
 import javax.servlet.*;
 import javax.servlet.http.*;
 
+/**
+ * The type Tpcw order inquiry servlet.
+ */
 public class TPCW_order_inquiry_servlet extends HttpServlet {
     
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

@@ -91,12 +91,18 @@ import javax.servlet.http.*;
 //   the items from the cart. This function should return the newly created
 //   unique O_ID.
 //   
- 
+
+/**
+ * The type Tpcw buy confirm servlet.
+ */
 public class TPCW_buy_confirm_servlet extends HttpServlet {
 	
 	private ITPCW_Service service;
-	
-	public TPCW_buy_confirm_servlet() {
+
+    /**
+     * Instantiates a new Tpcw buy confirm servlet.
+     */
+    public TPCW_buy_confirm_servlet() {
 		service = TPCW_Service.getInstance();
 	}
 

@@ -61,11 +61,17 @@ import tpcw.group3.repository.TPCW_Database;
 import tpcw.group3.service.ITPCW_Service;
 import tpcw.group3.service.TPCW_Service;
 
+/**
+ * The type Tpcw customer registration servlet.
+ */
 public class TPCW_customer_registration_servlet extends HttpServlet {
 	
 	private ITPCW_Service service;
-	
-	public TPCW_customer_registration_servlet() {
+
+    /**
+     * Instantiates a new Tpcw customer registration servlet.
+     */
+    public TPCW_customer_registration_servlet() {
 		super();
 		service = TPCW_Service.getInstance();
 	}

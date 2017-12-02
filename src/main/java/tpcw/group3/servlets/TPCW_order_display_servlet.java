@@ -63,11 +63,17 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import java.util.*;
 
+/**
+ * The type Tpcw order display servlet.
+ */
 public class TPCW_order_display_servlet extends HttpServlet {
 	
 	private ITPCW_Service service;
-	
-	public TPCW_order_display_servlet() {
+
+    /**
+     * Instantiates a new Tpcw order display servlet.
+     */
+    public TPCW_order_display_servlet() {
 		super();
 		service = TPCW_Service.getInstance();
 	}

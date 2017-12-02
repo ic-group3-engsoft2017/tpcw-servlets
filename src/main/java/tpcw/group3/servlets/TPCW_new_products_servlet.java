@@ -62,11 +62,17 @@ import java.util.*;
 import javax.servlet.*;
 import javax.servlet.http.*;
 
+/**
+ * The type Tpcw new products servlet.
+ */
 public class TPCW_new_products_servlet extends HttpServlet {
 	
 	private ITPCW_Service service;
-	
-	public TPCW_new_products_servlet() {
+
+    /**
+     * Instantiates a new Tpcw new products servlet.
+     */
+    public TPCW_new_products_servlet() {
 		super();
 		service = TPCW_Service.getInstance();
 	}

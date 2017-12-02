@@ -61,9 +61,20 @@ import java.io.*;
 import java.util.*;
 import javax.servlet.http.*;
 
+/**
+ * The type Tpcw promotional processing.
+ */
 public class TPCW_promotional_processing {
 
-    public static void DisplayPromotions(PrintWriter out, 
+    /**
+     * Display promotions.
+     *
+     * @param out     the out
+     * @param req     the req
+     * @param res     the res
+     * @param new_sid the new sid
+     */
+    public static void DisplayPromotions(PrintWriter out,
 					 HttpServletRequest req,
 					 HttpServletResponse res,
 					 int new_sid){

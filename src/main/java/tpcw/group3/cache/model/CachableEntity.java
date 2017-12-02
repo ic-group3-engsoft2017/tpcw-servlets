@@ -4,17 +4,31 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 import tpcw.group3.model.Entity;
 
+/**
+ * The type Cachable entity.
+ */
 public class CachableEntity extends Entity<Integer> implements Cloneable {
 
 	private AtomicInteger numberOfHits;
-	
+
+    /**
+     * Instantiates a new Cachable entity.
+     */
     public CachableEntity() {
     }
-    
+
+    /**
+     * Gets number of hits.
+     *
+     * @return the number of hits
+     */
     public Integer getNumberOfHits() {
 		return numberOfHits.get();
 	}
-    
+
+    /**
+     * Add hit.
+     */
     public void addHit() {
     	numberOfHits.incrementAndGet();
     }

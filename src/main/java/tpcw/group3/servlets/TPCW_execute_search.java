@@ -62,11 +62,17 @@ import java.util.*;
 import javax.servlet.*;
 import javax.servlet.http.*;
 
+/**
+ * The type Tpcw execute search.
+ */
 public class TPCW_execute_search extends HttpServlet {
 	
 	private ITPCW_Service service;
-	
-	public TPCW_execute_search() {
+
+    /**
+     * Instantiates a new Tpcw execute search.
+     */
+    public TPCW_execute_search() {
 		super();
 		service = TPCW_Service.getInstance();
 	}

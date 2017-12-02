@@ -57,7 +57,15 @@ import java.sql.*;
 
 //Glorified struct to pass order information from the DB to tpcw.group3.servlets
 
+/**
+ * The type Order.
+ */
 public class Order extends Entity<Integer> {
+    /**
+     * Instantiates a new Order.
+     *
+     * @param rs the rs
+     */
     public Order(ResultSet rs) {
 		try {
 			o_id = rs.getInt("o_id");
@@ -92,35 +100,110 @@ public class Order extends Entity<Integer> {
 		}
     }
 
+    /**
+     * The O id.
+     */
     public int o_id;
+    /**
+     * The C fname.
+     */
     public String c_fname;
+    /**
+     * The C lname.
+     */
     public String c_lname;
+    /**
+     * The C passwd.
+     */
     public String c_passwd;
+    /**
+     * The C uname.
+     */
     public String c_uname;
+    /**
+     * The C phone.
+     */
     public String c_phone;
+    /**
+     * The C email.
+     */
     public String c_email;
+    /**
+     * The O date.
+     */
     public Date o_date;
+    /**
+     * The O subtotal.
+     */
     public double o_subtotal;
+    /**
+     * The O tax.
+     */
     public double o_tax;
+    /**
+     * The O total.
+     */
     public double o_total;
+    /**
+     * The O ship type.
+     */
     public String o_ship_type;
+    /**
+     * The O ship date.
+     */
     public Date o_ship_date;
+    /**
+     * The O status.
+     */
     public String o_status;
 
-    //Billing address
+    /**
+     * The Bill addr street 1.
+     */
+//Billing address
     public String bill_addr_street1;
+    /**
+     * The Bill addr street 2.
+     */
     public String bill_addr_street2;
+    /**
+     * The Bill addr state.
+     */
     public String bill_addr_state;
+    /**
+     * The Bill addr zip.
+     */
     public String bill_addr_zip;
+    /**
+     * The Bill co name.
+     */
     public String bill_co_name;
-    
-    //Shipping address
+
+    /**
+     * The Ship addr street 1.
+     */
+//Shipping address
     public String ship_addr_street1;
+    /**
+     * The Ship addr street 2.
+     */
     public String ship_addr_street2;
+    /**
+     * The Ship addr state.
+     */
     public String ship_addr_state;
+    /**
+     * The Ship addr zip.
+     */
     public String ship_addr_zip;
+    /**
+     * The Ship co name.
+     */
     public String ship_co_name;
-    
+
+    /**
+     * The Cx type.
+     */
     public String cx_type;
 
 	@Override

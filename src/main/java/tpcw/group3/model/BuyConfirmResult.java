@@ -52,9 +52,18 @@ package tpcw.group3.model;/*
  *
  ************************************************************************/
 
+/**
+ * The type Buy confirm result.
+ */
 public class BuyConfirmResult extends Entity<Integer> {
 
-	public Cart cart;
+    /**
+     * The Cart.
+     */
+    public Cart cart;
+    /**
+     * The Order id.
+     */
     public int order_id;
 	@Override
 	public int hashCode() {

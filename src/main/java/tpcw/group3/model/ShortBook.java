@@ -56,8 +56,16 @@ import java.sql.*;
 
 import tpcw.group3.cache.model.CachableEntity;
 
+/**
+ * The type Short book.
+ */
 public class ShortBook extends CachableEntity {
-    // Construct a book from a ResultSet
+    /**
+     * Instantiates a new Short book.
+     *
+     * @param rs the rs
+     */
+// Construct a book from a ResultSet
     public ShortBook(ResultSet rs) {
 	// The result set should have all of the fields we expect.
 	// This relies on using field name access.  It might be a bad
@@ -76,10 +84,23 @@ public class ShortBook extends CachableEntity {
 	    ex.printStackTrace();
 	}
     }
-    // From Item
+
+    /**
+     * The Id.
+     */
+// From Item
     public int i_id;
+    /**
+     * The Title.
+     */
     public String i_title;
+    /**
+     * The A fname.
+     */
     public String a_fname;
+    /**
+     * The A lname.
+     */
     public String a_lname;
 
     @Override

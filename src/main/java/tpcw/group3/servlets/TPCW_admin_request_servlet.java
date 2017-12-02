@@ -61,10 +61,16 @@ import java.io.*;
 import javax.servlet.*;
 import javax.servlet.http.*;
 
+/**
+ * The type Tpcw admin request servlet.
+ */
 public class TPCW_admin_request_servlet extends HttpServlet {
 	private ITPCW_Service service;
-	
-	public TPCW_admin_request_servlet() {
+
+    /**
+     * Instantiates a new Tpcw admin request servlet.
+     */
+    public TPCW_admin_request_servlet() {
 		service = TPCW_Service.getInstance();
 	}
 

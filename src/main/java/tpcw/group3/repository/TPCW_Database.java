@@ -68,8 +68,16 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
+/**
+ * The type Tpcw database.
+ */
 public class TPCW_Database {
 
+    /**
+     * Gets connection.
+     *
+     * @return the connection
+     */
     public static synchronized Connection getConnection() {
         Connection conn = null;
         try {
@@ -88,11 +96,23 @@ public class TPCW_Database {
         return conn;
     }
 
+    /**
+     * Return connection.
+     *
+     * @param con the con
+     * @throws SQLException the sql exception
+     */
     public static synchronized void returnConnection(Connection con)
             throws java.sql.SQLException {
         con.close();
     }
 
+    /**
+     * Get name string [ ].
+     *
+     * @param c_id the c id
+     * @return the string [ ]
+     */
     public static String[] getName(int c_id) {
         String name[] = new String[2];
         try {
@@ -128,6 +148,12 @@ public class TPCW_Database {
         return name;
     }
 
+    /**
+     * Gets book.
+     *
+     * @param i_id the id
+     * @return the book
+     */
     public static Book getBook(int i_id) {
         Book book = null;
         try {
@@ -154,6 +180,12 @@ public class TPCW_Database {
         return book;
     }
 
+    /**
+     * Get customer customer.
+     *
+     * @param UNAME the uname
+     * @return the customer
+     */
     public static Customer getCustomer(String UNAME){
         Customer cust = null;
         try {
@@ -186,6 +218,12 @@ public class TPCW_Database {
         return cust;
     }
 
+    /**
+     * Do subject search vector.
+     *
+     * @param search_key the search key
+     * @return the vector
+     */
     public static Vector doSubjectSearch(String search_key) {
         Vector vec = new Vector();
         try {
@@ -212,6 +250,12 @@ public class TPCW_Database {
         return vec;
     }
 
+    /**
+     * Do title search vector.
+     *
+     * @param search_key the search key
+     * @return the vector
+     */
     public static Vector doTitleSearch(String search_key) {
         Vector vec = new Vector();
         try {
@@ -238,6 +282,12 @@ public class TPCW_Database {
         return vec;
     }
 
+    /**
+     * Do author search vector.
+     *
+     * @param search_key the search key
+     * @return the vector
+     */
     public static Vector doAuthorSearch(String search_key) {
         Vector vec = new Vector();
         try {
@@ -264,6 +314,12 @@ public class TPCW_Database {
         return vec;
     }
 
+    /**
+     * Gets new products.
+     *
+     * @param subject the subject
+     * @return the new products
+     */
     public static Vector getNewProducts(String subject) {
         Vector vec = new Vector();  // Vector of Books
         try {
@@ -295,6 +351,12 @@ public class TPCW_Database {
         return vec;
     }
 
+    /**
+     * Gets best sellers.
+     *
+     * @param subject the subject
+     * @return the best sellers
+     */
     public static Vector getBestSellers(String subject) {
         Vector vec = new Vector();  // Vector of Books
         try {
@@ -337,6 +399,13 @@ public class TPCW_Database {
         return vec;
     }
 
+    /**
+     * Gets related.
+     *
+     * @param i_id            the id
+     * @param i_id_vec        the id vec
+     * @param i_thumbnail_vec the thumbnail vec
+     */
     public static void getRelated(int i_id, Vector i_id_vec, Vector i_thumbnail_vec) {
         try {
             // Prepare SQL
@@ -370,6 +439,14 @@ public class TPCW_Database {
         }
     }
 
+    /**
+     * Admin update.
+     *
+     * @param i_id      the id
+     * @param cost      the cost
+     * @param image     the image
+     * @param thumbnail the thumbnail
+     */
     public static void adminUpdate(int i_id, double cost, String image, String thumbnail) {
         try {
             // Prepare SQL
@@ -443,6 +520,12 @@ public class TPCW_Database {
         }
     }
 
+    /**
+     * Get user name string.
+     *
+     * @param C_ID the c id
+     * @return the string
+     */
     public static String GetUserName(int C_ID){
         String u_name = null;
         try {
@@ -469,6 +552,12 @@ public class TPCW_Database {
         return u_name;
     }
 
+    /**
+     * Get password string.
+     *
+     * @param C_UNAME the c uname
+     * @return the string
+     */
     public static String GetPassword(String C_UNAME){
         String passwd = null;
         try {
@@ -515,6 +604,13 @@ public class TPCW_Database {
         return related1;
     }
 
+    /**
+     * Get most recent order order.
+     *
+     * @param c_uname     the c uname
+     * @param order_lines the order lines
+     * @return the order
+     */
     public static Order GetMostRecentOrder(String c_uname, Vector order_lines){
         try {
             order_lines.removeAllElements();
@@ -630,6 +726,11 @@ public class TPCW_Database {
         return null;
     }
 
+    /**
+     * Create empty cart int.
+     *
+     * @return the int
+     */
     public static int createEmptyCart(){
 	int SHOPPING_ID = 0;
 	//	boolean success = false;
@@ -666,6 +767,15 @@ public class TPCW_Database {
 	return SHOPPING_ID;
     }
 
+    /**
+     * Do cart cart.
+     *
+     * @param SHOPPING_ID the shopping id
+     * @param I_ID        the id
+     * @param ids         the ids
+     * @param quantities  the quantities
+     * @return the cart
+     */
     public static Cart doCart(int SHOPPING_ID, Integer I_ID, Vector ids, Vector quantities) {
         Cart cart = null;
         try {
@@ -809,6 +919,13 @@ public class TPCW_Database {
         }
     }
 
+    /**
+     * Gets cart.
+     *
+     * @param SHOPPING_ID the shopping id
+     * @param c_discount  the c discount
+     * @return the cart
+     */
     public static Cart getCart(int SHOPPING_ID, double c_discount) {
         Cart mycart = null;
         try {
@@ -843,7 +960,12 @@ public class TPCW_Database {
 
     // ************** tpcw.model.Customer / tpcw.model.Order code below *************************
 
-    //This should probably return an error code if the customer
+    /**
+     * Refresh session.
+     *
+     * @param C_ID the c id
+     */
+//This should probably return an error code if the customer
     //doesn't exist, but ...
     public static void refreshSession(int C_ID) {
         try {
@@ -864,6 +986,12 @@ public class TPCW_Database {
         }
     }
 
+    /**
+     * Create new customer customer.
+     *
+     * @param cust the cust
+     * @return the customer
+     */
     public static Customer createNewCustomer(Customer cust) {
         try {
             // Get largest customer ID already in use.
@@ -936,6 +1064,18 @@ public class TPCW_Database {
 
     //BUY CONFIRM
 
+    /**
+     * Do buy confirm buy confirm result.
+     *
+     * @param shopping_id the shopping id
+     * @param customer_id the customer id
+     * @param cc_type     the cc type
+     * @param cc_number   the cc number
+     * @param cc_name     the cc name
+     * @param cc_expiry   the cc expiry
+     * @param shipping    the shipping
+     * @return the buy confirm result
+     */
     public static BuyConfirmResult doBuyConfirm(int shopping_id,
                                                 int customer_id,
                                                 String cc_type,
@@ -961,6 +1101,24 @@ public class TPCW_Database {
         return result;
     }
 
+    /**
+     * Do buy confirm buy confirm result.
+     *
+     * @param shopping_id the shopping id
+     * @param customer_id the customer id
+     * @param cc_type     the cc type
+     * @param cc_number   the cc number
+     * @param cc_name     the cc name
+     * @param cc_expiry   the cc expiry
+     * @param shipping    the shipping
+     * @param street_1    the street 1
+     * @param street_2    the street 2
+     * @param city        the city
+     * @param state       the state
+     * @param zip         the zip
+     * @param country     the country
+     * @return the buy confirm result
+     */
     public static BuyConfirmResult doBuyConfirm(int shopping_id,
                                                 int customer_id,
                                                 String cc_type,
@@ -991,7 +1149,14 @@ public class TPCW_Database {
     }
 
 
-    //DB query time: .05s
+    /**
+     * Gets c discount.
+     *
+     * @param con  the con
+     * @param c_id the c id
+     * @return the c discount
+     */
+//DB query time: .05s
     public static double getCDiscount(Connection con, int c_id) {
         double c_discount = 0.0;
         try {
@@ -1014,7 +1179,14 @@ public class TPCW_Database {
         return c_discount;
     }
 
-    //DB time: .05s
+    /**
+     * Gets c addr id.
+     *
+     * @param con  the con
+     * @param c_id the c id
+     * @return the c addr id
+     */
+//DB time: .05s
     public static int getCAddrID(Connection con, int c_id) {
         int c_addr_id = 0;
         try {
@@ -1037,6 +1209,13 @@ public class TPCW_Database {
         return c_addr_id;
     }
 
+    /**
+     * Gets c addr.
+     *
+     * @param con  the con
+     * @param c_id the c id
+     * @return the c addr
+     */
     public static int getCAddr(Connection con, int c_id) {
         int c_addr_id = 0;
         try {
@@ -1059,6 +1238,18 @@ public class TPCW_Database {
         return c_addr_id;
     }
 
+    /**
+     * Enter cc xact.
+     *
+     * @param con          the con
+     * @param o_id         the o id
+     * @param cc_type      the cc type
+     * @param cc_number    the cc number
+     * @param cc_name      the cc name
+     * @param cc_expiry    the cc expiry
+     * @param total        the total
+     * @param ship_addr_id the ship addr id
+     */
     public static void enterCCXact(Connection con,
                                    int o_id,        // tpcw.model.Order id
                                    String cc_type,
@@ -1095,6 +1286,12 @@ public class TPCW_Database {
         }
     }
 
+    /**
+     * Clear cart.
+     *
+     * @param con         the con
+     * @param shopping_id the shopping id
+     */
     public static void clearCart(Connection con, int shopping_id) {
         // Empties all the lines from the shopping_cart_line for the
         // shopping id.  Does not remove the actually shopping cart
@@ -1114,6 +1311,18 @@ public class TPCW_Database {
 
     private static int max_addr_id_taken = 0;
 
+    /**
+     * Enter address int.
+     *
+     * @param con     the con
+     * @param street1 the street 1
+     * @param street2 the street 2
+     * @param city    the city
+     * @param state   the state
+     * @param zip     the zip
+     * @param country the country
+     * @return the int
+     */
     public static int enterAddress(Connection con,  // Do we need to do this as part of a transaction?
                                    String street1, String street2,
                                    String city, String state,
@@ -1197,6 +1406,17 @@ public class TPCW_Database {
 
     private static int last_order_id_taken = 0;
 
+    /**
+     * Enter order int.
+     *
+     * @param con          the con
+     * @param customer_id  the customer id
+     * @param cart         the cart
+     * @param ship_addr_id the ship addr id
+     * @param shipping     the shipping
+     * @param c_discount   the c discount
+     * @return the int
+     */
     public static int enterOrder(Connection con, int customer_id, Cart cart, int ship_addr_id, String shipping, double c_discount) {
         // returns the new order_id
         int o_id = 0;
@@ -1263,6 +1483,17 @@ public class TPCW_Database {
         return o_id;
     }
 
+    /**
+     * Add order line.
+     *
+     * @param con         the con
+     * @param ol_id       the ol id
+     * @param ol_o_id     the ol o id
+     * @param ol_i_id     the ol i id
+     * @param ol_qty      the ol qty
+     * @param ol_discount the ol discount
+     * @param ol_comment  the ol comment
+     */
     public static void addOrderLine(Connection con,
                                     int ol_id, int ol_o_id, int ol_i_id,
                                     int ol_qty, double ol_discount, String ol_comment) {
@@ -1285,6 +1516,13 @@ public class TPCW_Database {
         }
     }
 
+    /**
+     * Gets stock.
+     *
+     * @param con  the con
+     * @param i_id the id
+     * @return the stock
+     */
     public static int getStock(Connection con, int i_id) {
         int stock = 0;
         try {
@@ -1306,6 +1544,13 @@ public class TPCW_Database {
         return stock;
     }
 
+    /**
+     * Sets stock.
+     *
+     * @param con       the con
+     * @param i_id      the id
+     * @param new_stock the new stock
+     */
     public static void setStock(Connection con, int i_id, int new_stock) {
         try {
             PreparedStatement update_row = con.prepareStatement
@@ -1319,6 +1564,9 @@ public class TPCW_Database {
         }
     }
 
+    /**
+     * Verify db consistency.
+     */
     public static void verifyDBConsistency(){
         try {
             Connection con = getConnection();

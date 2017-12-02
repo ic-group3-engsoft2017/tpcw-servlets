@@ -52,5 +52,8 @@ package tpcw.group3.model;/*
  *
  ************************************************************************/
 
+/**
+ * The type Address.
+ */
 public class Address {
 }

@@ -59,6 +59,9 @@ import java.util.*;
 import javax.servlet.*;
 import javax.servlet.http.*;
 
+/**
+ * The type Tpcw home interaction.
+ */
 public class TPCW_home_interaction extends HttpServlet {
     
   public void doGet(HttpServletRequest req, HttpServletResponse res)
