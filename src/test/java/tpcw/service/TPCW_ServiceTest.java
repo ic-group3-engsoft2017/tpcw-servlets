@@ -150,18 +150,9 @@ public class TPCW_ServiceTest {
     	//Inicio testes para TPCW_buy_request_servlet
     	sr.registerServlet("TPCW_buy_request_servlet", TPCW_buy_request_servlet.class.getName());
     	WebRequest request = new PostMethodWebRequest("http://localhost:8080/TPCW_buy_request_servlet"); // TODO trocar para endereco da amazon
-      	 
-	    try {    	
-	    	 InvocationContext ic = sc.newInvocation( request );
-		     WebResponse response = ic.getServletResponse();
-		     assertNotNull( "No response received", response.getText());
-		     assertEquals( "content type", "text/plain", response.getContentType() );    	        
-	    }
-	    catch (Exception e){
-	        fail("Error testing method getName from TPCW_buy_request_servlet. Exception is  " + e);
-	        e.printStackTrace();
-	    }
-    	//Fim testes para TPCW_buy_request_servlet
+
+		operateOrders(request);
+		//Fim testes para TPCW_buy_request_servlet
     	
     	//service.getCustomer(UNAME);
     }
@@ -177,18 +168,9 @@ public class TPCW_ServiceTest {
     	//Inicio testes para TPCW_execute_search
     	sr.registerServlet("TPCW_execute_search", TPCW_execute_search.class.getName());
     	WebRequest request = new PostMethodWebRequest("http://localhost:8080/TPCW_execute_search"); // TODO trocar para endereco da amazon
-     	 
-	    try {    	
-	    	 InvocationContext ic = sc.newInvocation( request );
-		     WebResponse response = ic.getServletResponse();
-		     assertNotNull( "No response received", response.getText());
-		     assertEquals( "content type", "text/plain", response.getContentType() );    	     	        
-	    }
-	    catch (Exception e){
-	        fail("Error testing method getName from TPCW_execute_search. Exception is  " + e);
-	        e.printStackTrace();
-	    }
-    	//Fim testes para TPCW_execute_search
+
+		executeWebRequest(request);
+		//Fim testes para TPCW_execute_search
     	
     	//service.doSubjectSearch(search_key);
     }
@@ -204,23 +186,27 @@ public class TPCW_ServiceTest {
     	//Inicio testes para TPCW_execute_search
     	sr.registerServlet("TPCW_execute_search", TPCW_execute_search.class.getName());
     	WebRequest request = new PostMethodWebRequest("http://localhost:8080/TPCW_execute_search"); // TODO trocar para endereco da amazon
-    	 
-	    try {    	
-	    	 InvocationContext ic = sc.newInvocation( request );
-		     WebResponse response = ic.getServletResponse();
-		     assertNotNull( "No response received", response.getText());
-		     assertEquals( "content type", "text/plain", response.getContentType() );    	 	        
-	    }
-	    catch (Exception e){
-	        fail("Error testing method getName from TPCW_execute_search. Exception is  " + e);
-	        e.printStackTrace();
-	    }
-    	//Fim testes para TPCW_execute_search
+
+		executeWebRequest(request);
+		//Fim testes para TPCW_execute_search
     	
     	//service.doTitleSearch(search_key);
     }
 
-    /**
+	private void executeWebRequest(WebRequest request) {
+		try {
+             InvocationContext ic = sc.newInvocation( request );
+             WebResponse response = ic.getServletResponse();
+             assertNotNull( "No response received", response.getText());
+             assertEquals( "content type", "text/plain", response.getContentType() );
+        }
+        catch (Exception e){
+            fail("Error testing method getName from TPCW_execute_search. Exception is  " + e);
+            e.printStackTrace();
+        }
+	}
+
+	/**
      * Teste para a busca de livro por autor
      * TPCW_execute_search
      * @throws Exception
@@ -231,18 +217,9 @@ public class TPCW_ServiceTest {
     	//Inicio testes para TPCW_execute_search
     	sr.registerServlet("TPCW_execute_search", TPCW_execute_search.class.getName());
     	WebRequest request = new PostMethodWebRequest("http://localhost:8080/TPCW_execute_search"); // TODO trocar para endereco da amazon
-   	 
-	    try {    	
-	    	 InvocationContext ic = sc.newInvocation( request );
-		     WebResponse response = ic.getServletResponse();
-		     assertNotNull( "No response received", response.getText());
-		     assertEquals( "content type", "text/plain", response.getContentType() );    	   	        
-	    }
-	    catch (Exception e){
-	        fail("Error testing method getName from TPCW_execute_search. Exception is  " + e);
-	        e.printStackTrace();
-	    }
-    	//Fim testes para TPCW_execute_search
+
+		executeWebRequest(request);
+		//Fim testes para TPCW_execute_search
     	
     	//service.doAuthorSearch(search_key);
     }
@@ -312,23 +289,27 @@ public class TPCW_ServiceTest {
     	//Inicio testes para TPCW_best_sellers_servlet
     	sr.registerServlet("TPCW_order_display_servlet", TPCW_order_display_servlet.class.getName());
     	WebRequest request = new PostMethodWebRequest("http://localhost:8080/TPCW_order_display_servlet"); // TODO trocar para endereco da amazon
-    	 
-	    try {    	
-	    	 InvocationContext ic = sc.newInvocation( request );
-		     WebResponse response = ic.getServletResponse();
-		     assertNotNull( "No response received", response.getText());
-		     assertEquals( "content type", "text/plain", response.getContentType() );    	    	        
-	    }
-	    catch (Exception e){
-	        fail("Error testing method getName from TPCW_order_display_servlet. Exception is  " + e);
-	        e.printStackTrace();
-	    }
-    	//Fim testes para TPCW_order_display_servlet
+
+		invokeContext(request);
+		//Fim testes para TPCW_order_display_servlet
     	
     	//service.GetMostRecentOrder(c_uname, order_lines);
     }
 
-    /**
+	private void invokeContext(WebRequest request) {
+		try {
+             InvocationContext ic = sc.newInvocation( request );
+             WebResponse response = ic.getServletResponse();
+             assertNotNull( "No response received", response.getText());
+             assertEquals( "content type", "text/plain", response.getContentType() );
+        }
+        catch (Exception e){
+            fail("Error testing method getName from TPCW_order_display_servlet. Exception is  " + e);
+            e.printStackTrace();
+        }
+	}
+
+	/**
      * Teste para a requisicao de compra
      * TPCW_buy_request_servlet
      * @throws Exception
@@ -339,18 +320,9 @@ public class TPCW_ServiceTest {
     	//Inicio testes para TPCW_buy_request_servlet
     	sr.registerServlet("TPCW_buy_request_servlet", TPCW_buy_request_servlet.class.getName());
     	WebRequest request = new PostMethodWebRequest("http://localhost:8080/TPCW_buy_request_servlet"); // TODO trocar para endereco da amazon
-   	 
-	    try {    	
-	    	 InvocationContext ic = sc.newInvocation( request );
-		     WebResponse response = ic.getServletResponse();
-		     assertNotNull( "No response received", response.getText());
-		     assertEquals( "content type", "text/plain", response.getContentType() );    	     	        
-	    }
-	    catch (Exception e){
-	        fail("Error testing method getName from TPCW_buy_request_servlet. Exception is  " + e);
-	        e.printStackTrace();
-	    }
-    	//Fim testes para TPCW_buy_request_servlet
+
+		operateOrders(request);
+		//Fim testes para TPCW_buy_request_servlet
     	
     	//service.getCart(SHOPPING_ID, c_discount);
     }
@@ -384,26 +356,30 @@ public class TPCW_ServiceTest {
     	//Inicio testes para TPCW_buy_confirm_servlet
     	sr.registerServlet("TPCW_buy_confirm_servlet", TPCW_buy_confirm_servlet.class.getName());
     	WebRequest request = new PostMethodWebRequest("http://localhost:8080/TPCW_buy_confirm_servlet"); // TODO trocar para endereco da amazon
-      	 
-	    try {    	
-	    	 InvocationContext ic = sc.newInvocation( request );
-		     WebResponse response = ic.getServletResponse();
-		     assertNotNull( "No response received", response.getText());
-		     assertEquals( "content type", "text/plain", response.getContentType() );    	   	        
-	    }
-	    catch (Exception e){
-	        fail("Error testing method getName from TPCW_buy_request_servlet. Exception is  " + e);
-	        e.printStackTrace();
-	    }
-    	//Fim testes para TPCW_buy_confirm_servlet
+
+		operateOrders(request);
+		//Fim testes para TPCW_buy_confirm_servlet
     	
     	
     	//service.doBuyConfirm(shopping_id, customer_id, cc_type, cc_number, cc_name, cc_expiry, shipping, street_1, street_2, city, state, zip, country);
     	
     	//service.doBuyConfirm(shopping_id, customer_id, cc_type, cc_number, cc_name, cc_expiry, shipping);
     }
-    
-    /**
+
+	private void operateOrders(WebRequest request) {
+		try {
+             InvocationContext ic = sc.newInvocation( request );
+             WebResponse response = ic.getServletResponse();
+             assertNotNull( "No response received", response.getText());
+             assertEquals( "content type", "text/plain", response.getContentType() );
+        }
+        catch (Exception e){
+            fail("Error testing method getName from TPCW_buy_request_servlet. Exception is  " + e);
+            e.printStackTrace();
+        }
+	}
+
+	/**
      * Teste para o registro de cliente
      * TPCW_customer_registration_servlet
      * @throws Exception
@@ -440,18 +416,9 @@ public class TPCW_ServiceTest {
     	//Inicio testes para TPCW_order_display_servlet
     	sr.registerServlet("TPCW_order_display_servlet", TPCW_order_display_servlet.class.getName());
     	WebRequest request = new PostMethodWebRequest("http://localhost:8080/TPCW_order_display_servlet"); // TODO trocar para endereco da amazon
-    	 
-	    try {    	
-	    	 InvocationContext ic = sc.newInvocation( request );
-		     WebResponse response = ic.getServletResponse();
-		     assertNotNull( "No response received", response.getText());
-		     assertEquals( "content type", "text/plain", response.getContentType() );    	  	        
-	    }
-	    catch (Exception e){
-	        fail("Error testing method getName from TPCW_order_display_servlet. Exception is  " + e);
-	        e.printStackTrace();
-	    }
-    	//Fim testes para TPCW_order_display_servlet
+
+		invokeContext(request);
+		//Fim testes para TPCW_order_display_servlet
     	
     	//service.getPassword(c_uname);
     	
@@ -468,24 +435,28 @@ public class TPCW_ServiceTest {
     	//Inicio testes para TPCW_shopping_cart_interaction
     	sr.registerServlet("TPCW_shopping_cart_interaction", TPCW_shopping_cart_interaction.class.getName());
     	WebRequest request = new PostMethodWebRequest("http://localhost:8080/TPCW_shopping_cart_interaction"); // TODO trocar para endereco da amazon
-   	 
-	    try {    	
-	    	 InvocationContext ic = sc.newInvocation( request );
-		     WebResponse response = ic.getServletResponse();
-		     assertNotNull( "No response received", response.getText());
-		     assertEquals( "content type", "text/plain", response.getContentType() );    	  	        
-	    }
-	    catch (Exception e){
-	        fail("Error testing method getName from TPCW_shopping_cart_interaction. Exception is  " + e);
-	        e.printStackTrace();
-	    }
-    	//Fim testes para TPCW_shopping_cart_interaction
+
+		invokeForCart(request);
+		//Fim testes para TPCW_shopping_cart_interaction
     	
     	//service.createEmptyCart();
     	
     }
-    
-    /**
+
+	private void invokeForCart(WebRequest request) {
+		try {
+             InvocationContext ic = sc.newInvocation( request );
+             WebResponse response = ic.getServletResponse();
+             assertNotNull( "No response received", response.getText());
+             assertEquals( "content type", "text/plain", response.getContentType() );
+        }
+        catch (Exception e){
+            fail("Error testing method getName from TPCW_shopping_cart_interaction. Exception is  " + e);
+            e.printStackTrace();
+        }
+	}
+
+	/**
      * Teste para carrinho cheio
      * TPCW_shopping_cart_interaction
      * @throws Exception
@@ -496,18 +467,9 @@ public class TPCW_ServiceTest {
     	//Inicio testes para TPCW_shopping_cart_interaction
     	sr.registerServlet("TPCW_shopping_cart_interaction", TPCW_shopping_cart_interaction.class.getName());
     	WebRequest request = new PostMethodWebRequest("http://localhost:8080/TPCW_shopping_cart_interaction"); // TODO trocar para endereco da amazon
-    	 
-	    try {    	
-	    	 InvocationContext ic = sc.newInvocation( request );
-		     WebResponse response = ic.getServletResponse();
-		     assertNotNull( "No response received", response.getText());
-		     assertEquals( "content type", "text/plain", response.getContentType() );     	        
-	    }
-	    catch (Exception e){
-	        fail("Error testing method getName from TPCW_shopping_cart_interaction. Exception is  " + e);
-	        e.printStackTrace();
-	    }
-    	//Fim testes para TPCW_shopping_cart_interaction
+
+		invokeForCart(request);
+		//Fim testes para TPCW_shopping_cart_interaction
     	
     	//service.doCart(SHOPPING_ID, I_ID, ids, quantities);
     	
