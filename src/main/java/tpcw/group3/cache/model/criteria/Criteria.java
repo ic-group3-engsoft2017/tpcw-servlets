@@ -32,4 +32,10 @@ public class Criteria {
 		numberOfHits.incrementAndGet();
 	}
 
+	@Override
+	public String toString() {
+		return "Criteria{" +
+				"numberOfHits=" + numberOfHits +
+				'}';
+	}
 }

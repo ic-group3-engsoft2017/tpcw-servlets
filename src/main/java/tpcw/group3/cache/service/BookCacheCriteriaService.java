@@ -15,7 +15,7 @@ import static java.util.logging.Level.SEVERE;
  */
 public class BookCacheCriteriaService implements CacheCriteria {
 
-    private static Logger LOG = Logger.getLogger("BookCacheCriteriaService");
+    private static Logger LOG = Logger.getLogger(BookCacheCriteriaService.class.getName());
 
 	private static BookCacheCriteriaService service;
 
@@ -50,10 +50,12 @@ public class BookCacheCriteriaService implements CacheCriteria {
 	}
 	
 	public List<CachableEntity> getByCriteria(Criteria criteria) {
+        LOG.log(INFO, String.format("GETTING CRITERIA {} ", criteria));
         // Add a hit to cache if cache present and Return
         Optional<Criteria> criteriaOptional = cacheMap.keySet().stream().filter(cacheKey -> cacheKey.equals(criteria)).findAny();
         criteriaOptional.ifPresent(Criteria::addHit);
 		if (cacheMap.containsKey(criteria)) {
+            LOG.log(INFO, String.format("GOT CRITERIA {} FROM CACHE", criteria));
 		    return cacheMap.get(criteria);
         }
 		return Collections.emptyList();
