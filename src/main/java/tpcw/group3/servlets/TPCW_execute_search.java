@@ -71,8 +71,14 @@ public class TPCW_execute_search extends HttpServlet {
 		service = TPCW_Service.getInstance();
 	}
 
-    public void doGet(HttpServletRequest req, HttpServletResponse res)
-      throws IOException, ServletException {
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	    processRequest(req, resp);
+	}
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	    processRequest(req, resp);
+	}
+	
+	private void processRequest(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
       
       int i;
       
